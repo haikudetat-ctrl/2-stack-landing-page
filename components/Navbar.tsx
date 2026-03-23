@@ -8,7 +8,7 @@ const roboto = Roboto({
 });
 
 const navLinks = [
-  { label: "Home Services", href: "/home-services", hoverClass: "hover:text-[#7aff60] focus-visible:text-[#7aff60]" },
+  { label: "Home Services", href: "/home-services", hoverClass: "hover:text-[#caffc0] focus-visible:text-[#caffc0]" },
   {
     label: "Medical Aftercare",
     href: "/medical-aftercare",

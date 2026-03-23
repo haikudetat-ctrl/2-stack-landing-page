@@ -45,10 +45,12 @@ export function WhatWeDo() {
           />
 
           <h2
-            className={`max-w-[22ch] font-[var(--font-display)] text-4xl font-semibold leading-[1.08] tracking-[-0.02em] text-white md:text-[3rem] ${reveal()}`}
+            className={`max-w-none font-[var(--font-display)] text-[2.2rem] font-semibold leading-[1.08] tracking-[-0.02em] text-white md:text-[2.95rem] ${reveal()}`}
             style={{ transitionDelay: "0ms" }}
           >
-            The best businesses are built by people who take pride in their work.
+            For owners that take
+            <br />
+            pride in their work.
           </h2>
           <p className={`mt-7 max-w-xl text-[1.05rem] leading-8 text-slate-300 ${reveal()}`} style={{ transitionDelay: "120ms" }}>
             You know your industry.
@@ -59,7 +61,9 @@ export function WhatWeDo() {
           </p>
 
           <p className={`mt-7 max-w-xl text-slate-300 ${reveal()}`} style={{ transitionDelay: "220ms" }}>
-            What often gets neglected are the systems behind the business.
+            Outpacing competitors requires more than hustle,
+            <br />
+            it requires structural discipline.
           </p>
 
           <p className={`mt-7 max-w-xl text-slate-300 ${reveal()}`} style={{ transitionDelay: "320ms" }}>
@@ -67,8 +71,8 @@ export function WhatWeDo() {
           </p>
 
           <p className={`mt-7 max-w-xl leading-8 text-slate-300 ${reveal()}`} style={{ transitionDelay: "420ms" }}>
-            We build the operational foundation that allows your business to run more smoothly, grow faster, and
-            focus on the work that made your business successful in the first place.
+            We build the operational foundation specifically for your needs to help your business run more smoothly,
+            grow faster, and focus on the work that made your business successful in the first place.
           </p>
         </div>
 

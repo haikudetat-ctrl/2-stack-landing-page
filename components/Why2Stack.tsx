@@ -33,7 +33,7 @@ export function Why2Stack() {
             aria-hidden="true"
             width={1500}
             height={1500}
-            className="h-14 w-auto opacity-25"
+            className="h-14 w-auto"
           />
         </div>
       </div>

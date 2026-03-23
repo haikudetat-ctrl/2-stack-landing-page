@@ -166,7 +166,7 @@ export function LeadResponseScannerWidget() {
                 ]
               }}
               transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-              className="group rounded-xl border border-[#7aff60]/35 bg-[#7aff60] px-4 py-3 text-left text-[#182015] transition-all duration-300 hover:border-[#44c5ff] hover:bg-[#44c5ff] hover:text-[#0d2230]"
+              className="group rounded-xl border border-[#caffc0]/35 bg-[#caffc0] px-4 py-3 text-left text-[#182015] transition-all duration-300 hover:border-[#44c5ff] hover:bg-[#44c5ff] hover:text-[#0d2230]"
             >
               <span className="flex items-center gap-2 text-sm font-semibold">
                 <PhonePulseIcon />
@@ -198,7 +198,7 @@ export function LeadResponseScannerWidget() {
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <h2 className="font-[var(--font-display)] text-2xl font-semibold text-[#7aff60]">
+                    <h2 className="font-[var(--font-display)] text-2xl font-semibold text-[#caffc0]">
                       Lead Response Scanner
                     </h2>
                     <p className="mt-2 max-w-2xl text-sm leading-7 text-white/78">
@@ -212,7 +212,7 @@ export function LeadResponseScannerWidget() {
                   <button
                     type="button"
                     onClick={reset}
-                    className="rounded-md border border-white/20 px-2.5 py-1 text-xs text-white/80 transition hover:border-[#7aff60]/55 hover:text-white"
+                    className="rounded-md border border-white/20 px-2.5 py-1 text-xs text-white/80 transition hover:border-[#caffc0]/55 hover:text-white"
                   >
                     Close
                   </button>
@@ -245,7 +245,7 @@ export function LeadResponseScannerWidget() {
                               key={option.label}
                               type="button"
                               onClick={() => selectOption(option.score)}
-                              className="rounded-lg border border-white/20 bg-[#1b2230] px-4 py-3 text-left text-sm text-white transition-all duration-300 hover:border-[#7aff60] hover:bg-[#7aff60]/12"
+                              className="rounded-lg border border-white/20 bg-[#1b2230] px-4 py-3 text-left text-sm text-white transition-all duration-300 hover:border-[#caffc0] hover:bg-[#caffc0]/12"
                             >
                               {option.label}
                             </button>
@@ -255,7 +255,7 @@ export function LeadResponseScannerWidget() {
                     </AnimatePresence>
                   ) : isSubmitted ? (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
-                      <p className="text-sm font-semibold text-[#7aff60]">Submission confirmed.</p>
+                      <p className="text-sm font-semibold text-[#caffc0]">Submission confirmed.</p>
                       <p className="text-sm leading-7 text-white/80">
                         Your Lead Response Report is on the way. Want to walk through your results live with the
                         founders?
@@ -263,7 +263,7 @@ export function LeadResponseScannerWidget() {
                       <button
                         type="button"
                         onClick={openEmbeddedBooking}
-                        className="inline-flex rounded-lg bg-[#7aff60] px-4 py-2 text-sm font-semibold text-[#182015] transition-all duration-300 hover:bg-[#44c5ff] hover:text-[#0d2230]"
+                        className="inline-flex rounded-lg bg-[#caffc0] px-4 py-2 text-sm font-semibold text-[#182015] transition-all duration-300 hover:bg-[#44c5ff] hover:text-[#0d2230]"
                       >
                         Book a Walkthrough
                       </button>
@@ -274,9 +274,9 @@ export function LeadResponseScannerWidget() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2, ease: "easeOut" }}
                     >
-                      <div className="rounded-xl border border-[#7aff60]/30 bg-[#7aff60]/8 p-4">
+                      <div className="rounded-xl border border-[#caffc0]/30 bg-[#caffc0]/8 p-4">
                         <p className="text-xs uppercase tracking-[0.12em] text-[#44c5ff]">Your score</p>
-                        <p className="mt-2 text-xl font-semibold text-[#7aff60]">{result.label}</p>
+                        <p className="mt-2 text-xl font-semibold text-[#caffc0]">{result.label}</p>
                         <p className="mt-2 text-sm leading-7 text-white/80">{result.message}</p>
                       </div>
 
@@ -325,7 +325,7 @@ export function LeadResponseScannerWidget() {
                         </label>
                         <button
                           type="submit"
-                          className="mt-1 rounded-lg bg-[#7aff60] px-5 py-3 text-sm font-semibold text-[#182015] transition-all duration-300 hover:bg-[#44c5ff] hover:text-[#0d2230]"
+                          className="mt-1 rounded-lg bg-[#caffc0] px-5 py-3 text-sm font-semibold text-[#182015] transition-all duration-300 hover:bg-[#44c5ff] hover:text-[#0d2230]"
                         >
                           Send My Report
                         </button>

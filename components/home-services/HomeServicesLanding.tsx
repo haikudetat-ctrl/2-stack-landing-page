@@ -8,10 +8,11 @@ import { LeadResponseScannerWidget } from "@/components/home-services/LeadRespon
 const scenarioCards = [
   {
     moment: "Moment 1",
-    timeTitle: "8:12 AM - Website Lead",
+    time: "08:12 AM",
+    title: "Website Lead",
     withoutLines: [
       "A homeowner fills out your website form.",
-      "Nobody sees it for 45 minutes.",
+      "Nobody is in the office until 9:00",
       "By the time you call back...",
       "The job is already booked."
     ],
@@ -23,7 +24,8 @@ const scenarioCards = [
   },
   {
     moment: "Moment 2",
-    timeTitle: "10:37 AM - Missed Call",
+    time: "10:37 AM",
+    title: "Missed Call",
     withoutLines: [
       "The phone rings.",
       "The office is busy.",
@@ -39,7 +41,8 @@ const scenarioCards = [
   },
   {
     moment: "Moment 3",
-    timeTitle: "1:24 PM - Ad Money Mystery",
+    time: "01:24 PM",
+    title: "Ad Money Mystery",
     withoutLines: ["Leads come in from ads.", "But you do not know:"],
     withoutBullets: ["which ads work", "which leads turn into jobs", "where your money is going"],
     withLines: ["Every lead gets tracked.", "You can see:"],
@@ -47,7 +50,8 @@ const scenarioCards = [
   },
   {
     moment: "Moment 4",
-    timeTitle: "4:18 PM - No Review Request",
+    time: "04:18 PM",
+    title: "No Review Request",
     withoutLines: [
       "A tech finishes a great job.",
       "The customer is happy.",
@@ -62,7 +66,8 @@ const scenarioCards = [
   },
   {
     moment: "Moment 5",
-    timeTitle: "6:02 PM - Dispatcher Out",
+    time: "06:02 PM",
+    title: "Dispatcher Out",
     withoutLines: [
       "Your dispatcher knows everything.",
       "But when they are out...",
@@ -100,7 +105,7 @@ const systems = [
   },
   {
     title: "Pipeline Protection System",
-    body: "Leads, calls, estimates, and follow-ups all stay connected so jobs move smoothly from first contact to finished work."
+    body: "Leads, calls, estimates, and follow-ups all stay connected so jobs move\nsmoothly from first contact to finished work."
   }
 ];
 
@@ -126,7 +131,7 @@ const fadeIn = {
 } as const;
 
 const cardClass =
-  "rounded-2xl border border-white/10 bg-white/[0.035] backdrop-blur-[8px] transition-all duration-[250ms] ease-in-out hover:border-[#7aff60]/55 hover:bg-[#222837] hover:shadow-[0_0_18px_rgba(122,255,96,0.25)]";
+  "rounded-2xl border border-white/10 bg-white/[0.035] backdrop-blur-[8px] transition-all duration-[250ms] ease-in-out hover:border-[#caffc0]/55 hover:bg-[#222837] hover:shadow-[0_0_18px_rgba(122,255,96,0.25)]";
 
 const homeServicesBookingUrl =
   "https://calendly.com/2-stack-founders/home-services-systems-review-meet-the-founders";
@@ -168,17 +173,17 @@ export function HomeServicesLanding() {
 
       <section className="sticky top-0 z-40 border-b border-white/10 bg-[#222837]/85 backdrop-blur-xl">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-3">
-          <Link href="/" className="text-sm font-semibold uppercase tracking-[0.16em] text-[#7aff60]">
+          <Link href="/" className="text-sm font-semibold uppercase tracking-[0.16em] text-[#caffc0]">
             2Stack | Home Services Systems
           </Link>
           <div className="hidden items-center gap-5 text-xs uppercase tracking-[0.12em] text-white/70 md:flex">
-            <a href="#familiar" className="transition hover:text-[#7aff60]">
+            <a href="#familiar" className="transition hover:text-[#caffc0]">
               Familiar Moments
             </a>
-            <a href="#systems" className="transition hover:text-[#7aff60]">
+            <a href="#systems" className="transition hover:text-[#caffc0]">
               Systems
             </a>
-            <a href="#cta" className="transition hover:text-[#7aff60]">
+            <a href="#cta" className="transition hover:text-[#caffc0]">
               Run Scanner
             </a>
           </div>
@@ -191,18 +196,18 @@ export function HomeServicesLanding() {
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#44c5ff]">
               Roofing - HVAC - Plumbing - Service Teams
             </p>
-            <h1 className="mt-4 font-[var(--font-display)] text-4xl font-semibold leading-tight text-[#7aff60] md:text-5xl">
+            <h1 className="mt-4 font-[var(--font-display)] text-4xl font-semibold leading-tight text-[#caffc0] md:text-5xl">
               Stop losing jobs because your systems are messy.
             </h1>
 
             <div className="mt-6">
-              <div className="relative overflow-hidden rounded-xl border border-[#7aff60]/30 bg-white/[0.04] px-4 py-4 pl-5 backdrop-blur-[6px]">
-                <span className="absolute inset-y-0 left-0 w-1 bg-[#7aff60]" />
+              <div className="relative overflow-hidden rounded-xl border border-[#caffc0]/30 bg-white/[0.04] px-4 py-4 pl-5 backdrop-blur-[6px]">
+                <span className="absolute inset-y-0 left-0 w-1 bg-[#caffc0]" />
 
                 <ul className="space-y-2.5">
                   {["Missed calls.", "Slow lead response.", "Forgotten follow-ups."].map((line) => (
                     <li key={line} className="flex items-center gap-2.5">
-                      <span className="h-2 w-2 rounded-full bg-[#7aff60]" />
+                      <span className="h-2 w-2 rounded-full bg-[#caffc0]" />
                       <span className="text-base font-semibold leading-7 text-white md:text-lg">{line}</span>
                     </li>
                   ))}
@@ -218,38 +223,35 @@ export function HomeServicesLanding() {
               <button
                 type="button"
                 onClick={openScanner}
-                className="rounded-full border border-[#7aff60]/45 bg-[#7aff60] px-6 py-3 text-sm font-semibold text-[#172114] transition-all duration-300 hover:border-[#44c5ff] hover:bg-[#44c5ff] hover:text-[#102637]"
+                className="rounded-full border border-[#caffc0]/45 bg-[#caffc0] px-6 py-3 text-sm font-semibold text-[#172114] transition-all duration-300 hover:border-[#44c5ff] hover:bg-[#44c5ff] hover:text-[#102637]"
               >
                 Check Your Lead Response
               </button>
               <button
                 type="button"
                 onClick={openBooking}
-                className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-[#7aff60]/55 hover:bg-[#7aff60]/10"
+                className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-[#caffc0]/55 hover:bg-[#caffc0]/10"
               >
                 See How It Works
               </button>
             </div>
           </motion.div>
 
-          <motion.aside {...fadeIn} className={`self-start ${cardClass} p-6 md:p-7`}>
+          <motion.aside
+            {...fadeIn}
+            className="self-start rounded-2xl border border-white/10 bg-[#222837] p-6 backdrop-blur-[8px] md:p-7"
+          >
             <p className="text-xs uppercase tracking-[0.16em] text-[#44c5ff]">Speed-to-Lead Meter</p>
-            <h2 className="mt-3 font-[var(--font-display)] text-2xl font-semibold text-white">
+            <h2 className="mt-3 font-[var(--font-display)] text-2xl font-semibold text-[#caffc0]">
               How fast are you calling new leads?
             </h2>
-            <p className="mt-3 text-sm leading-7 text-white/75">
+            <p className="mt-3 text-sm leading-7 text-white">
               Most homeowners contact 3-5 companies. The first company to respond usually wins the job.
             </p>
-            <p className="mt-2 text-sm font-semibold text-[#7aff60]">How fast are you?</p>
+            <p className="mt-2 text-sm font-semibold text-[#caffc0]">How fast are you?</p>
 
             <SpeedToLeadMeter />
 
-            <div className="mt-6 rounded-xl border border-[#7aff60]/28 bg-[#7aff60]/10 p-4">
-              <p className="text-sm leading-7 text-white/85">
-                If it is not fast, jobs are slipping away. Fast response is not about working harder. It is about
-                having the right system in place.
-              </p>
-            </div>
           </motion.aside>
         </div>
       </section>
@@ -260,42 +262,50 @@ export function HomeServicesLanding() {
         subtitle="These moments happen every day."
       >
         <div className="space-y-4">
-          {scenarioCards.map((card, index) => (
-            <motion.article key={card.timeTitle} {...fadeIn} className={`${cardClass} overflow-hidden p-0`}>
+          {scenarioCards.map((card) => (
+            <motion.article key={`${card.time}-${card.title}`} {...fadeIn} className={`${cardClass} overflow-hidden p-0`}>
               <div className="grid gap-0 lg:grid-cols-[180px_1fr]">
-                <div className="relative border-b border-white/10 bg-[#1e2634] px-5 py-6 lg:border-b-0 lg:border-r">
-                  <span className="absolute -right-[5px] top-1/2 hidden h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-[#7aff60] lg:block" />
-                  <p className="text-xs uppercase tracking-[0.14em] text-[#44c5ff]">{card.moment ?? `Moment ${index + 1}`}</p>
-                  <p className="mt-2 text-sm font-semibold text-[#7aff60]">{card.timeTitle}</p>
+                <div className="relative flex flex-col items-center border-b border-white/10 bg-[#1e2634] px-5 py-6 lg:border-b-0 lg:border-r">
+                  <span className="absolute -right-[5px] top-1/2 hidden h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-[#caffc0] lg:block" />
+                  <p className="inline-flex rounded-md border border-[#44c5ff] bg-[#44c5ff]/12 px-3 py-2 font-mono text-base font-semibold tracking-[0.12em] tabular-nums text-[#00baff] shadow-[0_0_14px_rgba(68,197,255,0.22)]">
+                    {card.time}
+                  </p>
+                  <p className="mt-2 text-center text-xs font-semibold uppercase text-[#caffc0]">{card.title}</p>
                 </div>
 
-                <div className="grid gap-0 md:grid-cols-2">
-                  <div className="border-b border-white/10 px-5 py-6 md:border-b-0 md:border-r">
-                    <p className="text-xs uppercase tracking-[0.14em] text-white/65">Without 2Stack</p>
-                    <div className="mt-3 space-y-1.5 text-sm leading-7 text-white/80">
+                <div className="grid gap-0 md:grid-cols-[0.94fr_1.06fr]">
+                  <div className="border-b border-white/10 px-5 py-6 md:border-b-0 md:border-r md:pr-3">
+                    <p className="text-xs uppercase tracking-[0.14em] text-white/65">Current Reality</p>
+                    <div className="mt-3 space-y-1 text-sm leading-[1.275rem] text-white">
                       {card.withoutLines.map((line: string) => (
                         <p key={line}>{line}</p>
                       ))}
                     </div>
                     {card.withoutBullets ? (
-                      <ul className="mt-2 space-y-1 text-sm leading-7 text-white/80">
+                      <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-[1.275rem] text-white marker:text-white/55">
                         {card.withoutBullets.map((item: string) => (
-                          <li key={item}>* {item}</li>
+                          <li key={item} className="pl-1">
+                            {item}
+                          </li>
                         ))}
                       </ul>
                     ) : null}
                   </div>
-                  <div className="bg-[#7aff60]/[0.06] px-5 py-6">
-                    <p className="text-xs uppercase tracking-[0.14em] text-[#44c5ff]">With 2Stack</p>
-                    <div className="mt-3 space-y-1.5 text-sm leading-7 text-white/90">
+                  <div className="bg-[#caffc0]/[0.06] px-5 py-6 md:pl-4">
+                    <p className="text-xs uppercase tracking-[0.14em] text-[#00baff]">
+                      With <span className="font-semibold">2Stack</span>
+                    </p>
+                    <div className="mt-3 space-y-1 text-sm leading-[1.275rem] text-white">
                       {card.withLines.map((line: string) => (
                         <p key={line}>{line}</p>
                       ))}
                     </div>
                     {card.withBullets ? (
-                      <ul className="mt-2 space-y-1 text-sm leading-7 text-white/90">
+                      <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-[1.275rem] text-white marker:text-[#caffc0]">
                         {card.withBullets.map((item: string) => (
-                          <li key={item}>* {item}</li>
+                          <li key={item} className="pl-1">
+                            {item}
+                          </li>
                         ))}
                       </ul>
                     ) : null}
@@ -306,7 +316,7 @@ export function HomeServicesLanding() {
           ))}
 
           <div className="hidden px-2 lg:block">
-            <div className="ml-[174px] h-6 border-l border-dashed border-[#7aff60]/35" />
+            <div className="ml-[174px] h-6 border-l border-dashed border-[#caffc0]/35" />
           </div>
         </div>
       </Section>
@@ -314,29 +324,44 @@ export function HomeServicesLanding() {
       <Section
         id="systems"
         title="What 2Stack Actually Does"
-        subtitle="We build simple systems that keep your pipeline moving. No complicated software. No fluff. Just tools that help service companies run better."
+        subtitle={
+          <>
+            We build simple systems that keep your pipeline moving. No complicated software.
+            <br />
+            No Fluff. Just tools that help service companies run better.
+          </>
+        }
+        eyebrow="Systems Overview"
+        headerStyle="centeredDivider"
+        childrenClassName="mt-8"
       >
-        <div className="mt-1 space-y-5">
+        <div className="space-y-5">
           {systemsPyramidTiers.map((tier, tierIndex) => (
             <div key={`tier-${tierIndex}`} className="flex flex-col items-center gap-5 md:flex-row md:justify-center">
               {tier.map((systemIndex) => {
                 const system = systems[systemIndex];
                 if (!system) return null;
+                const tierToneClasses =
+                  tierIndex === 0
+                    ? "relative overflow-hidden border-[#caffc0]/45 bg-[#caffc0]/[0.05] before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-[#caffc0]/60 md:max-w-2xl"
+                    : tierIndex === 1
+                      ? "relative overflow-hidden border-[#9fe9dd]/30 bg-[#9fe9dd]/[0.035] before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-[#9fe9dd]/55 md:max-w-[420px]"
+                      : "relative overflow-hidden border-white/12 bg-[#8ad3ff]/[0.02] before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-[#8ad3ff]/45 md:max-w-[360px]";
+                const tierTitleClasses =
+                  tierIndex === 0 ? "text-[#caffc0]" : tierIndex === 1 ? "text-[#aee9de]" : "text-[#9ddfff]";
 
                 return (
                   <motion.article
                     key={system.title}
                     {...fadeIn}
-                    className={`${cardClass} w-full p-6 ${
-                      tierIndex === 0
-                        ? "border-[#7aff60]/40 shadow-[0_0_20px_rgba(122,255,96,0.16)] md:max-w-2xl"
-                        : tierIndex === 1
-                          ? "md:max-w-[420px]"
-                          : "md:max-w-[360px]"
-                    }`}
+                    className={`${cardClass} ${tierToneClasses} w-full p-5 pt-3.5`}
                   >
-                    <h3 className="font-[var(--font-display)] text-2xl font-semibold text-[#7aff60]">{system.title}</h3>
-                    <p className="mt-4 text-sm leading-7 text-white/78">{system.body}</p>
+                    <h3 className={`w-full text-center font-[var(--font-display)] text-2xl font-semibold ${tierTitleClasses}`}>
+                      <span className="leading-none">{system.title}</span>
+                    </h3>
+                    <p className="mt-3 whitespace-pre-line text-center text-sm leading-[1.4rem] text-white/78">
+                      {system.body}
+                    </p>
                   </motion.article>
                 );
               })}
@@ -345,44 +370,49 @@ export function HomeServicesLanding() {
         </div>
       </Section>
 
-      <Section
-        id="owner-relief"
-        title="Less chaos. More control."
-        subtitle="When your systems are solid:"
-      >
-        <div className="grid gap-6 lg:grid-cols-2">
-          <motion.article {...fadeIn} className={`${cardClass} p-6 md:p-8`}>
-            <ul className="space-y-3 text-sm leading-7 text-white/86">
+      <Section id="owner-relief" title="Less chaos. More control.">
+        <div className="grid items-stretch gap-6 lg:grid-cols-2">
+          <motion.article {...fadeIn} className={`${cardClass} h-full bg-white/[0.04] p-6 md:p-8 hover:shadow-none`}>
+            <p className="mb-4 font-[var(--font-display)] text-2xl font-semibold text-[#44c5ff]">
+              When your systems are solid...
+            </p>
+            <ul className="space-y-3">
               {[
-                "Leads get answered faster",
-                "Customers feel taken care of",
-                "Your crew stays focused on work",
-                "You see where the money is going"
+                "leads get answered faster.",
+                "customers feel taken care of.",
+                "your crew stays focused on work.",
+                "you see where the money is going."
               ].map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-2 h-2 w-2 rounded-full bg-[#7aff60]" />
-                  <span>{item}</span>
+                <li key={item} className="flex items-center gap-3 rounded-lg border border-white/10 bg-[#1e2634]/45 px-3 py-2.5">
+                  <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-[#caffc0]/45 bg-[#caffc0]/12 text-[11px] font-semibold text-[#caffc0]">
+                    ✓
+                  </span>
+                  <span className="text-sm leading-6 text-white">{item}</span>
                 </li>
               ))}
             </ul>
           </motion.article>
 
-          <motion.article {...fadeIn} className={`${cardClass} p-6 md:p-8`}>
+          <motion.article {...fadeIn} className={`${cardClass} h-full bg-white/[0.03] p-6 md:p-8 hover:shadow-none`}>
             <p className="font-[var(--font-display)] text-2xl font-semibold text-[#44c5ff]">
               Built for Owners Who Care
             </p>
-            <p className="mt-4 text-sm leading-7 text-white/80">
-              This is not for big corporate chains. This is for owners who take pride in their work.
+            <p className="mt-3 max-w-[52ch] text-base font-medium leading-7 text-white/80">
+              This is not for big corporate chains. This is for owners
+              <br />
+              who take pride in their work.
             </p>
-            <p className="mt-4 text-sm leading-7 text-white/80">
-              We build systems that remove headaches from the office and keep jobs moving.
+            <p className="mt-5 max-w-[52ch] text-base font-medium leading-7 text-white/80">
+              We build systems that remove headaches from the
+              <br />
+              office and keep jobs moving.
             </p>
           </motion.article>
         </div>
       </Section>
 
-      <Section id="who" title="Best Fit For Companies With">
-        <motion.div {...fadeIn} className={`${cardClass} p-6 md:p-8`}>
+      <Section id="who" title="Best Fit For Companies With" sectionClassName="pt-10 pb-4 md:pt-12 md:pb-4">
+        <motion.div {...fadeIn} className={`${cardClass} p-6 md:p-8 hover:shadow-none`}>
           <div className="grid gap-3 sm:grid-cols-2">
             {[
               "2-20 field techs",
@@ -391,7 +421,7 @@ export function HomeServicesLanding() {
               "an owner tired of duct-taping systems together"
             ].map((item) => (
               <div key={item} className="rounded-xl border border-white/12 bg-[#222837]/80 p-4 text-sm text-white/86">
-                <span className="mr-2 text-[#7aff60]">*</span>
+                <span className="mr-2 text-[#caffc0]">*</span>
                 {item}
               </div>
             ))}
@@ -399,32 +429,33 @@ export function HomeServicesLanding() {
         </motion.div>
       </Section>
 
-      <section id="cta" className="py-10 md:py-12">
+      <section id="cta" className="pb-10 pt-2 md:pb-12 md:pt-2">
         <div className="mx-auto w-full max-w-6xl px-6">
           <motion.div
             {...fadeIn}
-            className="rounded-2xl border border-[#7aff60]/32 bg-white/[0.04] p-8 text-center backdrop-blur-[8px] md:p-12"
+            className="rounded-2xl border border-[#caffc0]/32 bg-white/[0.04] px-8 py-4 text-center backdrop-blur-[8px] md:px-12 md:py-6"
           >
-            <h2 className="font-[var(--font-display)] text-3xl font-semibold text-[#7aff60] md:text-4xl">
+            <h2 className="font-[var(--font-display)] text-3xl font-semibold text-[#caffc0] md:text-4xl">
               Find Out Where You&apos;re Losing Jobs
             </h2>
-            <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-white/82">
-              Most service companies lose 20-40% of jobs before the estimate even happens. See if your business is one
-              of them.
+            <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-white">
+              Most service companies lose 20-40% of jobs before the estimate even happens.
+              <br />
+              <span className="text-lg font-semibold">See if your business is one of them.</span>
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
               <button
                 id="lead-signal"
                 type="button"
                 onClick={openScanner}
-                className="rounded-full border border-[#7aff60]/55 bg-[#7aff60] px-6 py-3 text-sm font-semibold text-[#172114] transition-all duration-300 hover:border-[#44c5ff] hover:bg-[#44c5ff] hover:text-[#102637]"
+                className="rounded-full border border-[#caffc0]/55 bg-[#caffc0] px-6 py-3 text-sm font-semibold text-[#172114] transition-all duration-300 hover:border-[#44c5ff] hover:bg-[#44c5ff] hover:text-[#102637]"
               >
                 Run the Lead Response Scanner
               </button>
               <button
                 type="button"
                 onClick={openBooking}
-                className="rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-[#7aff60]/55 hover:bg-[#7aff60]/10"
+                className="rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-[#caffc0]/55 hover:bg-[#caffc0]/10"
               >
                 Book a Walkthrough
               </button>
@@ -452,7 +483,7 @@ export function HomeServicesLanding() {
                 className="w-full max-w-5xl rounded-2xl border border-white/12 bg-[#1e2634] p-4 shadow-2xl md:p-5"
               >
                 <div className="mb-3 flex items-center justify-between gap-3">
-                  <p className="font-[var(--font-display)] text-lg font-semibold text-[#7aff60]">
+                  <p className="font-[var(--font-display)] text-lg font-semibold text-[#caffc0]">
                     Book Your Home Services Systems Review
                   </p>
                   <button
@@ -486,25 +517,65 @@ function Section({
   id,
   title,
   subtitle,
+  eyebrow,
+  headerStyle = "default",
+  childrenClassName,
+  sectionClassName,
   children
 }: {
   id: string;
   title: string;
-  subtitle?: string;
+  subtitle?: React.ReactNode;
+  eyebrow?: string;
+  headerStyle?: "default" | "panel" | "centeredDivider";
+  childrenClassName?: string;
+  sectionClassName?: string;
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="py-10 md:py-12">
+    <section id={id} className={sectionClassName ?? "py-10 md:py-12"}>
       <div className="mx-auto w-full max-w-6xl px-6">
-        <motion.h2 {...fadeIn} className="font-[var(--font-display)] text-3xl font-semibold text-[#7aff60] md:text-4xl">
-          {title}
-        </motion.h2>
-        {subtitle ? (
-          <motion.p {...fadeIn} className="mt-4 max-w-4xl text-base leading-8 text-white/80">
-            {subtitle}
-          </motion.p>
-        ) : null}
-        <div className="mt-6">{children}</div>
+        {headerStyle === "centeredDivider" ? (
+          <motion.div {...fadeIn} className="text-center">
+            {eyebrow ? (
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#00baff]">{eyebrow}</p>
+            ) : null}
+            <h2 className="mt-2 font-[var(--font-display)] text-3xl font-semibold text-[#caffc0] md:text-4xl">{title}</h2>
+            {subtitle ? (
+              <p className="mx-auto mt-3 max-w-3xl text-base leading-7 text-white/80">{subtitle}</p>
+            ) : null}
+            <div className="mx-auto mt-8 h-px max-w-4xl bg-white/10" />
+          </motion.div>
+        ) : headerStyle === "panel" ? (
+          <motion.div
+            {...fadeIn}
+            className="rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-5 text-center backdrop-blur-[8px]"
+          >
+            {eyebrow ? (
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#00baff]">{eyebrow}</p>
+            ) : null}
+            <h2 className="mt-2 font-[var(--font-display)] text-3xl font-semibold text-[#caffc0] md:text-4xl">{title}</h2>
+            {subtitle ? (
+              <p className="mx-auto mt-3 max-w-3xl text-base leading-7 text-white/80">{subtitle}</p>
+            ) : null}
+            <div className="mx-auto mt-5 h-px max-w-4xl bg-white/10" />
+          </motion.div>
+        ) : (
+          <>
+            <motion.h2
+              {...fadeIn}
+              className="font-[var(--font-display)] text-3xl font-semibold text-[#caffc0] md:text-4xl"
+            >
+              {title}
+            </motion.h2>
+            {subtitle ? (
+              <motion.p {...fadeIn} className="mt-4 max-w-4xl text-base leading-8 text-white/80">
+                {subtitle}
+              </motion.p>
+            ) : null}
+          </>
+        )}
+        <div className={childrenClassName ?? "mt-6"}>{children}</div>
       </div>
     </section>
   );
@@ -558,10 +629,10 @@ function SpeedToLeadMeter() {
               key={option.label}
               type="button"
               onClick={() => setSelected(option.value)}
-              className={`rounded-lg border px-3 py-2 text-left text-sm transition-all duration-300 ${
+              className={`rounded-xl border bg-[#1e2634] px-3.5 py-2.5 text-left text-sm leading-6 transition-colors duration-200 ${
                 isActive
-                  ? "border-[#7aff60] bg-[#7aff60]/12 text-white shadow-[0_0_16px_rgba(122,255,96,0.2)]"
-                  : "border-white/16 bg-[#1d2432] text-white/80 hover:border-[#7aff60]/45 hover:text-white"
+                  ? "border-[#caffc0]/55 text-white"
+                  : "border-white/12 text-white/82 hover:border-[#caffc0]/40 hover:text-white"
               }`}
             >
               {option.label}
@@ -570,9 +641,10 @@ function SpeedToLeadMeter() {
         })}
       </div>
 
-      <div className="mt-4 rounded-lg border border-white/12 bg-[#1d2432] p-4">
-        <p className="text-sm font-semibold text-[#7aff60]">{result.title}</p>
-        <p className="mt-2 text-sm leading-7 text-white/80">{result.detail}</p>
+      <div className="relative mt-4 overflow-hidden rounded-xl border border-white/10 bg-white/[0.035] p-4 pl-5">
+        <span className="absolute inset-y-0 left-0 w-1 bg-[#caffc0]/75" />
+        <p className="text-sm font-semibold text-[#caffc0]">{result.title}</p>
+        <p className="mt-2 text-sm leading-7 text-white">{result.detail}</p>
       </div>
     </div>
   );

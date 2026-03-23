@@ -20,6 +20,7 @@ type Vertical = {
   subtitleColor?: string;
   bulletTextColor?: string;
   buttonHoverClasses?: string;
+  buttonActiveClasses?: string;
 };
 
 const verticals: Vertical[] = [
@@ -31,12 +32,14 @@ const verticals: Vertical[] = [
     bullets: ["Lead response systems", "Pipeline management", "Sales follow-up automation", "Review generation"],
     cta: "Enter Home Services",
     href: "/home-services",
-    accentClasses: "hover:border-[#7aff60]/70 hover:shadow-[0_10px_11px_rgba(122,255,96,0.24)]",
-    activeClasses: "border-[#7aff60]/70 shadow-[0_20px_22px_rgba(122,255,96,0.24)]",
-    bulletColor: "bg-[#7aff60]",
+    accentClasses:
+      "border-[#caffc0]/80 ring-1 ring-[#caffc0]/35 hover:border-[#caffc0]/90 hover:shadow-[0_10px_11px_rgba(122,255,96,0.24)]",
+    activeClasses: "border-[#caffc0]/70 shadow-[0_10px_11px_rgba(122,255,96,0.24)]",
+    bulletColor: "bg-[#caffc0]",
     bulletIndentClass: "ml-24",
-    titleColor: "text-[#7aff60]",
-    subtitleColor: "text-[#44c5ff]"
+    titleColor: "text-[#caffc0]",
+    subtitleColor: "text-[#44c5ff]",
+    buttonActiveClasses: "bg-[#caffc0] text-[#13240f] border-[#caffc0] shadow-[0_10px_20px_rgba(122,255,96,0.28)]"
   },
   {
     id: "medical-aftercare-card",
@@ -51,27 +54,29 @@ const verticals: Vertical[] = [
     ],
     cta: "Enter Medical Systems",
     href: "/medical-aftercare",
-    accentClasses: "hover:border-[#ff66aa]/70 hover:shadow-[0_10px_11px_rgba(255,102,170,0.24)]",
-    activeClasses: "border-[#ff66aa]/70 shadow-[0_20px_22px_rgba(255,102,170,0.24)]",
+    accentClasses: "border-[#ff66aa]/55 hover:border-[#ff66aa]/70 hover:shadow-[0_10px_11px_rgba(255,102,170,0.24)]",
+    activeClasses: "border-[#ff66aa]/70 shadow-[0_10px_11px_rgba(255,102,170,0.24)]",
     bulletColor: "bg-[#ff66aa]",
     titleColor: "text-[#ff66aa]",
     subtitleColor: "text-[#44c5ff]",
     bulletTextColor: "text-white",
-    buttonHoverClasses: "hover:border-[#44c5ff]/70 hover:bg-[#44c5ff]/12"
+    buttonHoverClasses: "hover:border-[#44c5ff]/70 hover:bg-[#44c5ff]/12",
+    buttonActiveClasses: "bg-[#ff66aa] text-white border-[#ff66aa] shadow-[0_10px_20px_rgba(255,102,170,0.28)]"
   },
   {
     id: "restaurants-card",
-    title: "Restaurants & Hospitality",
+    title: "Restaurants",
     subtitle: "Restaurants, Hospitality Groups, and Operators",
     description: "Operational systems that improve training\nconsistency, and guest experience.",
     bullets: ["Staff training systems", "Service SOP platforms", "Menu knowledge tools", "Operational dashboards"],
     cta: "Enter Restaurant Systems",
     href: "/clopen",
-    accentClasses: "hover:border-[#ffc05d]/70 hover:shadow-[0_10px_11px_rgba(255,192,93,0.24)]",
-    activeClasses: "border-[#ffc05d]/70 shadow-[0_20px_22px_rgba(255,192,93,0.24)]",
+    accentClasses: "border-[#ffc05d]/55 hover:border-[#ffc05d]/70 hover:shadow-[0_10px_11px_rgba(255,192,93,0.24)]",
+    activeClasses: "border-[#ffc05d]/70 shadow-[0_10px_11px_rgba(255,192,93,0.24)]",
     bulletColor: "bg-[#D94B3D]",
     titleColor: "text-[#D94B3D]",
-    subtitleColor: "text-[#ffc05d]"
+    subtitleColor: "text-[#ffc05d]",
+    buttonActiveClasses: "bg-[#ffc05d] text-[#3d2a08] border-[#ffc05d] shadow-[0_10px_20px_rgba(255,192,93,0.28)]"
   }
 ];
 
@@ -131,11 +136,13 @@ function IndustryCard({ vertical, compact = false, style, isActive, isDragging, 
           />
         </Link>
       </h3>
-      <p className={`mt-2 text-sm ${vertical.subtitleColor ?? "text-slate-400"}`}>{vertical.subtitle}</p>
-      <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-slate-300">{vertical.description}</p>
+      <p className={`mt-2 text-sm font-semibold italic ${vertical.subtitleColor ?? "text-slate-400"}`}>
+        {vertical.subtitle}
+      </p>
+      <p className="mt-5 whitespace-pre-line text-sm leading-relaxed text-slate-300">{vertical.description}</p>
 
       <ul
-        className={`mt-5 ${vertical.bulletIndentClass ?? "ml-20"} space-y-1.5 text-sm ${vertical.bulletTextColor ?? "text-slate-200"}`}
+        className={`mt-3 ${vertical.bulletIndentClass ?? "ml-20"} space-y-1.5 text-sm ${vertical.bulletTextColor ?? "text-slate-200"}`}
       >
         {vertical.bullets.map((bullet) => (
           <li key={bullet} className="flex items-start gap-2">
@@ -148,7 +155,11 @@ function IndustryCard({ vertical, compact = false, style, isActive, isDragging, 
       <div className="mt-6">
         <Link
           href={vertical.href}
-          className={`group/cta inline-flex items-center rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition-all duration-300 ${vertical.buttonHoverClasses ?? "hover:border-white/30 hover:bg-white/10"}`}
+          className={`group/cta inline-flex items-center rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 ${
+            isActive
+              ? `scale-[1.05] -translate-y-0.5 ${vertical.buttonActiveClasses ?? "bg-white text-[#222837] border-white shadow-[0_10px_20px_rgba(255,255,255,0.18)]"}`
+              : "border-white/15 text-white"
+          } ${vertical.buttonHoverClasses ?? "hover:border-white/30 hover:bg-white/10"}`}
         >
           <span>{vertical.cta}</span>
           <span className="ml-1 inline-block transition-transform duration-300 group-hover/cta:translate-x-1">&#8594;</span>

@@ -15,7 +15,7 @@ export function Footer() {
           <h3 className="text-center text-sm uppercase tracking-[0.16em] text-slate-400">Who We Help</h3>
           <ul className="mt-4 space-y-2 text-slate-200">
             <li>
-              <Link href="/home-services" className="transition-colors hover:text-[#7aff60]">
+              <Link href="/home-services" className="transition-colors hover:text-[#caffc0]">
                 Home Services
               </Link>
             </li>
