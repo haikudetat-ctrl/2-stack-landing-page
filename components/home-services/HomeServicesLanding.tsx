@@ -267,7 +267,10 @@ export function HomeServicesLanding() {
               <div className="grid gap-0 lg:grid-cols-[180px_1fr]">
                 <div className="relative flex flex-col items-center border-b border-white/10 bg-[#1e2634] px-5 py-6 lg:border-b-0 lg:border-r">
                   <span className="absolute -right-[5px] top-1/2 hidden h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-[#caffc0] lg:block" />
-                  <p className="inline-flex rounded-md border border-[#44c5ff] bg-[#44c5ff]/12 px-3 py-2 font-mono text-base font-semibold tracking-[0.12em] tabular-nums text-[#00baff] shadow-[0_0_14px_rgba(68,197,255,0.22)]">
+                  <p
+                    className="inline-flex rounded-md border border-[#44c5ff] bg-[#44c5ff]/12 px-3 py-2 font-mono text-base font-semibold tracking-[0.12em] tabular-nums text-[#00ccff] shadow-[0_0_14px_rgba(68,197,255,0.22)]"
+                    style={{ color: "#00CCFF" }}
+                  >
                     {card.time}
                   </p>
                   <p className="mt-2 text-center text-xs font-semibold uppercase text-[#caffc0]">{card.title}</p>
