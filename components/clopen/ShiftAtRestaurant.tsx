@@ -21,7 +21,7 @@ const moments = [
   },
   {
     stage: "Service",
-    time: "7:05 PM",
+    time: "5:23 PM",
     title: "Dishwasher No-Call-No-Show",
     typical:
       "Dishwasher never shows. Chef finds out mid-service. Now someone is texting staff while trying to run the line, or someone gets pulled off prep.",
@@ -49,17 +49,13 @@ const moments = [
 ];
 
 export function ShiftAtRestaurant() {
-  const openBooking = () => {
-    window.dispatchEvent(new CustomEvent("openClopenBooking"));
-  };
-
   return (
     <section id="systems-check" className="pt-20">
       <div className="rounded-xl border border-[#e5e7eb] bg-white p-6 shadow-sm md:p-10">
         <h2 className="font-[var(--font-display)] text-2xl font-semibold text-[#1f2933] md:text-3xl">
           A Shift at Your Restaurant
         </h2>
-        <p className="mt-3 max-w-3xl text-[#6b7280]">
+        <p className="mt-2 max-w-3xl text-[#6b7280]">
           Every restaurant runs into the same moments during a shift. The difference is whether your systems make
           them easier, or invisible.
         </p>
@@ -89,7 +85,7 @@ export function ShiftAtRestaurant() {
 
                 <div className="mt-4 grid gap-3 md:grid-cols-2">
                   <div className="rounded-md border border-[#e5e7eb] bg-[#fafafa] p-4">
-                    <p className="text-xs uppercase tracking-[0.12em] text-[#6b7280]">Without Clopen</p>
+                    <p className="text-xs uppercase tracking-[0.12em] text-[#6b7280]">Current Reality</p>
                     <p className="mt-2 text-sm leading-7 text-[#4b5563]">{moment.typical}</p>
                   </div>
                   <div className="rounded-md border border-[#e7dcc7] bg-[#fbf7ef] p-4">
@@ -99,34 +95,6 @@ export function ShiftAtRestaurant() {
                 </div>
               </article>
             ))}
-          </div>
-        </div>
-
-        <div className="mt-10 rounded-lg border border-[#e5e7eb] bg-[#f7f6f3] p-5">
-          <h3 className="font-[var(--font-display)] text-xl font-semibold text-[#1f2933]">Service Is Already Hard Enough</h3>
-          <p className="mt-3 text-sm text-[#6b7280]">Restaurants shouldn’t run on:</p>
-          <ul className="mt-3 space-y-1 text-sm text-[#4b5563]">
-            <li>• group texts</li>
-            <li>• binders</li>
-            <li>• spreadsheets</li>
-            <li>• memory</li>
-          </ul>
-          <p className="mt-4 text-sm font-medium text-[#1f2933]">Clopen builds the systems behind the service.</p>
-
-          <div className="mt-5 flex flex-wrap gap-3">
-            <a
-              href="/clopen#systems-overview"
-              className="rounded-lg bg-[#c27c2c] px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
-            >
-              See the Clopen System
-            </a>
-            <button
-              type="button"
-              onClick={openBooking}
-              className="rounded-lg border border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-100"
-            >
-              Book a Walkthrough
-            </button>
           </div>
         </div>
       </div>

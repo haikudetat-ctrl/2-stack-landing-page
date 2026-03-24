@@ -60,7 +60,7 @@ export function PainPoints() {
       <h2 className="font-[var(--font-display)] text-2xl font-semibold text-[#1f2933] md:text-3xl">
         Most Restaurants Run on Controlled Chaos
       </h2>
-      <p className="mt-4 max-w-2xl text-[#6b7280]">
+      <p className="mt-2 max-w-2xl text-[#6b7280]">
         Clopen replaces fragile workarounds with dependable systems your team can run every shift.
       </p>
 

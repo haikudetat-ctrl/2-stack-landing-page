@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { CTASection } from "@/components/clopen/CTASection";
 import { Footer } from "@/components/clopen/Footer";
 import { Hero } from "@/components/clopen/Hero";
 import HandsWidget from "@/components/clopen/HandsWidget";
@@ -44,7 +45,7 @@ export function ClopenPage() {
       <Navbar />
 
       <section className="bg-gradient-to-b from-[#ffffff] to-[#f7f6f3]">
-        <div className="mx-auto w-full max-w-7xl px-6 pb-8 pt-16 md:px-10 lg:px-12">
+        <div className="mx-auto w-full max-w-7xl px-6 pb-8 pt-8 md:px-10 md:pt-8 lg:px-12">
           <Hero />
         </div>
       </section>
@@ -70,6 +71,12 @@ export function ClopenPage() {
       <section className="bg-[#f1efe9]">
         <div className="mx-auto w-full max-w-7xl px-6 py-2 md:px-10 lg:px-12">
           <PricingOptions />
+        </div>
+      </section>
+
+      <section className="bg-white">
+        <div className="mx-auto w-full max-w-7xl px-6 py-2 md:px-10 lg:px-12">
+          <CTASection />
         </div>
       </section>
 

@@ -40,7 +40,9 @@ export interface ProductFeatureCard {
   features: string[];
   buttonLabel: string;
   accentClass: string;
+  cardStrokeClass: string;
   dotClass: string;
+  buttonGradientClass: string;
   buttonHoverClass: string;
 }
 

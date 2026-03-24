@@ -120,7 +120,7 @@ export function SystemsCheck() {
 
         <div className="h-2 w-full overflow-hidden rounded-full bg-[#f1efe9]">
           <div
-            className="h-full rounded-full bg-[#c27c2c] transition-all duration-300"
+            className="h-full rounded-full bg-gradient-to-b from-[#ffa339] to-[#c27c2c] transition-all duration-300"
             style={{ width: `${isComplete ? 100 : progress}%` }}
           />
         </div>
@@ -174,7 +174,7 @@ export function SystemsCheck() {
               <div className="mt-6 flex flex-wrap gap-3">
                 <a
                   href={`mailto:hello@2stack.co?subject=${encodeURIComponent("Book a Clopen Systems Walkthrough")}&body=${encodeURIComponent(`Friction level: ${result.level}\nScore: ${result.score}${leadId ? `\nReference ID: ${leadId}` : ""}`)}`}
-                  className="rounded-lg bg-[#c27c2c] px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
+                  className="rounded-lg bg-gradient-to-b from-[#ffa339] to-[#c27c2c] px-6 py-3 text-sm font-medium text-white transition hover:from-[#ffb24d] hover:to-[#b8772b] hover:opacity-95"
                 >
                   Book a Clopen Systems Walkthrough
                 </a>

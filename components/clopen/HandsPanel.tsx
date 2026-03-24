@@ -39,7 +39,7 @@ export default function HandsPanel({ isOpen }: HandsPanelProps) {
             <button
               type="button"
               onClick={openBooking}
-              className="rounded-lg bg-[#c27c2c] px-4 py-3 text-center text-sm font-medium text-white transition-transform duration-150 hover:scale-105 hover:opacity-90"
+              className="rounded-lg bg-gradient-to-b from-[#ffa339] to-[#c27c2c] px-4 py-3 text-center text-sm font-medium text-white transition-transform duration-150 hover:scale-105 hover:from-[#ffb24d] hover:to-[#b8772b] hover:opacity-95"
             >
               Book Systems Walkthrough
             </button>

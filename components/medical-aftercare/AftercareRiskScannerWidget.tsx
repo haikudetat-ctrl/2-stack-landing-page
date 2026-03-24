@@ -97,6 +97,11 @@ export function AftercareRiskScannerWidget() {
     setShowResult(false);
   };
 
+  const scheduleConversation = () => {
+    closeScanner();
+    window.dispatchEvent(new CustomEvent("openMedicalAftercareBooking"));
+  };
+
   const selectOption = (score: 1 | 2 | 3 | 4) => {
     if (!isQuestionPhase) return;
     setAnswers((prev) => [...prev, score]);
@@ -126,7 +131,7 @@ export function AftercareRiskScannerWidget() {
         <button
           type="button"
           onClick={openScanner}
-          className="group rounded-xl border border-transparent bg-[#ff66aa] px-4 py-3 text-left text-white shadow-[0_12px_26px_rgba(255,102,170,0.35)] transition-all duration-[250ms] ease-in-out hover:border-[rgba(255,102,170,0.45)] hover:bg-[#44c5ff] hover:shadow-[0_0_14px_rgba(255,102,170,0.45)]"
+          className="group rounded-xl border border-transparent bg-gradient-to-b from-[#ff9cc8] to-[#ff66aa] px-4 py-3 text-left text-white shadow-[0_12px_26px_rgba(255,102,170,0.35)] transition-all duration-[250ms] ease-in-out hover:border-[rgba(255,102,170,0.45)] hover:bg-[#44c5ff] hover:shadow-[0_0_14px_rgba(255,102,170,0.45)]"
         >
           <span className="flex items-center gap-2 text-sm font-semibold">
             <PulseIcon />
@@ -291,12 +296,13 @@ export function AftercareRiskScannerWidget() {
                       Risk score: {totalScore} / 20
                     </p>
                     <div className="mt-5 flex flex-wrap gap-3">
-                      <a
-                        href={result.ctaHref}
+                      <button
+                        type="button"
+                        onClick={scheduleConversation}
                         className="rounded-lg bg-[#ff66aa] px-5 py-3 text-sm font-semibold text-white transition-all duration-[250ms] ease-in-out hover:bg-[#44c5ff]"
                       >
-                        {result.ctaLabel}
-                      </a>
+                        Schedule a Conversation
+                      </button>
                       <button
                         type="button"
                         onClick={closeScanner}
@@ -335,26 +341,20 @@ function classifyRisk(score: number) {
     return {
       label: "Low Risk Aftercare System",
       message:
-        "Your team has strong visibility into patient recovery signals. Modern monitoring and early alerts help detect complications quickly and support better outcomes.",
-      ctaLabel: "Download the Surgical Aftercare Playbook",
-      ctaHref: "/medical-aftercare#playbook"
+        "Your team has strong visibility into patient recovery signals. Modern monitoring and early alerts help detect complications quickly and support better outcomes."
     };
   }
   if (score >= 11) {
     return {
       label: "Moderate Risk Aftercare System",
       message:
-        "Your team has partial visibility into recovery signals. Some complications may go unnoticed between visits, which can delay intervention.",
-      ctaLabel: "See How Modern Aftercare Systems Work",
-      ctaHref: "/medical-aftercare#modern-aftercare"
+        "Your team has partial visibility into recovery signals. Some complications may go unnoticed between visits, which can delay intervention."
     };
   }
   return {
     label: "High Risk Aftercare System",
     message:
-      "Many recovery signals may go undetected between visits. Without structured monitoring, complications often appear only after symptoms worsen.",
-    ctaLabel: "Download the Aftercare Playbook",
-    ctaHref: "/medical-aftercare#playbook"
+      "Many recovery signals may go undetected between visits. Without structured monitoring, complications often appear only after symptoms worsen."
   };
 }
 
@@ -371,4 +371,3 @@ function PulseIcon() {
     </svg>
   );
 }
-

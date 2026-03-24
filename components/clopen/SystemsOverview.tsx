@@ -23,12 +23,14 @@ const products: ProductWithId[] = [
     id: "communication",
     title: "Communication & Training Hub",
     description:
-      "Centralize daily lineup notes, menu changes, and training so every shift runs from the same playbook.",
+      "Centralize daily lineup notes, menu changes,\nand training so every shift runs from the same playbook. Increase sales through better communication and knowledge.",
     features: ["lineup notes", "menu updates", "recipe library", "training modules", "staff certifications"],
     buttonLabel: "See How Teams Use It",
     accentClass: "text-[#c27c2c]",
-    dotClass: "bg-[#c27c2c]",
-    buttonHoverClass: "hover:border-[#c27c2c]/70 hover:bg-[#f8f1e4]"
+    cardStrokeClass: "border-[0.5px] border-[#c27c2c]/40 hover:border-[#c27c2c]/40",
+    dotClass: "bg-gradient-to-b from-[#ffa339] to-[#c27c2c]",
+    buttonGradientClass: "border-[#b8772b] bg-gradient-to-b from-[#ffa339] to-[#c27c2c]",
+    buttonHoverClass: "hover:border-[#aa6e26] hover:from-[#ffb24d] hover:to-[#b8772b]"
   },
   {
     id: "scheduling",
@@ -44,19 +46,23 @@ const products: ProductWithId[] = [
     ],
     buttonLabel: "Explore Scheduling",
     accentClass: "text-[#6b8e23]",
+    cardStrokeClass: "border-[0.5px] border-[#6b8e23]/40 hover:border-[#6b8e23]/40",
     dotClass: "bg-[#6b8e23]",
-    buttonHoverClass: "hover:border-[#6b8e23]/70 hover:bg-[#f0f6e6]"
+    buttonGradientClass: "border-[#5f7d1f] bg-gradient-to-b from-[#89b334] to-[#6b8e23]",
+    buttonHoverClass: "hover:border-[#4f6819] hover:from-[#94bf3a] hover:to-[#5f7d1f]"
   },
   {
     id: "financial",
     title: "Financial Command Center",
     description:
-      "Track the numbers that drive margin and performance, from recipe cost variance to labor efficiency.",
+      "Track the numbers that drive margin and performance, from recipe cost variance to labor efficiency. Honed over years of operations for James Beard and Michelin Guide restaurateurs.",
     features: ["recipe costing", "inventory tracking", "variance monitoring", "labor analytics", "forecasting"],
     buttonLabel: "Explore Financial Tools",
     accentClass: "text-[#1f2933]",
-    dotClass: "bg-[#c27c2c]",
-    buttonHoverClass: "hover:border-[#c27c2c]/70 hover:bg-[#f8f1e4]"
+    cardStrokeClass: "border-[0.5px] border-black/40 hover:border-black/40",
+    dotClass: "bg-gradient-to-b from-[#ffa339] to-[#c27c2c]",
+    buttonGradientClass: "border-[#111827] bg-gradient-to-b from-[#334155] to-[#1f2933]",
+    buttonHoverClass: "hover:border-[#020617] hover:from-[#3b4d66] hover:to-[#111827]"
   }
 ];
 
@@ -200,7 +206,7 @@ export function SystemsOverview() {
         <h2 className="font-[var(--font-display)] text-2xl font-semibold text-[#1f2933] md:text-3xl">
           Three Systems That Keep Restaurants Running Smoothly
         </h2>
-        <p className="mt-4 max-w-3xl text-[#6b7280]">
+        <p className="mt-2 max-w-3xl text-[#6b7280]">
           Each module is designed for how restaurant teams actually operate during prep, service, and close.
         </p>
 
@@ -274,7 +280,7 @@ export function SystemsOverview() {
                 <ul className="mt-3 grid gap-2 sm:grid-cols-2">
                   {activeDetail.tools.map((tool) => (
                     <li key={tool} className="flex items-start gap-2 text-sm text-[#4b5563]">
-                      <span className="mt-[8px] h-1.5 w-1.5 rounded-full bg-[#c27c2c]" />
+                      <span className="mt-[8px] h-1.5 w-1.5 rounded-full bg-gradient-to-b from-[#ffa339] to-[#c27c2c]" />
                       <span>{tool}</span>
                     </li>
                   ))}
@@ -285,7 +291,7 @@ export function SystemsOverview() {
                 <button
                   type="button"
                   onClick={openBooking}
-                  className="rounded-lg bg-[#c27c2c] px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+                  className="rounded-lg bg-gradient-to-b from-[#ffa339] to-[#c27c2c] px-4 py-2.5 text-sm font-semibold text-white transition hover:from-[#ffb24d] hover:to-[#b8772b] hover:opacity-95"
                 >
                   See This in a Live Walkthrough -&gt;
                 </button>

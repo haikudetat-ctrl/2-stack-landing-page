@@ -103,7 +103,7 @@ export default function HandsWidget() {
         transition={{ duration: 3, ease: "easeInOut", repeat: Infinity }}
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.98 }}
-        className="flex items-center gap-3 rounded-full border border-[#a76b24] bg-[#c27c2c] px-3 py-2.5 text-left text-white shadow-lg backdrop-blur-sm"
+        className="flex items-center gap-3 rounded-full border border-[#a76b24] bg-gradient-to-b from-[#ffa339] to-[#c27c2c] px-3 py-2.5 text-left text-white shadow-lg backdrop-blur-sm"
       >
         <ChefAvatar />
         <div className="min-w-[142px] pr-1">

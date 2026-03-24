@@ -104,6 +104,63 @@ type IndustryCardProps = {
   cardRef?: (node: HTMLElement | null) => void;
 };
 
+function MobileIndustryCard({ vertical, compact = false }: { vertical: Vertical; compact?: boolean }) {
+  return (
+    <article
+      id={`${vertical.id}-mobile`}
+      className={`snap-center shrink-0 w-[min(86vw,360px)] flex flex-col rounded-3xl border border-white/10 bg-white/[0.035] ${compact ? "p-5" : "p-6"} shadow-[0_10px_30px_rgba(0,0,0,0.25)] ${vertical.accentClasses}`}
+    >
+      <h3 className="w-full text-center font-[var(--font-display)] text-2xl font-semibold leading-none">
+        <Link
+          href={vertical.href}
+          className={`inline-grid grid-cols-[auto,1fr,auto] items-center gap-2 whitespace-nowrap transition-opacity hover:opacity-90 ${vertical.titleColor ?? "text-white"}`}
+        >
+          <Image
+            src="/2S_TransWHITE.png"
+            alt=""
+            aria-hidden="true"
+            width={1500}
+            height={1500}
+            className="block h-[0.75em] w-auto opacity-20"
+          />
+          <span className="leading-none">{vertical.title}</span>
+          <Image
+            src="/2S_TransWHITE.png"
+            alt=""
+            aria-hidden="true"
+            width={1500}
+            height={1500}
+            className="block h-[0.75em] w-auto translate-y-[1px] opacity-20"
+          />
+        </Link>
+      </h3>
+      <p className={`mt-2 text-sm font-semibold italic ${vertical.subtitleColor ?? "text-slate-400"}`}>{vertical.subtitle}</p>
+      <p className="mt-5 whitespace-pre-line text-sm leading-relaxed text-slate-300">{vertical.description}</p>
+
+      <ul
+        className={`mt-3 ${vertical.bulletIndentClass ?? "ml-20"} space-y-1.5 text-sm ${vertical.bulletTextColor ?? "text-slate-200"}`}
+      >
+        {vertical.bullets.map((bullet) => (
+          <li key={bullet} className="flex items-start gap-2">
+            <span className={`mt-1.5 h-1.5 w-1.5 rounded-full ${vertical.bulletColor}`} />
+            <span>{bullet}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-6">
+        <Link
+          href={vertical.href}
+          className={`group/cta inline-flex items-center rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 border-white/15 text-white ${vertical.buttonHoverClasses ?? "hover:border-white/30 hover:bg-white/10"}`}
+        >
+          <span>{vertical.cta}</span>
+          <span className="ml-1 inline-block transition-transform duration-300 group-hover/cta:translate-x-1">&#8594;</span>
+        </Link>
+      </div>
+    </article>
+  );
+}
+
 function IndustryCard({ vertical, compact = false, style, isActive, isDragging, cardRef }: IndustryCardProps) {
   return (
     <article
@@ -272,72 +329,84 @@ export function VerticalCardsCarousel({ compact = false }: VerticalCardsCarousel
 
   return (
     <div id="vertical-cards" className="relative w-full overflow-hidden rounded-[32px]">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-30 w-8 bg-gradient-to-r from-[#222837] to-transparent md:w-12" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-30 w-8 bg-gradient-to-l from-[#222837] to-transparent md:w-12" />
-
-      <div className="absolute right-3 top-3 z-40 flex items-center gap-2 md:right-4 md:top-4">
-        <button
-          type="button"
-          onClick={() => {
-            pauseUntilRef.current = Date.now() + 1800;
-            goPrev();
-          }}
-          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-[#222837]/80 text-sm text-slate-200 transition-colors hover:border-white/40 hover:bg-white/10"
-          aria-label="Previous card"
-        >
-          &#8592;
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            pauseUntilRef.current = Date.now() + 1800;
-            goNext();
-          }}
-          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-[#222837]/80 text-sm text-slate-200 transition-colors hover:border-white/40 hover:bg-white/10"
-          aria-label="Next card"
-        >
-          &#8594;
-        </button>
+      <div className="md:hidden">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-5 bg-gradient-to-r from-[#222837] to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-5 bg-gradient-to-l from-[#222837] to-transparent" />
+        <div className="-mx-3 flex snap-x snap-mandatory gap-4 overflow-x-auto px-3 pb-3 pt-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {verticals.map((vertical) => (
+            <MobileIndustryCard key={vertical.id} vertical={vertical} compact={compact} />
+          ))}
+        </div>
       </div>
 
-      <div
-        ref={viewportRef}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerCancel}
-        style={{ height: activeCardHeight ? activeCardHeight + 48 : undefined }}
-        className={`relative min-h-[420px] overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.02] ${isDragging ? "cursor-grabbing" : "cursor-grab"} touch-pan-x select-none`}
-        aria-label="Industry carousel"
-      >
-        {verticals.map((vertical, index) => {
-          const relative = normalizeRelative(index, activeIndex, total);
-          const isActive = relative === 0;
-          const translateX = relative * 68 + dragPct;
-          const scale = isActive ? 1 : 0.84;
-          const opacity = isActive ? 1 : 0.58;
-          const blurPx = isActive ? 0 : 0.5;
-          const zIndex = isActive ? 40 : 30 - Math.abs(relative);
+      <div className="hidden md:block">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-30 w-8 bg-gradient-to-r from-[#222837] to-transparent md:w-12" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-30 w-8 bg-gradient-to-l from-[#222837] to-transparent md:w-12" />
 
-          return (
-            <IndustryCard
-              key={vertical.id}
-              vertical={vertical}
-              compact={compact}
-              isActive={isActive}
-              isDragging={isDragging}
-              cardRef={(node) => {
-                cardRefs.current[index] = node;
-              }}
-              style={{
-                transform: `translate(-50%, -50%) translateX(${translateX}%) scale(${scale})`,
-                opacity,
-                filter: `blur(${blurPx}px)`,
-                zIndex
-              }}
-            />
-          );
-        })}
+        <div className="absolute right-3 top-3 z-40 flex items-center gap-2 md:right-4 md:top-4">
+          <button
+            type="button"
+            onClick={() => {
+              pauseUntilRef.current = Date.now() + 1800;
+              goPrev();
+            }}
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-[#222837]/80 text-sm text-slate-200 transition-colors hover:border-white/40 hover:bg-white/10"
+            aria-label="Previous card"
+          >
+            &#8592;
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              pauseUntilRef.current = Date.now() + 1800;
+              goNext();
+            }}
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-[#222837]/80 text-sm text-slate-200 transition-colors hover:border-white/40 hover:bg-white/10"
+            aria-label="Next card"
+          >
+            &#8594;
+          </button>
+        </div>
+
+        <div
+          ref={viewportRef}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerCancel}
+          style={{ height: activeCardHeight ? activeCardHeight + 48 : undefined }}
+          className={`relative min-h-[420px] overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.02] ${isDragging ? "cursor-grabbing" : "cursor-grab"} touch-pan-x select-none`}
+          aria-label="Industry carousel"
+        >
+          {verticals.map((vertical, index) => {
+            const relative = normalizeRelative(index, activeIndex, total);
+            const isActive = relative === 0;
+            const translateX = relative * 68 + dragPct;
+            const scale = isActive ? 1 : 0.84;
+            const opacity = isActive ? 1 : 0.58;
+            const blurPx = isActive ? 0 : 0.5;
+            const zIndex = isActive ? 40 : 30 - Math.abs(relative);
+
+            return (
+              <IndustryCard
+                key={vertical.id}
+                vertical={vertical}
+                compact={compact}
+                isActive={isActive}
+                isDragging={isDragging}
+                cardRef={(node) => {
+                  cardRefs.current[index] = node;
+                }}
+                style={{
+                  transform: `translate(-50%, -50%) translateX(${translateX}%) scale(${scale})`,
+                  opacity,
+                  filter: `blur(${blurPx}px)`,
+                  zIndex
+                }}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

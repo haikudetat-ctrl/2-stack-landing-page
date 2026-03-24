@@ -4,7 +4,7 @@ export function Footer() {
       <div className="grid gap-8 md:grid-cols-2 md:items-start">
         <div>
           <p className="font-[var(--font-display)] text-xl font-semibold text-[#1f2933]">Clopen by 2Stack</p>
-          <p className="mt-2 text-[#6b7280]">Hospitality Systems</p>
+          <p className="mt-1 text-[#6b7280]">Hospitality Systems</p>
         </div>
 
         <div className="grid grid-cols-2 gap-6 md:justify-self-end">

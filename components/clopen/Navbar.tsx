@@ -25,7 +25,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={openBooking}
-            className="rounded-lg bg-[#c27c2c] px-4 py-2 font-medium text-white transition hover:opacity-90"
+            className="rounded-lg bg-gradient-to-b from-[#ffa339] to-[#c27c2c] px-4 py-2 font-medium text-white transition hover:from-[#ffb24d] hover:to-[#b8772b] hover:opacity-95"
           >
             Book Clopen Walkthrough
           </button>
@@ -34,7 +34,7 @@ export function Navbar() {
         <button
           type="button"
           onClick={openBooking}
-          className="rounded-lg bg-[#c27c2c] px-4 py-2 text-sm font-medium text-white transition hover:opacity-90 md:hidden"
+          className="rounded-lg bg-gradient-to-b from-[#ffa339] to-[#c27c2c] px-4 py-2 text-sm font-medium text-white transition hover:from-[#ffb24d] hover:to-[#b8772b] hover:opacity-95 md:hidden"
         >
           Book Clopen Walkthrough
         </button>

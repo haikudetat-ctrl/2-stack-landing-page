@@ -6,7 +6,7 @@ import { AftercareRiskScannerWidget } from "@/components/medical-aftercare/After
 
 const hiddenGapCards = [
   {
-    title: "Patient Recovery Happens Out of Sight",
+    title: "Patient Recovery Happens Off Site",
     body: "The most critical recovery signals often show up at home, long after discharge."
   },
   {
@@ -18,7 +18,7 @@ const hiddenGapCards = [
     body: "Providers have limited insight between visits when patient risk is still evolving."
   },
   {
-    title: "Manual Follow-Ups Consume Staff Time",
+    title: "Manual Follow-Ups Consume Time",
     body: "Care coordinators spend hours chasing updates instead of prioritizing high-risk cases."
   },
   {
@@ -103,25 +103,58 @@ const features = [
 const journey = [
   {
     day: "Day 1 — Patient Discharged",
-    body: "Patient receives digital recovery plan and daily check-ins."
+    body: "Patient gets digital recovery plan and daily check-ins.",
+    links: ["Discharge Instructions", "Medication Schedule", "Daily Check-In Setup"]
   },
   {
     day: "Day 3 — Symptom Spike",
-    body: "Patient reports increased pain during daily check-in."
+    body: "Patient reports increased pain during daily check-in.",
+    links: ["Pain Trend", "Symptom Log", "Escalation Criteria"]
   },
   {
     day: "Day 4 — Alert Triggered",
-    body: "System flags symptoms for provider review."
+    body: "System flags symptoms for provider review.",
+    links: ["Provider Alert", "Risk Classification", "Triage Notes"]
   },
   {
     day: "Day 5 — Intervention",
-    body: "Provider responds and resolves issue early."
+    body: "Provider responds and resolves issue early.",
+    links: ["Care Plan Update", "Medication Adjustment", "Follow-Up Tasks"]
   },
   {
     day: "Week 2 — Recovery Progress",
-    body: "Mobility improves and recovery stays on track."
+    body: "Mobility improves and recovery stays on track.",
+    links: ["Mobility Progress", "Adherence Report", "Next Visit Prep"]
   }
 ];
+
+const careTeamChartRows = [
+  {
+    item: "Reduce manual patient follow-ups",
+    effect: "Automation takes over routine outreach and check-ins.",
+    status: "Improved"
+  },
+  {
+    item: "Monitor recovery without additional staff workload",
+    effect: "Signals are captured continuously without adding call burden.",
+    status: "Tracked"
+  },
+  {
+    item: "Identify complications earlier",
+    effect: "Alert logic surfaces risk before escalation points.",
+    status: "Escalation-Ready"
+  },
+  {
+    item: "Improve patient adherence to recovery plans",
+    effect: "Patients receive structured tasks and reminders daily.",
+    status: "Stabilized"
+  },
+  {
+    item: "Give providers visibility between visits",
+    effect: "Recovery trend data remains visible across the full care window.",
+    status: "Visible"
+  }
+] as const;
 
 const cardClass =
   "rounded-2xl border border-[#e5e7eb] bg-white/95 backdrop-blur-[8px] transition-all duration-[250ms] ease-in-out hover:border-[rgba(255,102,170,0.45)] hover:shadow-[0_0_14px_rgba(255,102,170,0.28)]";
@@ -167,7 +200,45 @@ export function MedicalAftercareLanding() {
     <main className="relative min-h-screen bg-[#f6f8fc] text-[#1f2933]">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_8%,rgba(68,197,255,0.12),transparent_32%),radial-gradient(circle_at_92%_10%,rgba(255,102,170,0.10),transparent_34%),radial-gradient(circle_at_60%_98%,rgba(68,197,255,0.08),transparent_38%)]" />
 
-      <section className="relative py-20">
+      <header className="sticky inset-x-0 top-0 z-50 border-b border-[#e5e7eb] bg-white/95 backdrop-blur-xl">
+        <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6" aria-label="Medical Aftercare navigation">
+          <a href="#top" className="font-[var(--font-display)] text-base font-semibold tracking-tight text-[#1f2933]">
+            2Stack Aftercare
+          </a>
+
+          <div className="hidden items-center gap-6 text-sm font-medium text-[#4b5563] md:flex">
+            <a href="#hidden-gap" className="transition-colors hover:text-[#ff66aa]">
+              Recovery Gaps
+            </a>
+            <a href="#modern-aftercare" className="transition-colors hover:text-[#ff66aa]">
+              System
+            </a>
+            <a href="#journey" className="transition-colors hover:text-[#ff66aa]">
+              Journey
+            </a>
+            <a href="#playbook" className="transition-colors hover:text-[#ff66aa]">
+              Playbook
+            </a>
+            <button
+              type="button"
+              onClick={openBooking}
+              className="rounded-lg bg-[#ff66aa] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#44c5ff]"
+            >
+              Schedule a Conversation
+            </button>
+          </div>
+
+          <button
+            type="button"
+            onClick={openBooking}
+            className="rounded-lg bg-[#ff66aa] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#44c5ff] md:hidden"
+          >
+            Schedule
+          </button>
+        </nav>
+      </header>
+
+      <section id="top" className="relative border-b border-[#e8edf5] bg-gradient-to-b from-[#f9fbff] to-[#f6f8fc] py-20">
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 lg:grid-cols-2 lg:items-center">
           <motion.div {...fadeIn}>
             <h1 className="font-[var(--font-display)] text-4xl font-semibold leading-tight text-[#1f2933] md:text-5xl">
@@ -195,55 +266,130 @@ export function MedicalAftercareLanding() {
             </div>
           </motion.div>
 
-          <motion.aside {...fadeIn} className={`${cardClass} p-6`}>
-            <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold text-[#44c5ff]">Recovery Command View</p>
-              <span className="rounded-full border border-[#e5e7eb] px-2 py-1 text-xs text-[#6b7280]">
-                Live
-              </span>
+          <motion.aside {...fadeIn} className={`${cardClass} overflow-hidden p-0`}>
+            <div className="flex items-center justify-between border-b border-[#e5e7eb] bg-gradient-to-r from-white to-[#f6fbff] px-4 py-3">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6b7280]">Clopen Aftercare OS</p>
+                <p className="mt-1 text-sm font-semibold text-[#1f2933]">Recovery Command View</p>
+              </div>
+              <button
+                type="button"
+                className="inline-flex items-center gap-2 rounded-full border border-[#44c5ff]/40 bg-[#ecf9ff] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#1e7ea8] shadow-[0_0_0_1px_rgba(68,197,255,0.22),0_0_14px_rgba(68,197,255,0.24)]"
+                aria-label="Live sync active"
+              >
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#44c5ff]/70" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#44c5ff]" />
+                </span>
+                Live Sync
+              </button>
             </div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl border border-[#e5e7eb] bg-[#f8fafc] p-4">
-                <p className="text-xs text-[#6b7280]">Patient recovery signals</p>
-                <p className="mt-2 text-sm text-[#1f2933]">Stable for 84%, elevated risk for 16%</p>
+
+            <div className="p-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full border border-[#44c5ff]/35 bg-[#edf9ff] px-3 py-1 text-[11px] font-semibold text-[#1e7ea8]">
+                  Signals
+                </span>
+                <span className="rounded-full border border-[#e5e7eb] bg-white px-3 py-1 text-[11px] font-medium text-[#6b7280]">
+                  Patients
+                </span>
+                <span className="rounded-full border border-[#e5e7eb] bg-white px-3 py-1 text-[11px] font-medium text-[#6b7280]">
+                  Alerts
+                </span>
               </div>
-              <div className="rounded-xl border border-[#e5e7eb] bg-[#f8fafc] p-4">
-                <p className="text-xs text-[#6b7280]">Daily symptom check-ins</p>
-                <p className="mt-2 text-sm text-[#1f2933]">143 submitted today</p>
+
+              <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                <div className="rounded-xl border border-[#e5e7eb] bg-[#f8fbff] p-3">
+                  <p className="text-[11px] text-[#6b7280]">Daily check-ins</p>
+                  <p className="mt-1 text-sm font-semibold text-[#1f2933]">143 submitted</p>
+                </div>
+                <div className="rounded-xl border border-[#e5e7eb] bg-[#fff8fc] p-3">
+                  <p className="text-[11px] text-[#6b7280]">Alert queue</p>
+                  <p className="mt-1 text-sm font-semibold text-[#ff66aa]">5 needs review</p>
+                </div>
+                <div className="rounded-xl border border-[#e5e7eb] bg-[#f6fbff] p-3">
+                  <p className="text-[11px] text-[#6b7280]">Recovery trend</p>
+                  <p className="mt-1 text-sm font-semibold text-[#1f2933]">84% stable</p>
+                </div>
               </div>
-              <div className="rounded-xl border border-[#e5e7eb] bg-[#f8fafc] p-4">
-                <p className="text-xs text-[#6b7280]">Complication alerts</p>
-                <p className="mt-2 text-sm text-[#ff66aa]">5 cases require review</p>
-              </div>
-              <div className="rounded-xl border border-[#e5e7eb] bg-[#f8fafc] p-4">
-                <p className="text-xs text-[#6b7280]">Recovery progress tracking</p>
-                <p className="mt-2 text-sm text-[#1f2933]">Week-over-week trend improving</p>
+
+              <div className="mt-4 grid gap-3 lg:grid-cols-[1.15fr_0.85fr]">
+                <div className="rounded-xl border border-[#e5e7eb] bg-white p-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#6b7280]">Patient signal queue</p>
+                  <div className="mt-3 space-y-2">
+                    {[
+                      { name: "P-2184", signal: "Pain spike + mobility drop", status: "Escalated" },
+                      { name: "P-1742", signal: "Medication missed", status: "Flagged" },
+                      { name: "P-2110", signal: "Recovery on track", status: "Stable" }
+                    ].map((item) => (
+                      <div key={item.name} className="rounded-lg border border-[#edf1f7] bg-[#f9fbff] px-3 py-2">
+                        <div className="flex items-center justify-between gap-2">
+                          <p className="text-xs font-semibold text-[#1f2933]">{item.name}</p>
+                          <span
+                            className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
+                              item.status === "Escalated"
+                                ? "bg-[#ff66aa]/15 text-[#d43f84]"
+                                : item.status === "Flagged"
+                                  ? "bg-[#44c5ff]/15 text-[#2a89b7]"
+                                  : "bg-[#e9f8f1] text-[#2b8c67]"
+                            }`}
+                          >
+                            {item.status}
+                          </span>
+                        </div>
+                        <p className="mt-1 text-[11px] text-[#6b7280]">{item.signal}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="rounded-xl border border-[#e5e7eb] bg-white p-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#6b7280]">Intervention feed</p>
+                  <div className="mt-3 space-y-2.5">
+                    <div className="rounded-lg border border-[#edf1f7] bg-[#f9fbff] px-3 py-2">
+                      <p className="text-[11px] text-[#6b7280]">2 min ago</p>
+                      <p className="mt-1 text-xs text-[#1f2933]">Nurse review assigned for P-2184</p>
+                    </div>
+                    <div className="rounded-lg border border-[#edf1f7] bg-[#f9fbff] px-3 py-2">
+                      <p className="text-[11px] text-[#6b7280]">8 min ago</p>
+                      <p className="mt-1 text-xs text-[#1f2933]">Symptom alert triggered from daily check-in</p>
+                    </div>
+                    <div className="rounded-lg border border-[#edf1f7] bg-[#f9fbff] px-3 py-2">
+                      <p className="text-[11px] text-[#6b7280]">14 min ago</p>
+                      <p className="mt-1 text-xs text-[#1f2933]">Care plan acknowledgement completed</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.aside>
         </div>
       </section>
 
-      <Section id="hidden-gap" title="The Most Important Part of Recovery Happens After the Patient Goes Home">
+      <Section
+        id="hidden-gap"
+        title="Recovery Happens After the Patient Goes Home."
+        tone="white"
+      >
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
           {hiddenGapCards.map((item) => (
-            <motion.article key={item.title} {...fadeIn} className={`${cardClass} p-5`}>
-              <h3 className="text-base font-semibold text-[#ff66aa]">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-[#6b7280]">{item.body}</p>
+            <motion.article key={item.title} {...fadeIn} className={`${cardClass} flex h-full flex-col p-5`}>
+              <h3 className="min-h-[4.5rem] text-base font-semibold text-[#ff66aa]">{item.title}</h3>
+              <p className="mt-3 text-sm leading-[1.3rem] text-[#6b7280]">{item.body}</p>
             </motion.article>
           ))}
         </div>
       </Section>
 
-      <Section id="cost-of-aftercare" title="When Aftercare Breaks Down, The Consequences Are Real">
-        <div className="space-y-8">
+      <Section id="cost-of-aftercare" title="When Aftercare Breaks Down, The Consequences Are Real" tone="cool">
+        <div className="grid gap-4 lg:grid-cols-3">
           {severityOrder.map((level) => {
             const items = costBlocks.filter((item) => item.severity === level);
             if (!items.length) return null;
 
             return (
-              <div key={level}>
-                <div className="mb-4 flex items-center gap-3">
+              <motion.article key={level} {...fadeIn} className={`${cardClass} flex h-full flex-col p-4 md:p-5`}>
+                <div className="flex items-center gap-2.5 border-b border-[#e5e7eb] pb-3">
                   <span
                     className={`inline-flex rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] ${
                       level === "Critical"
@@ -255,30 +401,35 @@ export function MedicalAftercareLanding() {
                   >
                     {level}
                   </span>
-                  <div className="h-px flex-1 bg-[#e5e7eb]" />
+                  <p className="text-[11px] font-medium text-[#6b7280]">{items.length} signals</p>
                 </div>
 
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-3 space-y-2.5">
                   {items.map((item) => (
-                    <motion.article key={item.title} {...fadeIn} className={`${cardClass} flex h-full flex-col p-6`}>
-                      <p className="text-[10px] uppercase tracking-[0.16em] text-[#6b7280]">Consequence</p>
-                      <p className="mt-2 text-lg font-semibold text-[#44c5ff]">{item.title}</p>
-                      <p className="mt-3 text-sm leading-7 text-[#6b7280]">{item.detail}</p>
-
-                      <div className="mt-4 rounded-xl border border-[#dbe7f5] bg-[#f8fbff] p-3">
-                        <p className="text-[10px] uppercase tracking-[0.14em] text-[#2a89b7]">Mitigation with Clopen</p>
-                        <p className="mt-2 text-sm leading-6 text-[#4b5563]">{item.mitigation}</p>
+                    <div key={item.title} className="rounded-lg border border-[#e5e7eb] bg-white p-3.5">
+                      <p
+                        className={`text-sm font-semibold ${
+                          level === "Critical" ? "text-[#d43f84]" : level === "High" ? "text-[#2a89b7]" : "text-[#1f2933]"
+                        }`}
+                      >
+                        {item.title}
+                      </p>
+                      <p className="mt-1 text-xs leading-5 text-[#6b7280]">{item.detail}</p>
+                      <div className="mt-2 rounded-md border border-[#dbe7f5] bg-[#f8fbff] px-2.5 py-2">
+                        <p className="text-[11px] leading-5 text-[#4b5563]">
+                          <span className="font-semibold text-[#2a89b7]">Mitigation:</span> {item.mitigation}
+                        </p>
                       </div>
-                    </motion.article>
+                    </div>
                   ))}
                 </div>
-              </div>
+              </motion.article>
             );
           })}
         </div>
       </Section>
 
-      <Section id="modern-aftercare" title="Recovery Shouldn&apos;t Be Guesswork">
+      <Section id="modern-aftercare" title="Recovery Shouldn&apos;t Be Guesswork" tone="rose">
         <motion.div
           {...fadeIn}
           className="mb-8 rounded-xl border border-[#e5e7eb] bg-white p-4 shadow-sm"
@@ -311,40 +462,107 @@ export function MedicalAftercareLanding() {
         </div>
       </Section>
 
-      <Section id="journey" title="Example Patient Recovery Journey">
-        <div className={`${cardClass} p-6 md:p-8`}>
-          <ol className="space-y-5">
-            {journey.map((step) => (
-              <motion.li key={step.day} {...fadeIn} className="relative border-l border-[#d1d5db] pl-6">
-                <span className="absolute -left-[5px] top-1 h-2.5 w-2.5 rounded-full bg-[#ff66aa]" />
-                <h3 className="text-base font-semibold text-[#44c5ff]">{step.day}</h3>
-                <p className="mt-2 text-sm leading-7 text-[#6b7280]">{step.body}</p>
-              </motion.li>
-            ))}
-          </ol>
-        </div>
-      </Section>
+      <Section id="journey" title="Example Patient Recovery Journey" tone="white">
+        <motion.div {...fadeIn} className={`${cardClass} overflow-hidden p-0`}>
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#e5e7eb] bg-gradient-to-r from-white to-[#f6fbff] px-4 py-3">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6b7280]">Recovery Calendar</p>
+              <p className="mt-1 text-sm font-semibold text-[#1f2933]">Post-op Monitoring Window</p>
+            </div>
+            <div className="flex items-center gap-2 text-[11px]">
+              <span className="rounded-full border border-[#44c5ff]/30 bg-[#ecf9ff] px-2.5 py-1 font-semibold text-[#2a89b7]">
+                Week View
+              </span>
+              <span className="rounded-full border border-[#e5e7eb] bg-white px-2.5 py-1 font-medium text-[#6b7280]">
+                Active Tracking
+              </span>
+            </div>
+          </div>
 
-      <Section id="operations" title="Built to Support Care Teams — Not Burden Them">
-        <motion.div {...fadeIn} className={`${cardClass} p-6 md:p-8`}>
-          <ul className="space-y-3 text-sm leading-7 text-[#1f2933]">
-            {[
-              "Reduce manual patient follow-ups",
-              "Monitor recovery without additional staff workload",
-              "Identify complications earlier",
-              "Improve patient adherence to recovery plans",
-              "Give providers visibility between visits"
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-3">
-                <span className="mt-2 h-2 w-2 rounded-full bg-[#ff66aa]" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="p-4 md:p-5">
+            <div className="hidden grid-cols-5 gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6b7280] md:grid">
+              <p className="rounded-md border border-[#ff66aa] bg-gradient-to-b from-[#ff9cc8] to-[#ff66aa] px-2 py-1 text-center text-white">
+                Day 1
+              </p>
+              <p className="rounded-md border border-[#ff66aa] bg-gradient-to-b from-[#ff9cc8] to-[#ff66aa] px-2 py-1 text-center text-white">
+                Day 3
+              </p>
+              <p className="rounded-md border border-[#ff66aa] bg-gradient-to-b from-[#ff9cc8] to-[#ff66aa] px-2 py-1 text-center text-white">
+                Day 4
+              </p>
+              <p className="rounded-md border border-[#ff66aa] bg-gradient-to-b from-[#ff9cc8] to-[#ff66aa] px-2 py-1 text-center text-white">
+                Day 5
+              </p>
+              <p className="rounded-md border border-[#ff66aa] bg-gradient-to-b from-[#ff9cc8] to-[#ff66aa] px-2 py-1 text-center text-white">
+                Week 2
+              </p>
+            </div>
+
+            <div className="mt-3 grid gap-3 md:grid-cols-5">
+              {journey.map((step) => (
+                <motion.article
+                  key={step.day}
+                  {...fadeIn}
+                  className="flex h-full flex-col rounded-xl border border-[#e5e7eb] bg-white p-3"
+                >
+                  <p className="text-xs font-semibold text-[#44c5ff]">{step.day}</p>
+                  <p className="mt-2 text-xs leading-5 text-[#6b7280]">{step.body}</p>
+                  <div className="mt-3 space-y-1.5">
+                    {step.links.map((item) => (
+                      <a
+                        key={`${step.day}-${item}`}
+                        href="#"
+                        onClick={(event) => event.preventDefault()}
+                        className="block rounded-md border border-[#e5e7eb] bg-[#f8fafc] px-2.5 py-1.5 text-[11px] font-medium text-[#2a89b7] transition hover:border-[#44c5ff]/45 hover:bg-[#edf9ff]"
+                      >
+                        {item}
+                      </a>
+                    ))}
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </Section>
 
-      <Section id="playbook" title="The Surgical Aftercare Playbook">
+      <Section id="operations" title="Built to Support Care Teams, Not Burden Them" tone="cool">
+        <motion.div {...fadeIn} className={`${cardClass} overflow-hidden p-0`}>
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#e5e7eb] bg-gradient-to-r from-white to-[#f7fbff] px-4 py-3">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6b7280]">Patient Chart View</p>
+              <p className="mt-1 text-sm font-semibold text-[#1f2933]">Aftercare Operations Summary</p>
+            </div>
+            <span className="rounded-full border border-[#44c5ff]/35 bg-[#ecf9ff] px-2.5 py-1 text-[11px] font-semibold text-[#2a89b7]">
+              Active Care Plan
+            </span>
+          </div>
+
+          <div className="p-4 md:p-5">
+            <div className="hidden rounded-lg border border-[#dbe7f5] bg-[#f8fbff] px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6b7280] md:grid md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)_10.5rem]">
+              <p className="pl-2">Care Objective</p>
+              <p>Clinical Impact</p>
+              <p className="text-right">Status</p>
+            </div>
+
+            <div className="mt-2 divide-y divide-[#edf1f7] rounded-xl border border-[#e5e7eb] bg-white">
+              {careTeamChartRows.map((row) => (
+                <div key={row.item} className="grid gap-1.5 px-3 py-3 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)_10.5rem] md:items-start md:gap-3">
+                  <p className="pl-2 text-sm leading-5 font-semibold text-[#1f2933]">{row.item}</p>
+                  <p className="text-xs leading-5 text-[#6b7280] md:pt-0.5">{row.effect}</p>
+                  <div className="flex md:justify-end">
+                    <span className="rounded-full border border-[#ffd3e8] bg-[#fff5fb] px-2.5 py-1 text-[11px] font-semibold text-[#d43f84]">
+                      {row.status}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </Section>
+
+      <Section id="playbook" title="The Surgical Aftercare Playbook" tone="rose">
         <motion.div {...fadeIn} className={`${cardClass} grid gap-8 p-6 md:grid-cols-2 md:p-8`}>
           <div>
             <p className="text-sm leading-7 text-[#6b7280]">
@@ -410,7 +628,7 @@ export function MedicalAftercareLanding() {
         </motion.div>
       </Section>
 
-      <Section id="why-2stack" title="Operators Helping Operators">
+      <Section id="why-2stack" title="Operators Helping Operators" tone="white">
         <motion.div {...fadeIn} className={`${cardClass} p-6 md:p-8`}>
           <p className="text-sm leading-7 text-[#6b7280]">
             2Stack works with organizations that care deeply about the work they do.
@@ -426,7 +644,7 @@ export function MedicalAftercareLanding() {
         </motion.div>
       </Section>
 
-      <section className="py-16">
+      <section className="border-y border-[#e8edf5] bg-gradient-to-b from-[#f4f8ff] to-[#f9fbff] py-16">
         <div className="mx-auto w-full max-w-6xl px-6">
           <motion.div
             {...fadeIn}
@@ -507,14 +725,25 @@ export function MedicalAftercareLanding() {
 function Section({
   id,
   title,
-  children
+  children,
+  tone = "base",
+  spacingClass = "pt-8 pb-8"
 }: {
   id: string;
   title: string;
   children: React.ReactNode;
+  tone?: "base" | "white" | "cool" | "rose";
+  spacingClass?: string;
 }) {
+  const toneClass = {
+    base: "bg-transparent",
+    white: "border-y border-[#edf1f7] bg-white",
+    cool: "border-y border-[#e8edf5] bg-gradient-to-b from-[#f4f9ff] to-[#f8fbff]",
+    rose: "border-y border-[#f2e8ef] bg-gradient-to-b from-[#fff8fc] to-white"
+  } as const;
+
   return (
-    <section id={id} className="py-16">
+    <section id={id} className={`${spacingClass} ${toneClass[tone]}`}>
       <div className="mx-auto w-full max-w-6xl px-6">
         <motion.h2
           {...fadeIn}
