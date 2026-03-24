@@ -104,9 +104,18 @@ type IndustryCardProps = {
   cardRef?: (node: HTMLElement | null) => void;
 };
 
-function MobileIndustryCard({ vertical, compact = false }: { vertical: Vertical; compact?: boolean }) {
+function MobileIndustryCard({
+  vertical,
+  compact = false,
+  cardRef
+}: {
+  vertical: Vertical;
+  compact?: boolean;
+  cardRef?: (node: HTMLElement | null) => void;
+}) {
   return (
     <article
+      ref={cardRef}
       id={`${vertical.id}-mobile`}
       className={`snap-center shrink-0 w-[min(86vw,360px)] flex flex-col rounded-3xl border border-white/10 bg-white/[0.035] ${compact ? "p-5" : "p-6"} shadow-[0_10px_30px_rgba(0,0,0,0.25)] ${vertical.accentClasses}`}
     >
@@ -138,12 +147,12 @@ function MobileIndustryCard({ vertical, compact = false }: { vertical: Vertical;
       <p className="mt-5 whitespace-pre-line text-sm leading-relaxed text-slate-300">{vertical.description}</p>
 
       <ul
-        className={`mt-3 ${vertical.bulletIndentClass ?? "ml-20"} space-y-1.5 text-sm ${vertical.bulletTextColor ?? "text-slate-200"}`}
+        className={`mt-3 ${vertical.bulletIndentClass ?? "ml-5 md:ml-20"} space-y-1.5 text-sm ${vertical.bulletTextColor ?? "text-slate-200"}`}
       >
         {vertical.bullets.map((bullet) => (
           <li key={bullet} className="flex items-start gap-2">
             <span className={`mt-1.5 h-1.5 w-1.5 rounded-full ${vertical.bulletColor}`} />
-            <span>{bullet}</span>
+            <span className="leading-snug">{bullet}</span>
           </li>
         ))}
       </ul>
@@ -199,12 +208,12 @@ function IndustryCard({ vertical, compact = false, style, isActive, isDragging, 
       <p className="mt-5 whitespace-pre-line text-sm leading-relaxed text-slate-300">{vertical.description}</p>
 
       <ul
-        className={`mt-3 ${vertical.bulletIndentClass ?? "ml-20"} space-y-1.5 text-sm ${vertical.bulletTextColor ?? "text-slate-200"}`}
+        className={`mt-3 ${vertical.bulletIndentClass ?? "ml-5 md:ml-20"} space-y-1.5 text-sm ${vertical.bulletTextColor ?? "text-slate-200"}`}
       >
         {vertical.bullets.map((bullet) => (
           <li key={bullet} className="flex items-start gap-2">
             <span className={`mt-1.5 h-1.5 w-1.5 rounded-full ${vertical.bulletColor}`} />
-            <span>{bullet}</span>
+            <span className="leading-snug">{bullet}</span>
           </li>
         ))}
       </ul>
@@ -229,10 +238,14 @@ function IndustryCard({ vertical, compact = false, style, isActive, isDragging, 
 export function VerticalCardsCarousel({ compact = false }: VerticalCardsCarouselProps) {
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<Array<HTMLElement | null>>([]);
+  const mobileRailRef = useRef<HTMLDivElement | null>(null);
+  const mobileCardRefs = useRef<Array<HTMLElement | null>>([]);
   const startXRef = useRef(0);
   const pauseUntilRef = useRef(0);
+  const mobileScrollRafRef = useRef<number | null>(null);
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffsetX, setDragOffsetX] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(1);
@@ -290,6 +303,46 @@ export function VerticalCardsCarousel({ compact = false }: VerticalCardsCarousel
     };
   }, [activeIndex, viewportWidth]);
 
+  const updateMobileActiveIndex = () => {
+    const rail = mobileRailRef.current;
+    if (!rail) return;
+
+    const railCenter = rail.scrollLeft + rail.clientWidth / 2;
+    let closestIndex = 0;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    mobileCardRefs.current.forEach((card, index) => {
+      if (!card) return;
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const distance = Math.abs(cardCenter - railCenter);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    setMobileActiveIndex((prev) => (prev === closestIndex ? prev : closestIndex));
+  };
+
+  useEffect(() => {
+    const onResize = () => updateMobileActiveIndex();
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      if (mobileScrollRafRef.current !== null) {
+        window.cancelAnimationFrame(mobileScrollRafRef.current);
+      }
+    };
+  }, []);
+
+  const onMobileScroll: React.UIEventHandler<HTMLDivElement> = () => {
+    if (mobileScrollRafRef.current !== null) return;
+    mobileScrollRafRef.current = window.requestAnimationFrame(() => {
+      mobileScrollRafRef.current = null;
+      updateMobileActiveIndex();
+    });
+  };
+
   const onPointerDown: React.PointerEventHandler<HTMLDivElement> = (event) => {
     const target = event.target as HTMLElement;
     if (target.closest("a,button")) return;
@@ -332,11 +385,35 @@ export function VerticalCardsCarousel({ compact = false }: VerticalCardsCarousel
       <div className="md:hidden">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-5 bg-gradient-to-r from-[#222837] to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-5 bg-gradient-to-l from-[#222837] to-transparent" />
-        <div className="-mx-3 flex snap-x snap-mandatory gap-4 overflow-x-auto px-3 pb-3 pt-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {verticals.map((vertical) => (
-            <MobileIndustryCard key={vertical.id} vertical={vertical} compact={compact} />
+        <div
+          ref={mobileRailRef}
+          onScroll={onMobileScroll}
+          className="-mx-3 flex snap-x snap-mandatory gap-4 overflow-x-auto px-3 pb-3 pt-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {verticals.map((vertical, index) => (
+            <MobileIndustryCard
+              key={vertical.id}
+              vertical={vertical}
+              compact={compact}
+              cardRef={(node) => {
+                mobileCardRefs.current[index] = node;
+              }}
+            />
           ))}
         </div>
+        <div className="mt-1 flex items-center justify-center gap-2">
+          {verticals.map((vertical, index) => (
+            <span
+              key={`${vertical.id}-dot`}
+              className={`rounded-full transition-all duration-300 ${
+                index === mobileActiveIndex ? "h-1.5 w-6 bg-white/85" : "h-1.5 w-1.5 bg-white/30"
+              }`}
+            />
+          ))}
+        </div>
+        <p className="mt-2 text-center text-[11px] font-medium uppercase tracking-[0.12em] text-slate-300/80">
+          Swipe to view industries
+        </p>
       </div>
 
       <div className="hidden md:block">
