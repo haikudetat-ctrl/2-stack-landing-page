@@ -29,8 +29,15 @@ export function Navbar() {
         className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-0"
         aria-label="Main navigation"
       >
-        <Link href="/" className="inline-flex items-center py-[19px] leading-none" aria-label="2Stack home">
-          <Image src="/navbar_logo.png" alt="2Stack" width={1500} height={509} className="block h-9 w-auto" priority />
+        <Link href="/" className="inline-flex shrink-0 items-center py-[19px] leading-none" aria-label="2Stack home">
+          <Image
+            src="/navbar_logo.png"
+            alt="2Stack"
+            width={1500}
+            height={509}
+            className="block h-auto w-[106px] object-contain sm:w-[120px]"
+            priority
+          />
         </Link>
 
         <ul
