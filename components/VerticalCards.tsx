@@ -446,8 +446,8 @@ export function VerticalCardsCarousel({ compact = false }: VerticalCardsCarousel
       style={desktopFrameWidth ? { width: desktopFrameWidth, maxWidth: "100%" } : undefined}
     >
       <div className="md:hidden">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-5 bg-gradient-to-r from-[#222837] to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-5 bg-gradient-to-l from-[#222837] to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[14px] bg-gradient-to-r from-[#222837]/70 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[14px] bg-gradient-to-l from-[#222837]/70 to-transparent" />
         <div
           ref={mobileRailRef}
           onScroll={onMobileScroll}
