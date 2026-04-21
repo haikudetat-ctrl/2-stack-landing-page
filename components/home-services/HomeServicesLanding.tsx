@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { LeadResponseScannerWidget } from "@/components/home-services/LeadResponseScannerWidget";
+import { trackBookingCta } from "@/lib/analytics";
 
 const scenarioCards = [
   {
@@ -143,10 +144,16 @@ export function HomeServicesLanding() {
     window.dispatchEvent(new CustomEvent("openLeadScanner"));
   };
 
-  const openBooking = () => setIsBookingOpen(true);
+  const openBooking = () => {
+    trackBookingCta("home_services", "home_services_booking_button");
+    setIsBookingOpen(true);
+  };
 
   useEffect(() => {
-    const onOpenBooking = () => setIsBookingOpen(true);
+    const onOpenBooking = () => {
+      trackBookingCta("home_services", "home_services_booking_event");
+      setIsBookingOpen(true);
+    };
     window.addEventListener("openHomeServicesBooking", onOpenBooking as EventListener);
     return () => window.removeEventListener("openHomeServicesBooking", onOpenBooking as EventListener);
   }, []);

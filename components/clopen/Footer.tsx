@@ -36,8 +36,8 @@ export function Footer() {
 
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[#6b7280]">Contact</p>
-            <a href="mailto:hello@2stack.co" className="mt-3 inline-block text-sm text-[#4b5563] hover:text-[#c27c2c]">
-              hello@2stack.co
+            <a href="mailto:team@2stackops.com" className="mt-3 inline-block text-sm text-[#4b5563] hover:text-[#c27c2c]">
+              team@2stackops.com
             </a>
           </div>
         </div>

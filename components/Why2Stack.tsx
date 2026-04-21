@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export function Why2Stack() {
   return (
-    <section className="mx-auto w-full max-w-4xl px-6 pb-24 pt-6 text-center">
-      <div className="rounded-3xl border border-white/10 bg-white/[0.035] px-8 pb-5 pt-14 shadow-glow backdrop-blur-[8px]">
+    <section className="mx-auto w-full max-w-3xl px-6 pb-24 pt-6 text-center">
+      <div className="rounded-3xl border border-white/10 bg-white/[0.035] px-[27px] pb-5 pt-10 shadow-glow backdrop-blur-[8px]">
         <h2 className="font-[var(--font-display)] text-3xl font-semibold text-white md:text-4xl">Built by Operators</h2>
-        <div className="mx-auto mt-4 max-w-3xl space-y-5 text-slate-300">
+        <div className="mx-auto mt-8 max-w-3xl space-y-5 text-slate-300">
           <p>2Stack was built by people who&apos;ve actually run businesses.</p>
           <p>
             We know what it&apos;s like when good companies get buried under messy systems,

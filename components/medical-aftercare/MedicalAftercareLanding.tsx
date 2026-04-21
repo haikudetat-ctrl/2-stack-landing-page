@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { AftercareRiskScannerWidget } from "@/components/medical-aftercare/AftercareRiskScannerWidget";
+import { trackBookingCta } from "@/lib/analytics";
 
 const hiddenGapCards = [
   {
@@ -171,10 +172,16 @@ const medicalAftercareBookingUrl = "https://calendly.com/2-stack-founders/afterc
 export function MedicalAftercareLanding() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  const openBooking = () => setIsBookingOpen(true);
+  const openBooking = () => {
+    trackBookingCta("medical_aftercare", "medical_aftercare_booking_button");
+    setIsBookingOpen(true);
+  };
 
   useEffect(() => {
-    const onOpenBooking = () => setIsBookingOpen(true);
+    const onOpenBooking = () => {
+      trackBookingCta("medical_aftercare", "medical_aftercare_booking_event");
+      setIsBookingOpen(true);
+    };
     window.addEventListener("openMedicalAftercareBooking", onOpenBooking as EventListener);
     return () => window.removeEventListener("openMedicalAftercareBooking", onOpenBooking as EventListener);
   }, []);

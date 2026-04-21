@@ -173,7 +173,7 @@ export function SystemsCheck() {
 
               <div className="mt-6 flex flex-wrap gap-3">
                 <a
-                  href={`mailto:hello@2stack.co?subject=${encodeURIComponent("Book a Clopen Systems Walkthrough")}&body=${encodeURIComponent(`Friction level: ${result.level}\nScore: ${result.score}${leadId ? `\nReference ID: ${leadId}` : ""}`)}`}
+                  href={`mailto:team@2stackops.com?subject=${encodeURIComponent("Book a Clopen Systems Walkthrough")}&body=${encodeURIComponent(`Friction level: ${result.level}\nScore: ${result.score}${leadId ? `\nReference ID: ${leadId}` : ""}`)}`}
                   className="rounded-lg bg-gradient-to-b from-[#ffa339] to-[#c27c2c] px-6 py-3 text-sm font-medium text-white transition hover:from-[#ffb24d] hover:to-[#b8772b] hover:opacity-95"
                 >
                   Book a Clopen Systems Walkthrough

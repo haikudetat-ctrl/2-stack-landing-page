@@ -15,7 +15,11 @@ const navLinks = [
     hoverClass: "hover:text-[#ff66aa] focus-visible:text-[#ff66aa]"
   },
   { label: "Restaurants", href: "/restaurants", hoverClass: "hover:text-[#D94B3D] focus-visible:text-[#D94B3D]" },
-  { label: "Contact", href: "mailto:hello@2stack.co", hoverClass: "hover:text-[#5bade3] focus-visible:text-[#5bade3]" }
+  {
+    label: "Contact",
+    href: "mailto:team@2stackops.com",
+    hoverClass: "hover:text-[#5bade3] focus-visible:text-[#5bade3]"
+  }
 ];
 
 export function Navbar() {

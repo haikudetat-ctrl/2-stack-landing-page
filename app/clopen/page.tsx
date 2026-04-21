@@ -1,5 +1,18 @@
 import type { Metadata } from "next";
+import { Inter, Sora } from "next/font/google";
 import { ClopenPage } from "@/components/clopen/ClopenPage";
+
+const clopenSans = Inter({
+  subsets: ["latin"],
+  variable: "--font-clopen-sans",
+  weight: ["400", "500", "600", "700"]
+});
+
+const clopenDisplay = Sora({
+  subsets: ["latin"],
+  variable: "--font-clopen-display",
+  weight: ["500", "600", "700"]
+});
 
 export const metadata: Metadata = {
   title: "Clopen by 2Stack | Restaurant Systems",
@@ -8,6 +21,11 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <ClopenPage />;
+  return (
+    <div
+      className={`${clopenSans.variable} ${clopenDisplay.variable} [--font-sans:var(--font-clopen-sans)] [--font-display:var(--font-clopen-display)] font-[var(--font-sans)]`}
+    >
+      <ClopenPage />
+    </div>
+  );
 }
-

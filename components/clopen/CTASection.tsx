@@ -10,7 +10,7 @@ export function CTASection() {
       <div className="relative overflow-hidden rounded-xl border border-[#e5e7eb] bg-white p-7 shadow-sm md:p-10">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(194,124,44,0.08),transparent_45%),radial-gradient(circle_at_85%_25%,rgba(107,142,35,0.08),transparent_45%)]" />
         <div className="relative">
-          <h2 className="max-w-3xl font-[var(--font-display)] text-2xl font-semibold text-[#1f2933] md:text-3xl">
+          <h2 className="max-w-3xl font-[var(--font-display)] text-4xl font-bold leading-[1.03] tracking-tight text-[#c27c2c] md:text-5xl">
             Service Is Already Hard Enough
           </h2>
           <p className="mt-3 text-sm text-[#6b7280]">Restaurants shouldn&apos;t run on:</p>

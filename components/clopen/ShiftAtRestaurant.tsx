@@ -52,10 +52,10 @@ export function ShiftAtRestaurant() {
   return (
     <section id="systems-check" className="pt-20">
       <div className="rounded-xl border border-[#e5e7eb] bg-white p-6 shadow-sm md:p-10">
-        <h2 className="font-[var(--font-display)] text-2xl font-semibold text-[#1f2933] md:text-3xl">
+        <h2 className="font-[var(--font-display)] text-4xl font-bold leading-[1.03] tracking-tight text-[#c27c2c] md:text-5xl">
           A Shift at Your Restaurant
         </h2>
-        <p className="mt-2 max-w-3xl text-[#6b7280]">
+        <p className="mt-3 max-w-3xl text-base font-medium leading-7 tracking-[0.01em] text-[#6b7280] md:text-lg md:whitespace-nowrap">
           Every restaurant runs into the same moments during a shift. The difference is whether your systems make
           them easier, or invisible.
         </p>

@@ -46,8 +46,12 @@ export function PricingOptions() {
 
   return (
     <section id="pricing" className="pt-20">
-      <h2 className="font-[var(--font-display)] text-2xl font-semibold text-[#1f2933] md:text-3xl">Run Clopen Your Way</h2>
-      <p className="mt-2 max-w-2xl text-[#6b7280]">Choose the operating model that matches your team and your growth stage.</p>
+      <h2 className="font-[var(--font-display)] text-4xl font-bold leading-[1.03] tracking-tight text-[#c27c2c] md:text-5xl">
+        Run Clopen Your Way
+      </h2>
+      <p className="mt-3 max-w-3xl text-base font-medium leading-7 tracking-[0.01em] text-[#6b7280] md:text-lg">
+        Choose the operating model that matches your team and your growth stage.
+      </p>
 
       <div className="mt-8 grid items-stretch gap-6 md:grid-cols-2">
         <article className="flex h-full flex-col rounded-xl border border-[#e5e7eb] bg-white p-6 shadow-sm transition hover:shadow-md">
@@ -168,10 +172,10 @@ export function PricingOptions() {
               <p className="inline-flex items-center rounded-full border border-[#eadbc3] bg-[#fffaf1] px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-[#8b5d24]">
                 60-second diagnostic
               </p>
-              <h3 className="mt-3 font-[var(--font-display)] text-2xl font-semibold text-[#1f2933] md:text-[2rem]">
+              <h3 className="mt-3 font-[var(--font-display)] text-4xl font-bold leading-[1.03] tracking-tight text-[#c27c2c] md:text-5xl">
                 Find Your Restaurant Operating Model
               </h3>
-              <p className="mt-2 max-w-3xl text-sm leading-7 text-[#6b7280]">
+              <p className="mt-3 max-w-3xl text-base font-medium leading-7 tracking-[0.01em] text-[#6b7280] md:text-lg">
                 Not sure which setup fits your restaurant? Run a quick systems check and we&apos;ll recommend the best
                 Clopen setup for your team.
               </p>

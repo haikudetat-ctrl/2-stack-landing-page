@@ -11,6 +11,7 @@ import { PainPoints } from "@/components/clopen/PainPoints";
 import { PricingOptions } from "@/components/clopen/PricingOptions";
 import { ShiftAtRestaurant } from "@/components/clopen/ShiftAtRestaurant";
 import { SystemsOverview } from "@/components/clopen/SystemsOverview";
+import { trackBookingCta } from "@/lib/analytics";
 
 const clopenBookingUrl = "https://calendly.com/2-stack-founders/clopen_walkthrough";
 
@@ -18,7 +19,10 @@ export function ClopenPage() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   useEffect(() => {
-    const onOpenBooking = () => setIsBookingOpen(true);
+    const onOpenBooking = () => {
+      trackBookingCta("restaurants", "clopen_booking_event");
+      setIsBookingOpen(true);
+    };
     window.addEventListener("openClopenBooking", onOpenBooking as EventListener);
     return () => window.removeEventListener("openClopenBooking", onOpenBooking as EventListener);
   }, []);
@@ -117,8 +121,10 @@ export function ClopenPage() {
                   </button>
                 </div>
 
-                <div className="overflow-hidden rounded-xl border border-[#e5e7eb] bg-white">
-                  <iframe title="Clopen Walkthrough Booking" src={clopenBookingUrl} className="h-[72vh] w-full" loading="lazy" />
+                <div className="rounded-xl bg-gradient-to-b from-[#ff6633] to-[#cc3300] p-[2px]">
+                  <div className="overflow-hidden rounded-[11px] border border-white/70 bg-white">
+                    <iframe title="Clopen Walkthrough Booking" src={clopenBookingUrl} className="h-[72vh] w-full" loading="lazy" />
+                  </div>
                 </div>
               </motion.div>
             </div>

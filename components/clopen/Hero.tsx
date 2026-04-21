@@ -68,22 +68,22 @@ export function Hero() {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl border border-[#e5e7eb] bg-[#f1efe9] p-3">
+            <div className="rounded-xl border border-[#e5e7eb] bg-gradient-to-b from-[#f7f5ef] to-[#f1efe9] p-3">
               <p className="text-[11px] uppercase tracking-[0.12em] text-[#6b7280]">Labor %</p>
               <p className="mt-1 text-xl font-semibold text-[#1f2933]">29.2</p>
               <p className="mt-1 text-xs text-[#6b8e23]">Within target</p>
             </div>
-            <div className="rounded-xl border border-[#e5e7eb] bg-[#f1efe9] p-3">
+            <div className="rounded-xl border border-[#e5e7eb] bg-gradient-to-b from-[#f7f5ef] to-[#f1efe9] p-3">
               <p className="text-[11px] uppercase tracking-[0.12em] text-[#6b7280]">Open Tasks</p>
               <p className="mt-1 text-xl font-semibold text-[#1f2933]">14</p>
               <p className="mt-1 text-xs text-[#c27c2c]">4 due in next hour</p>
             </div>
-            <div className="rounded-xl border border-[#e5e7eb] bg-[#f1efe9] p-3">
+            <div className="rounded-xl border border-[#e5e7eb] bg-gradient-to-b from-[#f7f5ef] to-[#f1efe9] p-3">
               <p className="text-[11px] uppercase tracking-[0.12em] text-[#6b7280]">Schedule Gaps</p>
               <p className="mt-1 text-xl font-semibold text-[#1f2933]">3</p>
               <p className="mt-1 text-xs text-[#c27c2c]">Coverage in progress</p>
             </div>
-            <div className="rounded-xl border border-[#e5e7eb] bg-[#f1efe9] p-3">
+            <div className="rounded-xl border border-[#e5e7eb] bg-gradient-to-b from-[#f7f5ef] to-[#f1efe9] p-3">
               <p className="text-[11px] uppercase tracking-[0.12em] text-[#6b7280]">Food Cost Drift</p>
               <p className="mt-1 text-xl font-semibold text-[#1f2933]">+2.4%</p>
               <p className="mt-1 text-xs text-[#c27c2c]">Variance alert</p>

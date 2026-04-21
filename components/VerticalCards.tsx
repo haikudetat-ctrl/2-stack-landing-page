@@ -3,9 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { trackVerticalRouteCta } from "@/lib/analytics";
 
 type Vertical = {
   id: string;
+  analyticsTarget: "home_services" | "medical_aftercare" | "restaurants";
   title: string;
   subtitle: string;
   description: string;
@@ -26,6 +28,7 @@ type Vertical = {
 const verticals: Vertical[] = [
   {
     id: "home-services-card",
+    analyticsTarget: "home_services",
     title: "Home Services",
     subtitle: "Roofing, HVAC, Plumbing, and Service Teams",
     description: "Capture leads faster, tighten follow-up,\nand turn chaos into repeatable growth.",
@@ -43,6 +46,7 @@ const verticals: Vertical[] = [
   },
   {
     id: "medical-aftercare-card",
+    analyticsTarget: "medical_aftercare",
     title: "Medical Aftercare",
     subtitle: "Clinics, Surgical Practices, and Care Providers",
     description: "Post-procedure systems that improve outcomes\nand increase operational visibility.",
@@ -65,6 +69,7 @@ const verticals: Vertical[] = [
   },
   {
     id: "restaurants-card",
+    analyticsTarget: "restaurants",
     title: "Restaurants",
     subtitle: "Restaurants, Hospitality Groups, and Operators",
     description: "Operational systems that improve training\nconsistency, and guest experience.",
@@ -85,8 +90,16 @@ type VerticalCardsCarouselProps = {
 };
 
 const SWIPE_THRESHOLD_PX = 54;
-const AUTO_ADVANCE_MS = 5200;
+const AUTO_ADVANCE_MS = 2600;
 const DRAG_DRIFT_FACTOR = 0.5;
+const ACTIVE_CARD_GAP_PX = 3;
+const BASE_SIDE_GAP_PX = 3;
+const GOLDEN_RATIO = 1.618;
+const GOLDEN_SIDE_GAP_PX = Math.round(BASE_SIDE_GAP_PX * GOLDEN_RATIO);
+const DESKTOP_VISIBLE_SPAN_FACTOR = 2.04;
+const DESKTOP_SIDE_FADE_PX = 10;
+const SIDE_CARD_OFFSET_PCT = 64;
+const FAR_CARD_STEP_PCT = 24;
 
 function normalizeRelative(index: number, activeIndex: number, total: number) {
   let diff = index - activeIndex;
@@ -101,6 +114,7 @@ type IndustryCardProps = {
   style: React.CSSProperties;
   isActive: boolean;
   isDragging: boolean;
+  onSelect?: () => void;
   cardRef?: (node: HTMLElement | null) => void;
 };
 
@@ -113,12 +127,28 @@ function MobileIndustryCard({
   compact?: boolean;
   cardRef?: (node: HTMLElement | null) => void;
 }) {
+  const isHomeCard = vertical.id === "home-services-card";
+  const isMedicalCard = vertical.id === "medical-aftercare-card";
+  const isRestaurantCard = vertical.id === "restaurants-card";
+  const accentIconSrc = isHomeCard
+    ? "/HIhouse_icon.png"
+    : isMedicalCard
+      ? "/MAHeart_icon.png"
+      : isRestaurantCard
+        ? "/RESTplate_icon.png"
+        : null;
+
   return (
     <article
       ref={cardRef}
       id={`${vertical.id}-mobile`}
       className={`snap-center shrink-0 w-[min(86vw,360px)] flex flex-col rounded-3xl border border-white/10 bg-white/[0.035] ${compact ? "p-5" : "p-6"} shadow-[0_10px_30px_rgba(0,0,0,0.25)] ${vertical.accentClasses}`}
     >
+      {accentIconSrc ? (
+        <div className="mt-[7px] mb-[7px] flex justify-center">
+          <Image src={accentIconSrc} alt="" aria-hidden="true" width={1500} height={1500} className="h-24 w-auto" />
+        </div>
+      ) : null}
       <h3 className="w-full text-center font-[var(--font-display)] text-2xl font-semibold leading-none">
         <Link
           href={vertical.href}
@@ -160,6 +190,7 @@ function MobileIndustryCard({
       <div className="mt-6">
         <Link
           href={vertical.href}
+          onClick={() => trackVerticalRouteCta(vertical.analyticsTarget, "main_router_carousel_cta")}
           className={`group/cta inline-flex items-center rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 border-white/15 text-white ${vertical.buttonHoverClasses ?? "hover:border-white/30 hover:bg-white/10"}`}
         >
           <span>{vertical.cta}</span>
@@ -170,14 +201,35 @@ function MobileIndustryCard({
   );
 }
 
-function IndustryCard({ vertical, compact = false, style, isActive, isDragging, cardRef }: IndustryCardProps) {
+function IndustryCard({ vertical, compact = false, style, isActive, isDragging, onSelect, cardRef }: IndustryCardProps) {
+  const isHomeCard = vertical.id === "home-services-card";
+  const isMedicalCard = vertical.id === "medical-aftercare-card";
+  const isRestaurantCard = vertical.id === "restaurants-card";
+  const accentIconSrc = isHomeCard
+    ? "/HIhouse_icon.png"
+    : isMedicalCard
+      ? "/MAHeart_icon.png"
+      : isRestaurantCard
+        ? "/RESTplate_icon.png"
+        : null;
+
   return (
     <article
       ref={cardRef}
       id={vertical.id}
+      onClick={(event) => {
+        const target = event.target as HTMLElement;
+        if (target.closest("a,button")) return;
+        onSelect?.();
+      }}
       style={style}
-      className={`absolute left-1/2 top-1/2 flex w-[min(86vw,360px)] -translate-x-1/2 -translate-y-1/2 flex-col rounded-3xl border border-white/10 ${isActive ? "bg-[#222837]" : "bg-white/[0.035]"} ${compact ? "p-5" : "p-6"} shadow-[0_10px_30px_rgba(0,0,0,0.25)] will-change-transform ${isDragging ? "transition-none" : "transition-[transform,opacity,filter,box-shadow,border-color,background-color] duration-500 ease-out"} ${vertical.accentClasses} ${isActive ? `pointer-events-auto ${vertical.activeClasses}` : "pointer-events-none md:pointer-events-auto"} md:w-[min(66vw,390px)] lg:w-[min(42vw,410px)]`}
+      className={`absolute left-1/2 top-1/2 flex w-[min(86vw,360px)] -translate-x-1/2 -translate-y-1/2 flex-col rounded-3xl border border-white/10 ${isActive ? "bg-[#222837]" : "bg-white/[0.035]"} ${compact ? "p-5" : "p-6"} shadow-[0_10px_30px_rgba(0,0,0,0.25)] will-change-transform ${isDragging ? "transition-none" : "transition-[transform,opacity,filter,box-shadow,border-color,background-color] duration-500 ease-out"} ${vertical.accentClasses} ${isActive ? `pointer-events-auto ${vertical.activeClasses}` : "pointer-events-none md:pointer-events-auto"} cursor-pointer md:w-[min(66vw,390px)] lg:w-[min(42vw,410px)]`}
     >
+      {accentIconSrc ? (
+        <div className="mt-[7px] mb-[7px] flex justify-center">
+          <Image src={accentIconSrc} alt="" aria-hidden="true" width={1500} height={1500} className="h-24 w-auto" />
+        </div>
+      ) : null}
       <h3 className="w-full text-center font-[var(--font-display)] text-2xl font-semibold leading-none">
         <Link
           href={vertical.href}
@@ -221,6 +273,7 @@ function IndustryCard({ vertical, compact = false, style, isActive, isDragging, 
       <div className="mt-6">
         <Link
           href={vertical.href}
+          onClick={() => trackVerticalRouteCta(vertical.analyticsTarget, "main_router_carousel_cta")}
           className={`group/cta inline-flex items-center rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 ${
             isActive
               ? `scale-[1.05] -translate-y-0.5 ${vertical.buttonActiveClasses ?? "bg-white text-[#222837] border-white shadow-[0_10px_20px_rgba(255,255,255,0.18)]"}`
@@ -250,6 +303,7 @@ export function VerticalCardsCarousel({ compact = false }: VerticalCardsCarousel
   const [dragOffsetX, setDragOffsetX] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(1);
   const [activeCardHeight, setActiveCardHeight] = useState<number | null>(null);
+  const [activeCardWidth, setActiveCardWidth] = useState<number | null>(null);
   const total = verticals.length;
 
   const goNext = () => {
@@ -290,12 +344,13 @@ export function VerticalCardsCarousel({ compact = false }: VerticalCardsCarousel
     const node = cardRefs.current[activeIndex];
     if (!node) return;
 
-    const updateHeight = () => {
+    const updateSize = () => {
       setActiveCardHeight(node.offsetHeight);
+      setActiveCardWidth(node.offsetWidth);
     };
 
-    updateHeight();
-    const resizeObserver = new ResizeObserver(updateHeight);
+    updateSize();
+    const resizeObserver = new ResizeObserver(updateSize);
     resizeObserver.observe(node);
 
     return () => {
@@ -379,9 +434,17 @@ export function VerticalCardsCarousel({ compact = false }: VerticalCardsCarousel
   };
 
   const dragPct = (dragOffsetX / viewportWidth) * 100 * DRAG_DRIFT_FACTOR;
+  const desktopViewportWidth = activeCardWidth
+    ? activeCardWidth * DESKTOP_VISIBLE_SPAN_FACTOR + GOLDEN_SIDE_GAP_PX * 2
+    : undefined;
+  const desktopFrameWidth = desktopViewportWidth ? desktopViewportWidth + DESKTOP_SIDE_FADE_PX * 2 : undefined;
 
   return (
-    <div id="vertical-cards" className="relative w-full overflow-hidden rounded-[32px]">
+    <div
+      id="vertical-cards"
+      className="relative w-full overflow-hidden rounded-[32px] md:mx-auto"
+      style={desktopFrameWidth ? { width: desktopFrameWidth, maxWidth: "100%" } : undefined}
+    >
       <div className="md:hidden">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-5 bg-gradient-to-r from-[#222837] to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-5 bg-gradient-to-l from-[#222837] to-transparent" />
@@ -417,33 +480,14 @@ export function VerticalCardsCarousel({ compact = false }: VerticalCardsCarousel
       </div>
 
       <div className="hidden md:block">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-30 w-8 bg-gradient-to-r from-[#222837] to-transparent md:w-12" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-30 w-8 bg-gradient-to-l from-[#222837] to-transparent md:w-12" />
-
-        <div className="absolute right-3 top-3 z-40 flex items-center gap-2 md:right-4 md:top-4">
-          <button
-            type="button"
-            onClick={() => {
-              pauseUntilRef.current = Date.now() + 1800;
-              goPrev();
-            }}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-[#222837]/80 text-sm text-slate-200 transition-colors hover:border-white/40 hover:bg-white/10"
-            aria-label="Previous card"
-          >
-            &#8592;
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              pauseUntilRef.current = Date.now() + 1800;
-              goNext();
-            }}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-[#222837]/80 text-sm text-slate-200 transition-colors hover:border-white/40 hover:bg-white/10"
-            aria-label="Next card"
-          >
-            &#8594;
-          </button>
-        </div>
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 z-30 bg-gradient-to-r from-[#222837] to-transparent"
+          style={{ width: DESKTOP_SIDE_FADE_PX }}
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 z-30 bg-gradient-to-l from-[#222837] to-transparent"
+          style={{ width: DESKTOP_SIDE_FADE_PX }}
+        />
 
         <div
           ref={viewportRef}
@@ -451,14 +495,20 @@ export function VerticalCardsCarousel({ compact = false }: VerticalCardsCarousel
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerCancel}
-          style={{ height: activeCardHeight ? activeCardHeight + 48 : undefined }}
-          className={`relative min-h-[420px] overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.02] ${isDragging ? "cursor-grabbing" : "cursor-grab"} touch-pan-x select-none`}
+          style={{
+            height: activeCardHeight ? activeCardHeight + ACTIVE_CARD_GAP_PX * 2 : undefined,
+            width: desktopViewportWidth
+          }}
+          className={`relative mx-auto overflow-hidden ${isDragging ? "cursor-grabbing" : "cursor-grab"} touch-pan-x select-none`}
           aria-label="Industry carousel"
         >
           {verticals.map((vertical, index) => {
             const relative = normalizeRelative(index, activeIndex, total);
             const isActive = relative === 0;
-            const translateX = relative * 68 + dragPct;
+            const translateX =
+              (relative === 0
+                ? 0
+                : Math.sign(relative) * (SIDE_CARD_OFFSET_PCT + (Math.abs(relative) - 1) * FAR_CARD_STEP_PCT)) + dragPct;
             const scale = isActive ? 1 : 0.84;
             const opacity = isActive ? 1 : 0.58;
             const blurPx = isActive ? 0 : 0.5;
@@ -471,6 +521,10 @@ export function VerticalCardsCarousel({ compact = false }: VerticalCardsCarousel
                 compact={compact}
                 isActive={isActive}
                 isDragging={isDragging}
+                onSelect={() => {
+                  setActiveIndex(index);
+                  pauseUntilRef.current = Date.now() + 1800;
+                }}
                 cardRef={(node) => {
                   cardRefs.current[index] = node;
                 }}

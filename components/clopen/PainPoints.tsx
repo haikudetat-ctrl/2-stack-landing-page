@@ -57,10 +57,12 @@ const painPoints: PainPointCard[] = [
 export function PainPoints() {
   return (
     <section id="pain-points" className="pt-20">
-      <h2 className="font-[var(--font-display)] text-2xl font-semibold text-[#1f2933] md:text-3xl">
-        Most Restaurants Run on Controlled Chaos
+      <h2 className="font-[var(--font-display)] text-4xl font-bold leading-[1.03] tracking-tight text-[#c27c2c] md:text-5xl">
+        Most Restaurants
+        <br />
+        Run on Controlled Chaos
       </h2>
-      <p className="mt-2 max-w-2xl text-[#6b7280]">
+      <p className="mt-3 text-base font-medium leading-7 tracking-[0.01em] text-[#6b7280] md:text-lg md:whitespace-nowrap">
         Clopen replaces fragile workarounds with dependable systems your team can run every shift.
       </p>
 
@@ -105,11 +107,11 @@ export function PainPoints() {
 
 const toneClasses: Record<RiskLevel, { rail: string; icon: string; badge: string; metric: string; hoverBorder: string }> = {
   high: {
-    rail: "bg-[#c27c2c]",
-    icon: "text-[#c27c2c]",
-    badge: "border-[#c27c2c]/30 bg-[#c27c2c]/10 text-[#8b5d24]",
-    metric: "bg-[#c27c2c]",
-    hoverBorder: "hover:border-[#c27c2c]/40 focus-visible:border-[#c27c2c]/40"
+    rail: "bg-[#ff3300]",
+    icon: "text-[#ff3300]",
+    badge: "border-[#ff3300]/35 bg-[#ff3300]/10 text-[#b12400]",
+    metric: "bg-[#ff3300]",
+    hoverBorder: "hover:border-[#ff3300]/45 focus-visible:border-[#ff3300]/45"
   },
   medium: {
     rail: "bg-[#6b8e23]",

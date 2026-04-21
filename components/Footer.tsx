@@ -34,8 +34,8 @@ export function Footer() {
 
         <div className="md:justify-self-end md:text-right">
           <h3 className="text-sm uppercase tracking-[0.16em] text-slate-400">Contact</h3>
-          <a className="mt-4 inline-block text-slate-200 transition-colors hover:text-[#5bade3]" href="mailto:hello@2stack.co">
-            hello@2stack.co
+          <a className="mt-4 inline-block text-slate-200 transition-colors hover:text-[#5bade3]" href="mailto:team@2stackops.com">
+            team@2stackops.com
           </a>
         </div>
       </div>
