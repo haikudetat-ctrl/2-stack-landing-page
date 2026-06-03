@@ -83,7 +83,7 @@ export function WhatWeDo() {
           <div className="group relative flex-1 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-glow transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05]">
             <div className="absolute left-[-60px] top-[-90px] h-56 w-56 rounded-full bg-[#5688f0]/25 blur-3xl" />
             <div className="absolute bottom-[-80px] right-[-40px] h-52 w-52 rounded-full bg-[#5cc2b9]/20 blur-3xl" />
-            <LandingVideoCard playbackId={TOP_VIDEO_PLAYBACK_ID} posterTime={5} title="Landing Page Overview" />
+            <LandingVideoCard playbackId={TOP_VIDEO_PLAYBACK_ID} posterTime={6} title="Landing Page Overview" />
           </div>
 
           <div className="group relative flex-1 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-glow transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05]">
