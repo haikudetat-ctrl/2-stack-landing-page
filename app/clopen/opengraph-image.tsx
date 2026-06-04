@@ -57,13 +57,13 @@ export default function Image() {
         </div>
         <div style={{ position: "relative", maxWidth: 900 }}>
           <div style={{ color: "#F4A261", fontSize: 18, letterSpacing: 6, textTransform: "uppercase", marginBottom: 24 }}>
-            Hospitality standards, preserved
+            Standards stay in the building
           </div>
           <h1 style={{ fontSize: 84, lineHeight: 0.94, margin: 0, fontWeight: 700 }}>
             When Your Best Server Leaves, Your Standards Shouldn&apos;t.
           </h1>
           <p style={{ marginTop: 28, fontSize: 29, lineHeight: 1.3, color: "#D8D8D8", maxWidth: 850 }}>
-            Operational intelligence for restaurants that care about craft.
+            Structure for restaurants that take hospitality personally.
           </p>
         </div>
       </div>

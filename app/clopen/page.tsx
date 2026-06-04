@@ -16,7 +16,7 @@ const clopenDisplay = Cormorant_Garamond({
 
 const title = "Clopen by 2Stack | Preserve Restaurant Standards";
 const description =
-  "Clopen captures the operational intelligence that lives in your best people and turns it into systems your entire hospitality team can execute.";
+  "Clopen keeps restaurant standards in the building by turning service knowledge, guest notes, training, and daily lineups into systems the whole house can run on.";
 const url = "https://clopen.2-stack.com";
 
 export const metadata: Metadata = {
