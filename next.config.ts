@@ -21,6 +21,16 @@ const nextConfig: NextConfig = {
           }
         ],
         destination: "/clopen"
+      },
+      {
+        source: "/",
+        has: [
+          {
+            type: "host",
+            value: "rake.2-stack.com"
+          }
+        ],
+        destination: "/rake"
       }
     ];
   },

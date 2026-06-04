@@ -6,7 +6,7 @@ export function Industries() {
         We focus on industries where operational discipline and customer experience matter most.
       </p>
       <p className="mx-auto mt-3 max-w-3xl text-slate-400">
-        Each vertical has its own workflows, tools, and operating systems built specifically for that environment.
+        Each line of work has its own pressure, its own handoffs, and its own way good businesses start to slow down.
       </p>
     </section>
   );

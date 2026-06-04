@@ -1,20 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Roboto } from "next/font/google";
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["600"]
-});
-
 const navLinks = [
-  { label: "Home Services", href: "/home-services", hoverClass: "hover:text-[#caffc0] focus-visible:text-[#caffc0]" },
-  {
-    label: "Medical Aftercare",
-    href: "/medical-aftercare",
-    hoverClass: "hover:text-[#ff66aa] focus-visible:text-[#ff66aa]"
-  },
-  { label: "Restaurants", href: "/restaurants", hoverClass: "hover:text-[#D94B3D] focus-visible:text-[#D94B3D]" },
+  { label: "LOAM", href: "https://loam.2-stack.com", hoverClass: "hover:text-[#9bc86d] focus-visible:text-[#9bc86d]" },
+  { label: "CLOPEN", href: "https://clopen.2-stack.com", hoverClass: "hover:text-[#ef742d] focus-visible:text-[#ef742d]" },
+  { label: "RAKE", href: "https://rake.2-stack.com", hoverClass: "hover:text-[#5f9de0] focus-visible:text-[#5f9de0]" },
   {
     label: "Contact",
     href: "mailto:team@2stackops.com",
@@ -24,7 +13,7 @@ const navLinks = [
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#222837]/70 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#101722]/78 backdrop-blur-xl">
       <nav
         className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-0"
         aria-label="Main navigation"
@@ -40,9 +29,7 @@ export function Navbar() {
           />
         </Link>
 
-        <ul
-          className={`${roboto.className} ml-4 flex max-w-[72vw] items-center gap-3 overflow-x-auto whitespace-nowrap text-xs font-semibold uppercase tracking-[0.08em] text-slate-200/90 sm:gap-6 sm:text-sm`}
-        >
+        <ul className="ml-4 flex max-w-[72vw] items-center gap-3 overflow-x-auto whitespace-nowrap text-xs font-semibold uppercase tracking-[0.12em] text-slate-200/90 sm:gap-6 sm:text-sm">
           {navLinks.map((link) => (
             <li key={link.label}>
               <Link

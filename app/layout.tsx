@@ -16,9 +16,9 @@ const display = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "2Stack | Systems for Modern Operators",
+  title: "2Stack | Operational Foundations for Owner-Operators",
   description:
-    "2Stack helps businesses build systems, automation, and operational infrastructure that scale."
+    "2Stack builds operating systems for LOAM, CLOPEN, and RAKE: practical structure for owners who take pride in their work."
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

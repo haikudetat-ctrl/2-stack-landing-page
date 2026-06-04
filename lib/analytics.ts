@@ -1,11 +1,10 @@
 import { track } from "@vercel/analytics";
 
-type VerticalTarget = "home_services" | "medical_aftercare" | "restaurants";
+type VerticalTarget = "home_services" | "restaurants" | "loam" | "clopen" | "rake";
 type CtaSource =
   | "main_router_carousel_cta"
+  | "main_router_card_cta"
   | "clopen_booking_event"
-  | "medical_aftercare_booking_button"
-  | "medical_aftercare_booking_event"
   | "home_services_booking_button"
   | "home_services_booking_event";
 
@@ -41,4 +40,3 @@ export function trackBookingCta(target: VerticalTarget, source: CtaSource) {
     source
   });
 }
-

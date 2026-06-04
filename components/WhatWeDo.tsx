@@ -35,20 +35,16 @@ export function WhatWeDo() {
     ].join(" ");
 
   return (
-    <section id="what-we-do" ref={sectionRef} className="mx-auto w-full max-w-6xl px-6 pb-8 pt-8">
-      <div className="grid gap-10 lg:grid-cols-2 lg:items-stretch">
-        <div className="relative pl-6">
+    <section id="how-we-build" ref={sectionRef} className="mx-auto w-full max-w-7xl px-4 pb-12 pt-4 sm:px-6 lg:pb-20">
+      <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+        <div className="relative rounded-lg border border-white/10 bg-white/[0.035] p-6 sm:p-8">
           <span
             aria-hidden
-            className="pointer-events-none absolute left-0 top-2 h-[86%] w-px bg-gradient-to-b from-[#5688f0]/70 via-[#5cc2b9]/55 to-transparent"
-          />
-          <span
-            aria-hidden
-            className="pointer-events-none absolute left-[-4px] top-2 h-[86%] w-2 rounded-full bg-gradient-to-b from-[#5688f0]/25 via-[#5cc2b9]/20 to-transparent blur-sm"
+            className="pointer-events-none absolute left-0 top-8 h-[calc(100%-4rem)] w-px bg-gradient-to-b from-[#5688f0]/70 via-[#ef742d]/55 to-transparent"
           />
 
           <h2
-            className={`max-w-none font-[var(--font-display)] text-[2.2rem] font-semibold leading-[1.08] tracking-[-0.02em] text-white md:text-[2.95rem] ${reveal()}`}
+            className={`max-w-none font-[var(--font-display)] text-3xl font-semibold leading-[1.04] tracking-[-0.04em] text-white md:text-5xl ${reveal()}`}
             style={{ transitionDelay: "0ms" }}
           >
             For owners that take
@@ -74,22 +70,39 @@ export function WhatWeDo() {
           </p>
 
           <p className={`mt-7 max-w-xl leading-8 text-slate-300 ${reveal()}`} style={{ transitionDelay: "420ms" }}>
-            We build the operational foundation specifically for your needs to help your business run more smoothly,
-            grow faster, and focus on the work that made your business successful in the first place.
+            We build operational foundations that help your business run smoother, grow faster, and stay focused on the
+            work that made it successful in the first place.
           </p>
         </div>
 
         <div className={`flex h-full flex-col gap-6 ${reveal()}`} style={{ transitionDelay: "180ms" }}>
-          <div className="group relative flex-1 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-glow transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05]">
-            <div className="absolute left-[-60px] top-[-90px] h-56 w-56 rounded-full bg-[#5688f0]/25 blur-3xl" />
-            <div className="absolute bottom-[-80px] right-[-40px] h-52 w-52 rounded-full bg-[#5cc2b9]/20 blur-3xl" />
-            <LandingVideoCard playbackId={TOP_VIDEO_PLAYBACK_ID} posterTime={6} title="Landing Page Overview" />
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">How we build</p>
+            <h2 className="mt-3 font-[var(--font-display)] text-3xl font-semibold tracking-[-0.04em] text-white md:text-5xl">
+              A closer look at how we make messy businesses easier to run.
+            </h2>
           </div>
 
-          <div className="group relative flex-1 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-glow transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05]">
-            <div className="absolute right-[-60px] top-[-90px] h-56 w-56 rounded-full bg-[#5bade3]/25 blur-3xl" />
-            <div className="absolute bottom-[-80px] left-[-40px] h-52 w-52 rounded-full bg-[#5688f0]/20 blur-3xl" />
-            <LandingVideoCard playbackId={SECOND_VIDEO_PLAYBACK_ID} posterTime={7} title="Landing Page VSL" />
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="group overflow-hidden rounded-lg border border-white/10 bg-[#101722] shadow-[0_20px_70px_rgba(0,0,0,0.22)] transition-all duration-500 hover:-translate-y-1 hover:border-white/20">
+              <LandingVideoCard playbackId={TOP_VIDEO_PLAYBACK_ID} posterTime={6} title="2Stack operator overview" />
+              <div className="border-t border-white/10 p-4">
+                <p className="text-sm font-semibold text-white">Start with the structure</p>
+                <p className="mt-1 text-sm leading-6 text-slate-400">
+                  Why owners need the right operating rhythm before more leads, more jobs, or more seats.
+                </p>
+              </div>
+            </div>
+
+            <div className="group overflow-hidden rounded-lg border border-white/10 bg-[#101722] shadow-[0_20px_70px_rgba(0,0,0,0.22)] transition-all duration-500 hover:-translate-y-1 hover:border-white/20">
+              <LandingVideoCard playbackId={SECOND_VIDEO_PLAYBACK_ID} posterTime={7} title="2Stack operating overview" />
+              <div className="border-t border-white/10 p-4">
+                <p className="text-sm font-semibold text-white">Find the owner bottleneck</p>
+                <p className="mt-1 text-sm leading-6 text-slate-400">
+                  How we find the missed follow-ups, scattered tools, and daily friction slowing the business down.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

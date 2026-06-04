@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const verticalLinks = [
+  { label: "LOAM", href: "https://loam.2-stack.com", color: "hover:text-[#9bc86d]" },
+  { label: "CLOPEN", href: "https://clopen.2-stack.com", color: "hover:text-[#ef742d]" },
+  { label: "RAKE", href: "https://rake.2-stack.com", color: "hover:text-[#5f9de0]" }
+];
+
 export function Footer() {
   return (
     <footer id="contact" className="border-t border-white/10 bg-black/20">
@@ -9,26 +15,21 @@ export function Footer() {
           <Link href="/" className="inline-flex items-center" aria-label="2Stack home">
             <Image src="/navbar_logo.png" alt="2Stack" width={1500} height={509} className="h-9 w-auto" />
           </Link>
+          <p className="mt-4 max-w-xs text-sm leading-6 text-slate-400">
+            Operational foundations for owners who take pride in their work.
+          </p>
         </div>
 
         <div className="text-center md:justify-self-center md:text-center">
-          <h3 className="text-center text-sm uppercase tracking-[0.16em] text-slate-400">Who We Help</h3>
+          <h3 className="text-sm uppercase tracking-[0.16em] text-slate-400">Who We Help</h3>
           <ul className="mt-4 space-y-2 text-slate-200">
-            <li>
-              <Link href="/home-services" className="transition-colors hover:text-[#caffc0]">
-                Home Services
-              </Link>
-            </li>
-            <li>
-              <Link href="/medical-aftercare" className="transition-colors hover:text-[#ff66aa]">
-                Medical Aftercare
-              </Link>
-            </li>
-            <li>
-              <Link href="/restaurants" className="transition-colors hover:text-[#D94B3D]">
-                Restaurants
-              </Link>
-            </li>
+            {verticalLinks.map((link) => (
+              <li key={link.label}>
+                <a href={link.href} className={`transition-colors ${link.color}`}>
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
