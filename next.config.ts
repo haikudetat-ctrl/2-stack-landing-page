@@ -31,6 +31,16 @@ const nextConfig: NextConfig = {
           }
         ],
         destination: "/rake"
+      },
+      {
+        source: "/",
+        has: [
+          {
+            type: "host",
+            value: "loam.2-stack.com"
+          }
+        ],
+        destination: "/loam"
       }
     ];
   },

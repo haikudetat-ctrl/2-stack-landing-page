@@ -33,7 +33,7 @@ const businessLines: BusinessLine[] = [
     description:
       "Keep schedules, crews, customers, invoices, and field work moving without making the owner the whole operating system.",
     bullets: ["Today’s jobs", "Crew routing", "Seasonal follow-up", "Payment workflows"],
-    href: "https://loam.2-stack.com",
+    href: "/loam",
     cta: "Open LOAM",
     accent: "#6f9d45",
     logo: {
