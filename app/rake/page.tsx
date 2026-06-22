@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
 import { RakePage } from "@/components/rake/RakePage";
+import { verticalSites } from "@/lib/seo";
 
 const title = "RAKE by 2Stack | Operational Intelligence for Contractors";
 const description =
   "RAKE gives contractors one owner view across leads, estimates, jobs, customers, referrals, margin, and business health.";
-const url = "https://rake.2-stack.com";
+const url = verticalSites.rake.url;
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
-  title,
+  title: {
+    absolute: title
+  },
   description,
   alternates: {
     canonical: "/"
@@ -55,6 +59,7 @@ const structuredData = [
       "@type": "Organization",
       name: "2Stack"
     },
+    url,
     description
   }
 ];
@@ -62,7 +67,7 @@ const structuredData = [
 export default function Page() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+      <JsonLd data={structuredData} />
       <RakePage />
     </>
   );

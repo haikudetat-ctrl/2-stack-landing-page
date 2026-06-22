@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { seoRedirects } from "./lib/seo-routing";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -7,8 +8,15 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "images.unsplash.com"
+      },
+      {
+        protocol: "https",
+        hostname: "image.mux.com"
       }
     ]
+  },
+  async redirects() {
+    return [...seoRedirects];
   },
   async rewrites() {
     return [

@@ -1,13 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import MuxPlayer from "@mux/mux-player-react";
 import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { ClopenVideoPlayer } from "@/components/clopen/ClopenVideoPlayer";
 import { trackBookingCta } from "@/lib/analytics";
 
-const playbackId = "jkDpjbpRJySiwb4zgZ00slhTbtfsdPmfirX202dmvCgcw";
-const muxPoster = `https://image.mux.com/${playbackId}/thumbnail.jpg?time=6&width=1400&fit_mode=preserve`;
 const clopenBookingUrl = "https://calendly.com/2-stack-founders/clopen_walkthrough";
 
 const images = {
@@ -304,21 +302,7 @@ function Hero({ onBook, onWatch }: { onBook: () => void; onWatch: () => void }) 
             id="clopen-overview-video"
             className="relative overflow-hidden rounded-[24px] border border-white/[.12] bg-[#121212] shadow-[0_30px_80px_rgba(0,0,0,.72)]"
           >
-            <MuxPlayer
-              playbackId={playbackId}
-              metadata={{ video_title: "Clopen Overview" }}
-              streamType="on-demand"
-              accentColor="#D97736"
-              poster={muxPoster}
-              preload="metadata"
-              playsInline
-              className="aspect-video w-full"
-            />
-            <div className="pointer-events-none absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/40 text-white shadow-2xl backdrop-blur-md">
-              <span className="ml-1 text-2xl" aria-hidden="true">
-                ▶
-              </span>
-            </div>
+            <ClopenVideoPlayer />
           </div>
           <p className="relative mt-5 text-center text-sm leading-6 text-[#A3A3A3]">
             A short overview of how Clopen keeps restaurant standards from walking out the door.

@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
 import { LoamPage } from "@/components/loam/LoamPage";
+import { verticalSites } from "@/lib/seo";
 
 const title = "LOAM by 2Stack | Landscaping Operations and Management";
 const description =
   "LOAM helps small landscaping companies start the day organized with routes, job status, photos, invoicing, payments, and follow-ups in one operating layer.";
-const url = "https://loam.2-stack.com";
+const url = verticalSites.loam.url;
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
-  title,
+  title: {
+    absolute: title
+  },
   description,
   alternates: {
     canonical: "/"
@@ -55,6 +59,7 @@ const structuredData = [
       "@type": "Organization",
       name: "2Stack"
     },
+    url,
     description
   }
 ];
@@ -62,7 +67,7 @@ const structuredData = [
 export default function Page() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+      <JsonLd data={structuredData} />
       <LoamPage />
     </>
   );

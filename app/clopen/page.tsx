@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { ClopenPage } from "@/components/clopen/ClopenPage";
+import { JsonLd } from "@/components/JsonLd";
+import { verticalSites } from "@/lib/seo";
 
 const clopenSans = Inter({
   subsets: ["latin"],
@@ -17,11 +19,13 @@ const clopenDisplay = Cormorant_Garamond({
 const title = "Clopen by 2Stack | Preserve Restaurant Standards";
 const description =
   "Clopen keeps restaurant standards in the building by turning service knowledge, guest notes, training, and daily lineups into systems the whole house can run on.";
-const url = "https://clopen.2-stack.com";
+const url = verticalSites.clopen.url;
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
-  title,
+  title: {
+    absolute: title
+  },
   description,
   alternates: {
     canonical: "/"
@@ -46,6 +50,10 @@ export const metadata: Metadata = {
     title,
     description,
     images: ["/clopen/opengraph-image"]
+  },
+  robots: {
+    index: true,
+    follow: true
   }
 };
 
@@ -68,11 +76,8 @@ const structuredData = [
       "@type": "Organization",
       name: "2Stack"
     },
-    description,
-    offers: {
-      "@type": "Offer",
-      category: "Discovery call"
-    }
+    url,
+    description
   }
 ];
 
@@ -81,7 +86,7 @@ export default function Page() {
     <div
       className={`${clopenSans.variable} ${clopenDisplay.variable} [--font-sans:var(--font-clopen-sans)] [--font-display:var(--font-clopen-display)] font-[var(--font-sans)]`}
     >
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+      <JsonLd data={structuredData} />
       <ClopenPage />
     </div>
   );
