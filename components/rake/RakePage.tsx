@@ -2,13 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 
 const attentionItems = [
+  "5 missed calls that never got a same-day text",
+  "9 new leads waiting longer than 15 minutes",
   "7 estimates older than 14 days",
-  "3 jobs missing supplements",
-  "4 customers waiting on final walkthrough",
-  "2 neighborhoods closing unusually well"
+  "4 completed jobs missing review requests",
+  "2 lead sources spending without clear job attribution"
 ];
 
 const visibilityQuestions = [
+  "Which missed calls need a response",
+  "Which new leads are aging too long",
   "Which lead sources work",
   "Which salespeople close",
   "Which jobs are profitable",
@@ -22,8 +25,8 @@ const visibilityQuestions = [
 const scatteredTools = ["CRM", "Accounting", "Email", "Phone", "Spreadsheets", "Production", "Marketing"];
 
 const engines = [
+  ["Lead Response Engine", "Surface missed calls, slow responses, and new leads before they turn into lost jobs."],
   ["Profitability Engine", "Show the most profitable jobs, customers, crews, and lead sources."],
-  ["Opportunity Engine", "Find existing customers who are likely to buy again."],
   ["Referral Engine", "Know who should be asked for a review or referral today."],
   ["Estimate Recovery Engine", "See which estimates are most likely to close if contacted this week."],
   ["Owner Scorecard", "One morning view of what is happening in the business."]
@@ -46,6 +49,7 @@ export function RakePage() {
     <main className="min-h-screen overflow-x-clip bg-[#07111f] text-white selection:bg-[#1f67b1]/45">
       <RakeNav />
       <Hero />
+      <LaunchSystemPath />
       <VisibilityProblem />
       <SingleSource />
       <BusinessHealth />
@@ -67,6 +71,9 @@ function RakeNav() {
           <a href="#visibility" className="transition hover:text-white">
             Visibility
           </a>
+          <Link href="/launch-system" className="transition hover:text-white">
+            Launch System
+          </Link>
           <a href="#health" className="transition hover:text-white">
             Health
           </a>
@@ -78,7 +85,7 @@ function RakeNav() {
           href="mailto:team@2stackops.com?subject=RAKE%20Walkthrough"
           className="rounded-md bg-white px-4 py-2 text-sm font-semibold text-[#07111f] transition hover:bg-[#d8ecff]"
         >
-          RAKE walkthrough
+          Book a RAKE Walkthrough
         </a>
       </nav>
     </header>
@@ -100,15 +107,15 @@ function Hero() {
           className="h-16 w-auto brightness-0 invert sm:h-20"
         />
         <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-[#9ecbff]">
-          Operational intelligence for home service businesses
+          Operational intelligence for contractors and home-service operators
         </p>
         <h1 className="mt-5 max-w-4xl font-[var(--font-display)] text-5xl font-semibold leading-[0.95] tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl">
           Contractors do not need another CRM.
           <span className="block text-[#9ecbff]">They need visibility.</span>
         </h1>
         <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">
-          RAKE connects the business signals contractors already have so owners can see what is working,
-          what is stuck, and where money is leaking.
+          RAKE connects the signals contractors and home-service teams already have so owners can see what is working,
+          which leads are stuck, and where money is leaking.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a
@@ -141,6 +148,33 @@ function Hero() {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#9ecbff]">Owner view</p>
             <p className="mt-2 text-xl font-semibold">More certainty. Less digging.</p>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LaunchSystemPath() {
+  return (
+    <section className="border-y border-white/10 bg-[#d8ecff] text-[#07111f]">
+      <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#1f67b1]">Newer contractor path</p>
+          <h2 className="mt-3 font-[var(--font-display)] text-3xl font-semibold leading-[1.02] tracking-[-0.045em] sm:text-4xl">
+            If the foundation is not built yet, start here.
+          </h2>
+        </div>
+        <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+          <p className="max-w-3xl text-base leading-7 text-[#26445f]">
+            RAKE is for established companies ready for deeper visibility. For newer contractors still running on
+            memory, spreadsheets, missed calls, and disconnected tools, 2Stack installs the operating system first.
+          </p>
+          <Link
+            href="/launch-system"
+            className="inline-flex justify-center rounded-md bg-[#07111f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#12243b]"
+          >
+            Explore Launch System
+          </Link>
         </div>
       </div>
     </section>
@@ -262,8 +296,8 @@ function Lifecycle() {
             Stop ending the story at the invoice.
           </h2>
           <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
-            Everyone can track lead to estimate to job to invoice. RAKE helps owners see what happens after:
-            the customer, referral, and lifetime value.
+            Everyone can track lead to estimate to job to invoice. RAKE helps owners see what happens before and after:
+            the missed call, slow follow-up, customer, referral, review, and lifetime value.
           </p>
         </div>
 
@@ -324,7 +358,7 @@ function FinalCta() {
               href="mailto:team@2stackops.com?subject=RAKE%20Walkthrough"
               className="mt-5 inline-flex w-full justify-center rounded-md bg-[#1f67b1] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#15528f]"
             >
-              Request a RAKE walkthrough
+              Book a RAKE Walkthrough
             </a>
           </div>
         </div>

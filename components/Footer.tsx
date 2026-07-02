@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { verticalSites } from "@/lib/seo";
 
 const verticalLinks = [
-  { label: "LOAM", href: "/loam", color: "hover:text-[#9bc86d]" },
-  { label: "CLOPEN", href: "https://clopen.2-stack.com", color: "hover:text-[#ef742d]" },
-  { label: "RAKE", href: "https://rake.2-stack.com", color: "hover:text-[#5f9de0]" }
+  { label: "LOAM", href: verticalSites.loam.url, color: "hover:text-[#9bc86d]" },
+  { label: "CLOPEN", href: verticalSites.clopen.url, color: "hover:text-[#ef742d]" },
+  { label: "RAKE", href: verticalSites.rake.url, color: "hover:text-[#5f9de0]" }
 ];
 
 export function Footer() {

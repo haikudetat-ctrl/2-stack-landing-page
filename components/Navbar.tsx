@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { verticalSites } from "@/lib/seo";
+
 const navLinks = [
-  { label: "LOAM", href: "/loam", hoverClass: "hover:text-[#9bc86d] focus-visible:text-[#9bc86d]" },
-  { label: "CLOPEN", href: "https://clopen.2-stack.com", hoverClass: "hover:text-[#ef742d] focus-visible:text-[#ef742d]" },
-  { label: "RAKE", href: "https://rake.2-stack.com", hoverClass: "hover:text-[#5f9de0] focus-visible:text-[#5f9de0]" },
+  { label: "LOAM", href: verticalSites.loam.url, hoverClass: "hover:text-[#9bc86d] focus-visible:text-[#9bc86d]" },
+  { label: "CLOPEN", href: verticalSites.clopen.url, hoverClass: "hover:text-[#ef742d] focus-visible:text-[#ef742d]" },
+  { label: "RAKE", href: verticalSites.rake.url, hoverClass: "hover:text-[#5f9de0] focus-visible:text-[#5f9de0]" },
   {
     label: "Contact",
     href: "mailto:team@2stackops.com",

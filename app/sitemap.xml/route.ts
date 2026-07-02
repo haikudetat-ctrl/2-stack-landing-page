@@ -26,15 +26,13 @@ export function GET(request: NextRequest) {
   const hostname = requestHost.split(":")[0].toLowerCase();
 
   const entries: SitemapEntry[] = verticalHosts.has(hostname)
-    ? [{ url: `https://${hostname}/`, priority: 1, changeFrequency: "weekly" }]
-    : [
-        { url: "https://2-stack.com/", priority: 1, changeFrequency: "weekly" },
-        {
-          url: "https://2-stack.com/home-services",
-          priority: 0.8,
-          changeFrequency: "monthly"
-        }
-      ];
+    ? [
+        { url: `https://${hostname}/`, priority: 1, changeFrequency: "weekly" },
+        ...(hostname === "rake.2-stack.com"
+          ? [{ url: `https://${hostname}/launch-system`, priority: 0.8, changeFrequency: "monthly" } as const]
+          : [])
+      ]
+    : [{ url: "https://2-stack.com/", priority: 1, changeFrequency: "weekly" }];
 
   const urls = entries
     .map(

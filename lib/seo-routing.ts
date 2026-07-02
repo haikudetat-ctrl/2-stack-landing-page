@@ -1,3 +1,5 @@
+import { verticalSites } from "./seo.ts";
+
 type SeoRedirect = {
   source: string;
   destination: string;
@@ -11,19 +13,25 @@ type SeoRedirect = {
 export const seoRedirects: SeoRedirect[] = [
   {
     source: "/clopen",
-    destination: "https://clopen.2-stack.com",
+    destination: verticalSites.clopen.url,
     permanent: true,
     has: [{ type: "host", value: "(?:www\\.)?2-stack\\.com" }]
   },
   {
     source: "/loam",
-    destination: "https://loam.2-stack.com",
+    destination: verticalSites.loam.url,
     permanent: true,
     has: [{ type: "host", value: "(?:www\\.)?2-stack\\.com" }]
   },
   {
     source: "/rake",
-    destination: "https://rake.2-stack.com",
+    destination: verticalSites.rake.url,
+    permanent: true,
+    has: [{ type: "host", value: "(?:www\\.)?2-stack\\.com" }]
+  },
+  {
+    source: "/home-services",
+    destination: verticalSites.rake.url,
     permanent: true,
     has: [{ type: "host", value: "(?:www\\.)?2-stack\\.com" }]
   }

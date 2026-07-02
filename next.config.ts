@@ -41,6 +41,16 @@ const nextConfig: NextConfig = {
         destination: "/rake"
       },
       {
+        source: "/launch-system",
+        has: [
+          {
+            type: "host",
+            value: "rake.2-stack.com"
+          }
+        ],
+        destination: "/rake/launch-system"
+      },
+      {
         source: "/",
         has: [
           {

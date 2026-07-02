@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
-import { RakePage } from "@/components/rake/RakePage";
+import { BusinessLaunchPage } from "@/components/rake/BusinessLaunchPage";
 import { verticalSites } from "@/lib/seo";
 
-const title = "RAKE by 2Stack | Operational Intelligence for Contractors";
+const title = "Business Launch System by 2Stack | Operating Systems for New Contractors";
 const description =
-  "RAKE gives contractors and home-service operators one owner view across leads, missed calls, follow-up, jobs, customers, referrals, margin, and business health.";
-const url = verticalSites.rake.url;
+  "2Stack installs the systems, software, automation, and operational backbone newer contractors need to stop running the business from memory.";
+const url = `${verticalSites.rake.url}/launch-system`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(url),
+  metadataBase: new URL(verticalSites.rake.url),
   title: {
     absolute: title
   },
   description,
   alternates: {
-    canonical: "/"
+    canonical: "/launch-system"
   },
   openGraph: {
     title,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         url: "/rake-vertical-ad.png",
         width: 900,
         height: 1334,
-        alt: "RAKE contractor operational intelligence"
+        alt: "2Stack Business Launch System for contractors"
       }
     ]
   },
@@ -43,22 +43,15 @@ export const metadata: Metadata = {
 const structuredData = [
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "RAKE by 2Stack",
-    url,
-    logo: `${url}/rake-logo-mark.svg`,
-    description
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "RAKE",
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
-    publisher: {
+    "@type": "Service",
+    name: "Business Launch System",
+    provider: {
       "@type": "Organization",
-      name: "2Stack"
+      name: "2Stack",
+      url: verticalSites.rake.url
     },
+    areaServed: "United States",
+    serviceType: "Business operations systems implementation",
     url,
     description
   }
@@ -68,7 +61,7 @@ export default function Page() {
   return (
     <>
       <JsonLd data={structuredData} />
-      <RakePage />
+      <BusinessLaunchPage />
     </>
   );
 }
