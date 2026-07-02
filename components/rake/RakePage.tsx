@@ -71,7 +71,7 @@ function RakeNav() {
           <a href="#visibility" className="transition hover:text-white">
             Visibility
           </a>
-          <Link href="/launch-system" className="transition hover:text-white">
+          <Link href="/rake/launch-system" className="transition hover:text-white">
             Launch System
           </Link>
           <a href="#health" className="transition hover:text-white">
@@ -170,7 +170,7 @@ function LaunchSystemPath() {
             memory, spreadsheets, missed calls, and disconnected tools, 2Stack installs the operating system first.
           </p>
           <Link
-            href="/launch-system"
+            href="/rake/launch-system"
             className="inline-flex justify-center rounded-md bg-[#07111f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#12243b]"
           >
             Explore Launch System

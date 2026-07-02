@@ -134,7 +134,7 @@ function LaunchNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#050b14]/88 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-4 py-4 sm:px-6" aria-label="Business Launch System navigation">
-        <Link href="/" className="flex items-center gap-3" aria-label="Back to RAKE">
+        <Link href="/rake" className="flex items-center gap-3" aria-label="Back to RAKE">
           <Image src="/navbar_logo.png" alt="2Stack" width={1500} height={509} className="h-8 w-auto" priority />
         </Link>
         <div className="hidden items-center gap-6 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 md:flex">
