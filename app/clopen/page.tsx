@@ -16,9 +16,9 @@ const clopenDisplay = Cormorant_Garamond({
   weight: ["500", "600", "700"]
 });
 
-const title = "Clopen by 2Stack | Preserve Restaurant Standards";
+const title = "Restaurant Operations System for Independent Restaurants | Clopen";
 const description =
-  "Clopen keeps restaurant standards in the building by turning service knowledge, guest notes, training, and daily lineups into systems the whole house can run on.";
+  "Clopen builds custom restaurant operating systems for standards, staff training, inventory, beverage cost, and daily management through a 90-day rollout.";
 const url = verticalSites.clopen.url;
 
 export const metadata: Metadata = {
@@ -57,29 +57,24 @@ export const metadata: Metadata = {
   }
 };
 
-const structuredData = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Clopen by 2Stack",
-    url,
-    logo: `${url}/clopen-logo.svg`,
-    description
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Clopen",
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
-    publisher: {
-      "@type": "Organization",
-      name: "2Stack"
-    },
-    url,
-    description
-  }
-];
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Brand", "@id": `${url}/#brand`, name: "Clopen", url, logo: `${url}/clopen-logo.svg`, description },
+    { "@type": "WebSite", "@id": `${url}/#website`, name: "Clopen by 2Stack", url, description, inLanguage: "en-US" },
+    {
+      "@type": "Service",
+      "@id": `${url}/#service`,
+      name: "Custom restaurant operations systems",
+      serviceType: "Restaurant operations system design and implementation",
+      url,
+      description,
+      provider: { "@type": "Organization", "@id": "https://2-stack.com/#organization", name: "2Stack", url: "https://2-stack.com" },
+      audience: { "@type": "BusinessAudience", audienceType: "Independent restaurants and small groups around $3–5 million in annual revenue" },
+      areaServed: { "@type": "Country", name: "United States" }
+    }
+  ]
+};
 
 export default function Page() {
   return (

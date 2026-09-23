@@ -1,12 +1,5 @@
 import type { NextRequest } from "next/server";
-
-type SitemapEntry = {
-  url: string;
-  priority: number;
-  changeFrequency: "weekly" | "monthly";
-};
-
-const verticalHosts = new Set(["clopen.2-stack.com", "loam.2-stack.com", "rake.2-stack.com"]);
+import { getSitemapEntries } from "@/lib/seo-routing";
 
 function escapeXml(value: string) {
   return value.replace(/[<>&'"]/g, (character) => {
@@ -25,16 +18,7 @@ export function GET(request: NextRequest) {
   const requestHost = request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? "2-stack.com";
   const hostname = requestHost.split(":")[0].toLowerCase();
 
-  const entries: SitemapEntry[] = verticalHosts.has(hostname)
-    ? [{ url: `https://${hostname}/`, priority: 1, changeFrequency: "weekly" }]
-    : [
-        { url: "https://2-stack.com/", priority: 1, changeFrequency: "weekly" },
-        {
-          url: "https://2-stack.com/home-services",
-          priority: 0.8,
-          changeFrequency: "monthly"
-        }
-      ];
+  const entries = getSitemapEntries(hostname);
 
   const urls = entries
     .map(

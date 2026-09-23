@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 type RatingCategory = {
   label: string;
@@ -81,19 +82,19 @@ export default function ClopenGuideRating() {
           className="mt-8 flex flex-wrap gap-3"
         >
           <a
-            href="https://calendly.com/YOUR_LINK"
+            href="https://calendly.com/2-stack-founders/clopen_walkthrough"
             target="_blank"
             rel="noreferrer"
             className="rounded-lg bg-[#c27c2c] px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
           >
             Book Clopen Systems Walkthrough
           </a>
-          <a
+          <Link
             href="/clopen#systems-overview"
             className="rounded-lg border border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-100"
           >
             See How Clopen Works
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
     </section>
@@ -146,4 +147,3 @@ function getCommentary(score: number) {
   }
   return "The concept has potential, but operational architecture is currently limiting outcomes. A structured systems rebuild is needed to restore service consistency and control.";
 }
-

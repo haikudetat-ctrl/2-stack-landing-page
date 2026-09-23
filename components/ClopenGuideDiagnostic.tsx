@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 
 type Category =
   | "Communication"
@@ -233,19 +234,19 @@ export default function ClopenGuideDiagnostic() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="https://calendly.com/YOUR_LINK"
+                href="https://calendly.com/2-stack-founders/clopen_walkthrough"
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-lg bg-[#c27c2c] px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
               >
                 Book Clopen Systems Walkthrough
               </a>
-              <a
+              <Link
                 href="/clopen#systems-overview"
                 className="rounded-lg border border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-100"
               >
                 See How Clopen Works
-              </a>
+              </Link>
               <button
                 type="button"
                 onClick={restart}
@@ -309,4 +310,3 @@ function getCommentary(score: number) {
   }
   return "Core operating systems are currently fragile. A focused rebuild of communication, training, and financial visibility would materially improve service control.";
 }
-

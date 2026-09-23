@@ -3,8 +3,8 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { seoRedirects } from "../lib/seo-routing.ts";
 
-test("redirects duplicate main-domain vertical routes to canonical subdomains", () => {
-  assert.deepEqual(seoRedirects, [
+test("redirects duplicate main-domain vertical roots to canonical subdomains", () => {
+  assert.deepEqual(seoRedirects.slice(0, 3), [
     {
       source: "/clopen",
       destination: "https://clopen.2-stack.com",

@@ -30,6 +30,13 @@ const trustIndicators = [
   "Run Service With Less Guesswork"
 ];
 
+const clopenResources = [
+  ["Restaurant operations system", "/restaurant-operations-system", "Connect standards, daily routines, costs, training, and owner visibility."],
+  ["Restaurant inventory management", "/restaurant-inventory-management", "Build dependable counts, purchasing controls, recipe references, and variance review."],
+  ["Beverage cost control", "/beverage-cost-control", "Find the operating reason behind movement in wine, beer, and liquor cost."],
+  ["Staff training and SOPs", "/restaurant-staff-training-sops", "Turn house knowledge into role-based onboarding and usable standards."]
+];
+
 const storyLines = [
   "The regulars.",
   "The allergies.",
@@ -198,11 +205,34 @@ export function ClopenPage() {
       <ResultsSection />
       <FounderSection />
       <TranscriptSection />
+      <ClopenResources />
       <FinalCta onBook={openBooking} onWatch={watchOverview} />
       <Footer />
       <MobileStickyCta onBook={openBooking} />
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
     </main>
+  );
+}
+
+function ClopenResources() {
+  return (
+    <section className="border-y border-white/[.08] bg-[#111] px-5 py-20 md:px-8">
+      <div className="mx-auto max-w-7xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#e59a58]">Restaurant operations resources</p>
+        <h2 className="mt-4 max-w-3xl font-[var(--font-display)] text-4xl font-semibold leading-none text-white md:text-6xl">
+          Start with the problem costing the operation the most attention.
+        </h2>
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          {clopenResources.map(([title, href, body]) => (
+            <a key={href} href={href} className="rounded-xl border border-white/10 bg-white/[.035] p-6 transition hover:-translate-y-1 hover:border-[#D97736]/60 hover:bg-white/[.055]">
+              <h3 className="font-[var(--font-display)] text-2xl font-semibold text-white">{title}</h3>
+              <p className="mt-3 leading-7 text-white/62">{body}</p>
+              <span className="mt-5 inline-flex text-sm font-semibold text-[#e59a58]">Read the guide →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 

@@ -3,9 +3,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { RakePage } from "@/components/rake/RakePage";
 import { verticalSites } from "@/lib/seo";
 
-const title = "RAKE by 2Stack | Operational Intelligence for Contractors";
+const title = "Contractor Operations Software and Internal Tools | RAKE";
 const description =
-  "RAKE gives contractors one owner view across leads, estimates, jobs, customers, referrals, margin, and business health.";
+  "RAKE builds custom contractor operations software that connects leads, estimates, jobs, margin, follow-up, and owner reporting through a 90-day rollout.";
 const url = verticalSites.rake.url;
 
 export const metadata: Metadata = {
@@ -40,29 +40,24 @@ export const metadata: Metadata = {
   }
 };
 
-const structuredData = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "RAKE by 2Stack",
-    url,
-    logo: `${url}/rake-logo-mark.svg`,
-    description
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "RAKE",
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
-    publisher: {
-      "@type": "Organization",
-      name: "2Stack"
-    },
-    url,
-    description
-  }
-];
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Brand", "@id": `${url}/#brand`, name: "RAKE", url, logo: `${url}/rake-logo-mark.svg`, description },
+    { "@type": "WebSite", "@id": `${url}/#website`, name: "RAKE by 2Stack", url, description, inLanguage: "en-US" },
+    {
+      "@type": "Service",
+      "@id": `${url}/#service`,
+      name: "Custom contractor operations software",
+      serviceType: "Contractor operations systems and internal tools",
+      url,
+      description,
+      provider: { "@type": "Organization", "@id": "https://2-stack.com/#organization", name: "2Stack", url: "https://2-stack.com" },
+      audience: { "@type": "BusinessAudience", audienceType: "Roofing and service contractors around $1–6 million in annual revenue" },
+      areaServed: { "@type": "Country", name: "United States" }
+    }
+  ]
+};
 
 export default function Page() {
   return (

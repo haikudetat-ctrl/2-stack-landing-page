@@ -41,6 +41,16 @@ const metrics = [
 
 const lifecycle = ["Lead", "Estimate", "Job", "Customer", "Referral", "Lifetime Value"];
 
+const rakeResources = [
+  ["Contractor speed to lead", "/contractor-speed-to-lead", "Build a clear response, routing, escalation, and follow-up system for every new opportunity."],
+  ["Contractor operations software", "/contractor-operations-software", "Connect the useful parts of CRM, estimating, production, accounting, and marketing with focused internal tools."],
+  ["Estimate follow-up", "/contractor-estimate-follow-up", "Turn aging estimates into an owned recovery queue with timely outreach and clear stop rules."],
+  ["Job costing", "/contractor-job-costing", "Connect estimated and actual costs so owners can find margin problems before closeout."],
+  ["Reviews and referrals", "/contractor-review-referral-automation", "Turn completed jobs into timely review requests, referral follow-up, and visible customer advocacy."]
+];
+
+const rakeBookingUrl = "https://calendly.com/2-stack-founders/home-services-systems-review-meet-the-founders";
+
 export function RakePage() {
   return (
     <main className="min-h-screen overflow-x-clip bg-[#07111f] text-white selection:bg-[#1f67b1]/45">
@@ -51,6 +61,7 @@ export function RakePage() {
       <BusinessHealth />
       <Lifecycle />
       <Engines />
+      <RakeResources />
       <FinalCta />
     </main>
   );
@@ -75,13 +86,33 @@ function RakeNav() {
           </a>
         </div>
         <a
-          href="mailto:team@2stackops.com?subject=RAKE%20Walkthrough"
+          href={rakeBookingUrl}
           className="rounded-md bg-white px-4 py-2 text-sm font-semibold text-[#07111f] transition hover:bg-[#d8ecff]"
         >
           RAKE walkthrough
         </a>
       </nav>
     </header>
+  );
+}
+
+function RakeResources() {
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
+      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#9ecbff]">Contractor operating guides</p>
+      <h2 className="mt-4 max-w-3xl font-[var(--font-display)] text-4xl font-semibold leading-none tracking-[-0.045em] md:text-6xl">
+        Fix the operating gap between the tools.
+      </h2>
+      <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {rakeResources.map(([title, href, body]) => (
+          <Link key={href} href={href} className="rounded-lg border border-white/10 bg-white/[0.035] p-6 transition hover:-translate-y-1 hover:border-[#1f67b1] hover:bg-white/[0.055]">
+            <h3 className="text-2xl font-semibold">{title}</h3>
+            <p className="mt-4 leading-7 text-slate-300">{body}</p>
+            <span className="mt-5 inline-flex text-sm font-semibold text-[#9ecbff]">Read the guide →</span>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -321,10 +352,10 @@ function FinalCta() {
           <div className="rounded-lg border border-[#9ecbff] bg-white p-5">
             <p className="text-sm font-semibold text-[#26445f]">Built for owners who want the truth without another meeting.</p>
             <a
-              href="mailto:team@2stackops.com?subject=RAKE%20Walkthrough"
+              href={rakeBookingUrl}
               className="mt-5 inline-flex w-full justify-center rounded-md bg-[#1f67b1] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#15528f]"
             >
-              Request a RAKE walkthrough
+              Book a RAKE discovery
             </a>
           </div>
         </div>
