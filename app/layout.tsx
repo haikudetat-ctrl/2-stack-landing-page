@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import { siteConfig } from "@/lib/seo";
 import "./globals.css";
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${sans.variable} ${display.variable} font-[var(--font-sans)] antialiased`}>
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
