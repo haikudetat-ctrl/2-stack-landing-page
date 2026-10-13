@@ -65,7 +65,7 @@ const sections = [
 
 export default function PrivacyPage() {
   return (
-    <>
+    <div className="min-h-screen bg-[#07111f]">
       <main className="mx-auto max-w-3xl px-6 py-16 text-slate-200">
         <Link href="/" className="text-sm underline underline-offset-4">2Stack home</Link>
         <h1 className="mt-8 text-4xl font-semibold text-white">Privacy Policy</h1>
@@ -83,6 +83,6 @@ export default function PrivacyPage() {
         </p>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
