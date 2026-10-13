@@ -175,6 +175,7 @@ export function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
                   {link.label}
                 </Link>
               ))}
+              <a href="https://2-stack.com/privacy" className="font-semibold underline underline-offset-4">Privacy Policy</a>
             </nav>
             <p className={`mt-8 text-xs ${colors.muted}`}>
               Last updated <time dateTime="2026-09-23">September 23, 2026</time> · Questions?{" "}

@@ -38,6 +38,7 @@ export function Footer() {
           <a className="mt-4 inline-block text-slate-200 transition-colors hover:text-[#5bade3]" href="mailto:team@2stackops.com">
             team@2stackops.com
           </a>
+          <a href="https://2-stack.com/privacy" className="mt-3 block text-sm text-slate-400 underline underline-offset-4">Privacy Policy</a>
         </div>
       </div>
     </footer>
