@@ -63,6 +63,9 @@ export function RakePage() {
       <Engines />
       <RakeResources />
       <FinalCta />
+      <footer className="mx-auto max-w-7xl px-6 pb-10 text-sm">
+        <a href="https://2-stack.com/privacy" className="underline underline-offset-4">Privacy Policy</a>
+      </footer>
     </main>
   );
 }
