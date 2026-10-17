@@ -9,12 +9,6 @@ export function proxy(request: NextRequest) {
     return NextResponse.rewrite(url);
   }
 
-  if (hostname === "rake.2-stack.com" && request.nextUrl.pathname === "/") {
-    const url = request.nextUrl.clone();
-    url.pathname = "/rake";
-    return NextResponse.rewrite(url);
-  }
-
   if (hostname === "loam.2-stack.com" && request.nextUrl.pathname === "/") {
     const url = request.nextUrl.clone();
     url.pathname = "/loam";

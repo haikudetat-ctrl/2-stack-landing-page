@@ -4,8 +4,7 @@ const supportedHosts = new Set([
   "2-stack.com",
   "www.2-stack.com",
   "clopen.2-stack.com",
-  "loam.2-stack.com",
-  "rake.2-stack.com"
+  "loam.2-stack.com"
 ]);
 
 export function GET(request: NextRequest) {

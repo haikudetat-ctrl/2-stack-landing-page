@@ -1,59 +1,58 @@
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { RakePage } from "@/components/rake/RakePage";
-import { verticalSites } from "@/lib/seo";
+import { siteConfig, verticalSites } from "@/lib/seo";
 
-const title = "Contractor Operations Software and Internal Tools | RAKE";
+const title = "Rake by 2Stack | Stop Losing Paid Roofing Leads";
 const description =
-  "RAKE builds custom contractor operations software that connects leads, estimates, jobs, margin, follow-up, and owner reporting through a 90-day rollout.";
+  "Rake finds where your paid roofing leads leak between the ad click and the signed contract, then installs the fix. Start with a free lead-control audit.";
 const url = verticalSites.rake.url;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(url),
+  metadataBase: new URL(siteConfig.url),
   title: {
     absolute: title
   },
   description,
   alternates: {
-    canonical: "/"
+    canonical: "/rake"
   },
   openGraph: {
     title,
     description,
     url,
-    siteName: "RAKE by 2Stack",
+    siteName: "Rake by 2Stack",
     type: "website",
-    images: [
-      {
-        url: "/rake-vertical-ad.png",
-        width: 900,
-        height: 1334,
-        alt: "RAKE contractor operational intelligence"
-      }
-    ]
+    locale: "en_US"
   },
   twitter: {
     card: "summary_large_image",
     title,
-    description,
-    images: ["/rake-vertical-ad.png"]
+    description
   }
 };
 
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Brand", "@id": `${url}/#brand`, name: "RAKE", url, logo: `${url}/rake-logo-mark.svg`, description },
-    { "@type": "WebSite", "@id": `${url}/#website`, name: "RAKE by 2Stack", url, description, inLanguage: "en-US" },
+    {
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: title,
+      description,
+      inLanguage: "en-US",
+      about: { "@id": `${url}#service` }
+    },
     {
       "@type": "Service",
-      "@id": `${url}/#service`,
-      name: "Custom contractor operations software",
-      serviceType: "Contractor operations systems and internal tools",
+      "@id": `${url}#service`,
+      name: "Rake lead-control install for roofing contractors",
+      serviceType: "Lead response, follow-up, and ad-to-contract tracking for roofing contractors",
       url,
       description,
-      provider: { "@type": "Organization", "@id": "https://2-stack.com/#organization", name: "2Stack", url: "https://2-stack.com" },
-      audience: { "@type": "BusinessAudience", audienceType: "Roofing and service contractors around $1–6 million in annual revenue" },
+      provider: { "@type": "Organization", "@id": `${siteConfig.url}/#organization`, name: "2Stack", url: siteConfig.url },
+      audience: { "@type": "BusinessAudience", audienceType: "Owner-operated roofing contractors running paid ads" },
       areaServed: { "@type": "Country", name: "United States" }
     }
   ]

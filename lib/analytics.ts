@@ -6,7 +6,10 @@ type CtaSource =
   | "main_router_card_cta"
   | "clopen_booking_event"
   | "home_services_booking_button"
-  | "home_services_booking_event";
+  | "home_services_booking_event"
+  | "rake_booking_nav"
+  | "rake_booking_hero"
+  | "rake_booking_final";
 
 type CtaPayload = {
   cta_group: "vertical_router" | "booking";

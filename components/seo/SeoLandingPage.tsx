@@ -4,7 +4,7 @@ import type { SeoLandingPage as SeoLandingPageData } from "@/lib/seo-content";
 
 const bookingUrls = {
   clopen: "https://calendly.com/2-stack-founders/clopen_walkthrough",
-  rake: "https://calendly.com/2-stack-founders/home-services-systems-review-meet-the-founders"
+  rake: "https://calendly.com/2-stack-founders/home-services-systems-review-meet-the-founders?utm_source=2stack-site&utm_medium=web&utm_campaign=rake-guide"
 } as const;
 
 export function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
@@ -33,7 +33,7 @@ export function SeoLandingPage({ page }: { page: SeoLandingPageData }) {
     <main className={`min-h-screen ${colors.page}`}>
       <header className={`sticky top-0 z-50 border-b backdrop-blur-xl ${colors.nav}`}>
         <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4" aria-label={`${page.brand} resources`}>
-          <Link href="/" className="flex items-center gap-3" aria-label={`${page.brand} home`}>
+          <Link href={isClopen ? "/" : "/rake"} className="flex items-center gap-3" aria-label={`${page.brand} home`}>
             <Image
               src={isClopen ? "/clopen-logo.svg" : "/rake-logo-mark.svg"}
               alt={page.brand}

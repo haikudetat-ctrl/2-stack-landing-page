@@ -72,7 +72,7 @@ const businessLines: BusinessLine[] = [
     description:
       "Give contractors a clearer grip on open jobs, project flow, costs, customer trust, and the follow-up that turns good work into more work.",
     bullets: ["Project pipeline", "Job costing", "Customer trust", "Weekly numbers"],
-    href: "https://rake.2-stack.com",
+    href: "/rake",
     cta: "Open RAKE",
     accent: "#1f67b1",
     logo: {

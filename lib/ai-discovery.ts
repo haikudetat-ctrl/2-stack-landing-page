@@ -30,28 +30,6 @@ export function getLlmsText(hostname: string) {
     ].join("\n");
   }
 
-  if (host === "rake.2-stack.com") {
-    return [
-      "# RAKE by 2Stack",
-      "",
-      "> Custom contractor operating systems and internal tools for roofing and service contractors, primarily around $1–6 million in annual revenue.",
-      "",
-      "RAKE connects leads, estimates, jobs, customers, margin, follow-up, and reporting across a contractor's existing stack. Engagements are custom built through a 90-day rollout with benchmarks at days 30 and 60.",
-      "",
-      "## Primary pages",
-      "",
-      "- [RAKE overview](https://rake.2-stack.com/)",
-      ...rakeSeoPages.map((page) => `- [${page.title}](${page.canonicalUrl})`),
-      "- [Engagement and pricing](https://rake.2-stack.com/pricing.txt)",
-      "",
-      "## Contact",
-      "",
-      "- Book discovery: https://calendly.com/2-stack-founders/home-services-systems-review-meet-the-founders",
-      "- Email: team@2stackops.com",
-      ""
-    ].join("\n");
-  }
-
   return [
     "# 2Stack",
     "",
@@ -60,9 +38,18 @@ export function getLlmsText(hostname: string) {
     "## Business lines",
     "",
     "- [Clopen for restaurants](https://clopen.2-stack.com/)",
-    "- [RAKE for contractors](https://rake.2-stack.com/)",
+    "- [RAKE for roofing contractors](https://2-stack.com/rake)",
     "- [LOAM for landscaping](https://loam.2-stack.com/)",
     "- [Home services](https://2-stack.com/home-services)",
+    "",
+    "## RAKE",
+    "",
+    "> Lead-control systems for owner-operated roofing contractors running paid ads. Built and installed by 2Stack.",
+    "",
+    "RAKE starts with a free lead-control audit, then a fixed-fee install (instant quote site, fast first touch, quoted-pile reactivation, tracking from ad spend to signed jobs), then a smaller ongoing retainer.",
+    "",
+    ...rakeSeoPages.map((page) => `- [${page.title}](${page.canonicalUrl})`),
+    "- Book the audit: https://calendly.com/2-stack-founders/home-services-systems-review-meet-the-founders",
     "",
     "## Contact",
     "",
@@ -73,7 +60,7 @@ export function getLlmsText(hostname: string) {
 
 export function getPricingText(hostname: string) {
   const host = normalizeHost(hostname);
-  const brand = host === "clopen.2-stack.com" ? "Clopen" : host === "rake.2-stack.com" ? "RAKE" : "2Stack";
+  const brand = host === "clopen.2-stack.com" ? "Clopen" : "2Stack";
   const bookingUrl =
     host === "clopen.2-stack.com"
       ? "https://calendly.com/2-stack-founders/clopen_walkthrough"
