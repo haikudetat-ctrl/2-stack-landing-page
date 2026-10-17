@@ -13,7 +13,7 @@ test("each SEO landing page has a unique canonical URL and focused metadata", ()
   assert.equal(new Set(titles).size, pages.length);
 
   for (const page of pages) {
-    assert.match(page.canonicalUrl, /^https:\/\/(clopen|rake)\.2-stack\.com\/[a-z0-9-]+$/);
+    assert.match(page.canonicalUrl, /^https:\/\/(clopen\.2-stack\.com|2-stack\.com\/rake)\/[a-z0-9-]+$/);
     assert.ok(page.title.length >= 30 && page.title.length <= 65, `${page.slug} title length`);
     assert.ok(page.description.length >= 120 && page.description.length <= 165, `${page.slug} description length`);
     assert.ok(page.faqs.length >= 4, `${page.slug} FAQ depth`);
@@ -43,20 +43,17 @@ test("host-aware sitemap entries expose only canonical pages for that host", () 
   );
 
   assert.deepEqual(
-    getSitemapEntries("rake.2-stack.com").map((entry) => entry.url),
-    [
-      "https://rake.2-stack.com/",
-      "https://rake.2-stack.com/contractor-speed-to-lead",
-      "https://rake.2-stack.com/contractor-operations-software",
-      "https://rake.2-stack.com/contractor-estimate-follow-up",
-      "https://rake.2-stack.com/contractor-job-costing",
-      "https://rake.2-stack.com/contractor-review-referral-automation"
-    ]
-  );
-
-  assert.deepEqual(
     getSitemapEntries("2-stack.com").map((entry) => entry.url),
-    ["https://2-stack.com/", "https://2-stack.com/home-services"]
+    [
+      "https://2-stack.com/",
+      "https://2-stack.com/rake",
+      "https://2-stack.com/rake/contractor-speed-to-lead",
+      "https://2-stack.com/rake/contractor-operations-software",
+      "https://2-stack.com/rake/contractor-estimate-follow-up",
+      "https://2-stack.com/rake/contractor-job-costing",
+      "https://2-stack.com/rake/contractor-review-referral-automation",
+      "https://2-stack.com/home-services"
+    ]
   );
 });
 
@@ -65,14 +62,7 @@ test("public vertical paths rewrite to their internal Next.js routes", () => {
     getVerticalRewrite("clopen.2-stack.com", "/beverage-cost-control"),
     "/clopen/beverage-cost-control"
   );
-  assert.equal(
-    getVerticalRewrite("rake.2-stack.com", "/contractor-speed-to-lead"),
-    "/rake/contractor-speed-to-lead"
-  );
-  assert.equal(
-    getVerticalRewrite("rake.2-stack.com", "/contractor-estimate-follow-up"),
-    "/rake/contractor-estimate-follow-up"
-  );
+  assert.equal(getVerticalRewrite("rake.2-stack.com", "/contractor-speed-to-lead"), null);
   assert.equal(getVerticalRewrite("2-stack.com", "/beverage-cost-control"), null);
   assert.equal(getVerticalRewrite("clopen.2-stack.com", "/not-a-real-page"), null);
 });
@@ -97,18 +87,19 @@ test("Next routing rules expose public subdomain paths and redirect duplicate ma
 
 test("AI discovery files describe the correct vertical without claiming fixed pricing", () => {
   const clopenText = getLlmsText("clopen.2-stack.com");
-  const rakeText = getLlmsText("rake.2-stack.com");
+  const rakeText = getLlmsText("2-stack.com");
 
   assert.match(clopenText, /Clopen by 2Stack/);
   assert.match(clopenText, /https:\/\/clopen\.2-stack\.com\/beverage-cost-control/);
   assert.doesNotMatch(clopenText, /contractor-speed-to-lead/);
-  assert.match(rakeText, /RAKE by 2Stack/);
-  assert.match(rakeText, /https:\/\/rake\.2-stack\.com\/contractor-speed-to-lead/);
-  assert.match(rakeText, /https:\/\/rake\.2-stack\.com\/contractor-estimate-follow-up/);
-  assert.match(rakeText, /https:\/\/rake\.2-stack\.com\/contractor-job-costing/);
-  assert.match(rakeText, /https:\/\/rake\.2-stack\.com\/contractor-review-referral-automation/);
+  assert.match(rakeText, /## RAKE/);
+  assert.match(rakeText, /https:\/\/2-stack\.com\/rake\/contractor-speed-to-lead/);
+  assert.match(rakeText, /https:\/\/2-stack\.com\/rake\/contractor-estimate-follow-up/);
+  assert.match(rakeText, /https:\/\/2-stack\.com\/rake\/contractor-job-costing/);
+  assert.match(rakeText, /https:\/\/2-stack\.com\/rake\/contractor-review-referral-automation/);
+  assert.doesNotMatch(rakeText, /rake\.2-stack\.com/);
 
-  const pricingText = getPricingText("rake.2-stack.com");
+  const pricingText = getPricingText("2-stack.com");
   assert.match(pricingText, /custom/i);
   assert.match(pricingText, /90-day/i);
   assert.match(pricingText, /discovery/i);

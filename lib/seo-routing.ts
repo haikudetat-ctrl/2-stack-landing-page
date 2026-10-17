@@ -23,19 +23,21 @@ export type SitemapEntry = {
   changeFrequency: "weekly" | "monthly";
 };
 
+// RAKE lives on the main domain at /rake. rake.2-stack.com is the RAKE app (PIW), not this site.
+const rakeGuidePaths = [
+  "contractor-speed-to-lead",
+  "contractor-operations-software",
+  "contractor-estimate-follow-up",
+  "contractor-job-costing",
+  "contractor-review-referral-automation"
+] as const;
+
 const verticalPaths = {
   "clopen.2-stack.com": [
     "restaurant-operations-system",
     "restaurant-inventory-management",
     "beverage-cost-control",
     "restaurant-staff-training-sops"
-  ],
-  "rake.2-stack.com": [
-    "contractor-speed-to-lead",
-    "contractor-operations-software",
-    "contractor-estimate-follow-up",
-    "contractor-job-costing",
-    "contractor-review-referral-automation"
   ],
   "loam.2-stack.com": []
 } as const;
@@ -50,12 +52,6 @@ export const seoRedirects: SeoRedirect[] = [
   {
     source: "/loam",
     destination: "https://loam.2-stack.com",
-    permanent: true,
-    has: [{ type: "host", value: "(?:www\\.)?2-stack\\.com" }]
-  },
-  {
-    source: "/rake",
-    destination: "https://rake.2-stack.com",
     permanent: true,
     has: [{ type: "host", value: "(?:www\\.)?2-stack\\.com" }]
   },
@@ -112,6 +108,12 @@ export function getSitemapEntries(hostname: string): SitemapEntry[] {
 
   return [
     { url: "https://2-stack.com/", priority: 1, changeFrequency: "weekly" },
+    { url: "https://2-stack.com/rake", priority: 0.9, changeFrequency: "weekly" },
+    ...rakeGuidePaths.map((slug) => ({
+      url: `https://2-stack.com/rake/${slug}`,
+      priority: 0.7,
+      changeFrequency: "monthly" as const
+    })),
     { url: "https://2-stack.com/home-services", priority: 0.8, changeFrequency: "monthly" }
   ];
 }

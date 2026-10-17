@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!page) return {};
 
   return {
-    metadataBase: new URL("https://rake.2-stack.com"),
+    metadataBase: new URL("https://2-stack.com"),
     title: { absolute: getSeoTitle(page) },
     description: page.description,
     alternates: { canonical: page.canonicalUrl },
@@ -65,7 +65,7 @@ export default async function Page({ params }: PageProps) {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "RAKE", item: "https://rake.2-stack.com/" },
+          { "@type": "ListItem", position: 1, name: "RAKE", item: "https://2-stack.com/rake" },
           { "@type": "ListItem", position: 2, name: page.title, item: page.canonicalUrl }
         ]
       },

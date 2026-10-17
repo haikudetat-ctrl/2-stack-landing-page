@@ -4,7 +4,7 @@ import test from "node:test";
 import { seoRedirects } from "../lib/seo-routing.ts";
 
 test("redirects duplicate main-domain vertical roots to canonical subdomains", () => {
-  assert.deepEqual(seoRedirects.slice(0, 3), [
+  assert.deepEqual(seoRedirects.slice(0, 2), [
     {
       source: "/clopen",
       destination: "https://clopen.2-stack.com",
@@ -16,14 +16,13 @@ test("redirects duplicate main-domain vertical roots to canonical subdomains", (
       destination: "https://loam.2-stack.com",
       permanent: true,
       has: [{ type: "host", value: "(?:www\\.)?2-stack\\.com" }]
-    },
-    {
-      source: "/rake",
-      destination: "https://rake.2-stack.com",
-      permanent: true,
-      has: [{ type: "host", value: "(?:www\\.)?2-stack\\.com" }]
     }
   ]);
+});
+
+test("RAKE is served on the main domain, never redirected to the app host", () => {
+  assert.ok(!seoRedirects.some((rule) => rule.source.startsWith("/rake")));
+  assert.ok(!seoRedirects.some((rule) => rule.destination.includes("rake.2-stack.com")));
 });
 
 test("defers the heavy Mux player until the visitor requests playback", async () => {

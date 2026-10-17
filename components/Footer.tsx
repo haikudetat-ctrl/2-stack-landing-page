@@ -4,7 +4,7 @@ import Link from "next/link";
 const verticalLinks = [
   { label: "LOAM", href: "/loam", color: "hover:text-[#9bc86d]" },
   { label: "CLOPEN", href: "https://clopen.2-stack.com", color: "hover:text-[#ef742d]" },
-  { label: "RAKE", href: "https://rake.2-stack.com", color: "hover:text-[#5f9de0]" }
+  { label: "RAKE", href: "/rake", color: "hover:text-[#5f9de0]" }
 ];
 
 export function Footer() {

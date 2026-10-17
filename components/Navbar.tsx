@@ -3,7 +3,7 @@ import Link from "next/link";
 const navLinks = [
   { label: "LOAM", href: "/loam", hoverClass: "hover:text-[#9bc86d] focus-visible:text-[#9bc86d]" },
   { label: "CLOPEN", href: "https://clopen.2-stack.com", hoverClass: "hover:text-[#ef742d] focus-visible:text-[#ef742d]" },
-  { label: "RAKE", href: "https://rake.2-stack.com", hoverClass: "hover:text-[#5f9de0] focus-visible:text-[#5f9de0]" },
+  { label: "RAKE", href: "/rake", hoverClass: "hover:text-[#5f9de0] focus-visible:text-[#5f9de0]" },
   {
     label: "Contact",
     href: "mailto:team@2stackops.com",

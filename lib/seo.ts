@@ -21,7 +21,7 @@ export const verticalSites = {
   },
   rake: {
     name: "RAKE by 2Stack",
-    url: "https://rake.2-stack.com",
+    url: "https://2-stack.com/rake",
     description:
       "RAKE gives contractors one owner view across leads, estimates, jobs, customers, referrals, margin, and business health."
   }

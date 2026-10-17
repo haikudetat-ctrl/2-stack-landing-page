@@ -28,7 +28,7 @@ export type SeoLandingPage = {
 };
 
 const clopenBase = "https://clopen.2-stack.com";
-const rakeBase = "https://rake.2-stack.com";
+const rakeBase = "https://2-stack.com/rake";
 
 export const clopenSeoPages: SeoLandingPage[] = [
   {
@@ -284,10 +284,10 @@ export const rakeSeoPages: SeoLandingPage[] = [
       { question: "How long does a speed-to-lead rollout take?", answer: "RAKE uses a 90-day rollout. Lead sources and benchmarks are mapped by day 30, core routing and response workflows are live by day 60, and escalation and reporting routines are established by day 90." }
     ],
     relatedLinks: [
-      { label: "Contractor operations software", href: "/contractor-operations-software" },
-      { label: "Estimate follow-up system", href: "/contractor-estimate-follow-up" },
-      { label: "Review and referral automation", href: "/contractor-review-referral-automation" },
-      { label: "RAKE owner visibility", href: "/" }
+      { label: "Contractor operations software", href: "/rake/contractor-operations-software" },
+      { label: "Estimate follow-up system", href: "/rake/contractor-estimate-follow-up" },
+      { label: "Review and referral automation", href: "/rake/contractor-review-referral-automation" },
+      { label: "RAKE overview", href: "/rake" }
     ]
   },
   {
@@ -336,10 +336,10 @@ export const rakeSeoPages: SeoLandingPage[] = [
       { question: "Who is the best fit for RAKE?", answer: "RAKE is designed for roofing and service contractors around $1–6 million in annual revenue that have outgrown spreadsheets and disconnected point tools but need a system tailored to their operation rather than a generic enterprise rollout." }
     ],
     relatedLinks: [
-      { label: "Contractor speed to lead", href: "/contractor-speed-to-lead" },
-      { label: "Contractor job costing", href: "/contractor-job-costing" },
-      { label: "Estimate follow-up system", href: "/contractor-estimate-follow-up" },
-      { label: "RAKE owner visibility", href: "/" }
+      { label: "Contractor speed to lead", href: "/rake/contractor-speed-to-lead" },
+      { label: "Contractor job costing", href: "/rake/contractor-job-costing" },
+      { label: "Estimate follow-up system", href: "/rake/contractor-estimate-follow-up" },
+      { label: "RAKE overview", href: "/rake" }
     ]
   },
   {
@@ -388,9 +388,9 @@ export const rakeSeoPages: SeoLandingPage[] = [
       { question: "How long does an estimate-recovery rollout take?", answer: "RAKE uses a 90-day rollout. Open-estimate flow and benchmarks are mapped by day 30, the recovery queue is active by day 60, and stop rules, ownership, and recurring review are established by day 90." }
     ],
     relatedLinks: [
-      { label: "Contractor speed to lead", href: "/contractor-speed-to-lead" },
-      { label: "Contractor job costing", href: "/contractor-job-costing" },
-      { label: "Contractor operations software", href: "/contractor-operations-software" }
+      { label: "Contractor speed to lead", href: "/rake/contractor-speed-to-lead" },
+      { label: "Contractor job costing", href: "/rake/contractor-job-costing" },
+      { label: "Contractor operations software", href: "/rake/contractor-operations-software" }
     ]
   },
   {
@@ -439,9 +439,9 @@ export const rakeSeoPages: SeoLandingPage[] = [
       { question: "How long does a contractor job-costing rollout take?", answer: "RAKE uses a 90-day rollout. Cost sources and benchmarks are mapped by day 30, the first live job-cost and exception views are operating by day 60, and ownership and review routines are established by day 90." }
     ],
     relatedLinks: [
-      { label: "Contractor operations software", href: "/contractor-operations-software" },
-      { label: "Estimate follow-up system", href: "/contractor-estimate-follow-up" },
-      { label: "Review and referral automation", href: "/contractor-review-referral-automation" }
+      { label: "Contractor operations software", href: "/rake/contractor-operations-software" },
+      { label: "Estimate follow-up system", href: "/rake/contractor-estimate-follow-up" },
+      { label: "Review and referral automation", href: "/rake/contractor-review-referral-automation" }
     ]
   },
   {
@@ -490,9 +490,9 @@ export const rakeSeoPages: SeoLandingPage[] = [
       { question: "How long does review and referral automation take to implement?", answer: "RAKE uses a 90-day rollout. Customer milestones and outreach are mapped by day 30, initial workflows are live by day 60, and triggers, ownership, and reporting are established by day 90." }
     ],
     relatedLinks: [
-      { label: "Contractor job costing", href: "/contractor-job-costing" },
-      { label: "Contractor speed to lead", href: "/contractor-speed-to-lead" },
-      { label: "Contractor operations software", href: "/contractor-operations-software" }
+      { label: "Contractor job costing", href: "/rake/contractor-job-costing" },
+      { label: "Contractor speed to lead", href: "/rake/contractor-speed-to-lead" },
+      { label: "Contractor operations software", href: "/rake/contractor-operations-software" }
     ]
   }
 ];
