@@ -21,23 +21,23 @@ export default function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#16181b",
-          color: "#ece9e2",
+          background: "#07111f",
+          color: "#ffffff",
           padding: "64px 72px"
         }}
       >
         <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
           <span style={{ fontSize: 40, fontWeight: 800, letterSpacing: 2 }}>RAKE</span>
-          <span style={{ fontSize: 24, color: "#9ba2a9" }}>by 2Stack</span>
+          <span style={{ fontSize: 24, color: "#9ecbff" }}>by 2Stack</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 88, fontWeight: 800, lineHeight: 0.98, letterSpacing: -2, maxWidth: 1000 }}>
             You paid for the lead. Somebody else signed the roof.
           </div>
-          <div style={{ display: "flex", gap: 28, marginTop: 40, fontSize: 24, color: "#9ba2a9" }}>
+          <div style={{ display: "flex", gap: 28, marginTop: 40, fontSize: 24, color: "#9ecbff" }}>
             {leaks.map((leak) => (
               <div key={leak} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <div style={{ width: 12, height: 12, background: "#5c9ce6", transform: "rotate(45deg)" }} />
+                <div style={{ width: 12, height: 12, background: "#5f9de0", transform: "rotate(45deg)" }} />
                 <span>{leak}</span>
               </div>
             ))}
