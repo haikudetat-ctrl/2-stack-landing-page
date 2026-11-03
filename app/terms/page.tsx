@@ -6,7 +6,7 @@ import { CONTACT_EMAIL, TEXT_LINE } from "@/lib/contact";
 export const metadata: Metadata = {
   title: "Terms and Conditions",
   description:
-    "Terms and Conditions for using 2Stack's websites and services, including the terms of 2Stack's text messaging program.",
+    "Terms and Conditions for using 2Stack's websites and services, including the terms of 2Stack's text messaging programs.",
   alternates: { canonical: "https://2-stack.com/terms" }
 };
 
@@ -22,7 +22,7 @@ const sections: Section[] = [
     id: "agreement",
     title: "1. Agreement to these terms",
     paragraphs: [
-      "These Terms and Conditions (\"Terms\") govern your use of 2-stack.com and its branded sites, including Clopen, LOAM and RAKE (together, the \"Site\"), and your participation in any text messaging program operated by 2Stack (\"2Stack,\" \"we,\" \"us,\" or \"our\"). By using the Site or joining our text messaging program, you agree to these Terms. If you do not agree, please do not use the Site.",
+      "These Terms and Conditions (\"Terms\") govern your use of 2-stack.com and its branded sites, including Clopen, LOAM and RAKE (together, the \"Site\"), and your participation in any text messaging program operated by 2Stack (\"2Stack,\" \"we,\" \"us,\" or \"our\"). By using the Site or joining any of our text messaging programs, you agree to these Terms. If you do not agree, please do not use the Site.",
       "If you are using the Site on behalf of a business, you confirm that you are authorized to accept these Terms for that business."
     ]
   },
@@ -57,14 +57,17 @@ const sections: Section[] = [
     id: "text-messaging",
     title: "5. Text messaging terms",
     paragraphs: [
-      "2Stack operates a text messaging program for prospective and current clients. These terms apply whenever you receive text messages from 2Stack."
+      "2Stack sends two kinds of text messages to prospective and current clients, and you choose each one separately. These terms apply whenever you receive text messages from 2Stack."
     ],
     list: [
-      "Program description: messages about your inquiry, calls you schedule with us, client onboarding, and service updates for the systems we run for your business. We do not send marketing, affiliate or third-party messages through this program.",
-      `How you opt in: by checking the optional, unchecked text message box on our contact form at 2-stack.com/contact, or by texting us first at ${TEXT_LINE.display}. Consent to receive texts is never a condition of purchasing anything from us.`,
-      "Message frequency varies based on your inquiry and the services you use.",
+      "Service and inquiry texts: messages about your inquiry, calls you schedule with us, client onboarding, and service updates for the systems we run for your business. These are not marketing messages.",
+      "Marketing texts: occasional messages about 2Stack offers, events and product news. We send these only if you separately opt in to marketing texts, and they may be sent using automated technology.",
+      `How you opt in: the contact form at 2-stack.com/contact has two separate, optional checkboxes, both unchecked by default: one for service and inquiry texts and one for marketing texts. You can check either, both or neither, and you can submit the form without checking any. Agreeing to one never counts as agreeing to the other. You can also text us first at ${TEXT_LINE.display}, which lets us reply about your message only; texting us does not opt you in to marketing texts.`,
+      "Consent to receive texts, including marketing texts, is never a condition of purchasing anything from us.",
+      "We do not send affiliate or third-party messages through either program.",
+      "Message frequency varies based on your inquiry, the services you use and the programs you join.",
       "Message and data rates may apply, according to your mobile plan.",
-      "To stop messages, reply STOP (or STOPALL, UNSUBSCRIBE, CANCEL, END or QUIT) at any time. We will send one message confirming you have been unsubscribed and will not text you again unless you opt back in. To opt back in, reply START.",
+      "To stop messages, reply STOP (or STOPALL, UNSUBSCRIBE, CANCEL, END or QUIT) at any time. Replying STOP stops all texts from 2Stack, both service and marketing. We will send one message confirming you have been unsubscribed and will not text you again unless you opt back in. To opt back in, reply START. To stop only marketing texts while keeping service texts, email or call us.",
       `For help, reply HELP or INFO, email ${CONTACT_EMAIL}, or call ${TEXT_LINE.display}.`,
       "Carriers are not liable for delayed or undelivered messages.",
       "We may send texts using automated technology. Messages are intended for US mobile numbers.",
@@ -103,7 +106,7 @@ const sections: Section[] = [
     id: "liability",
     title: "10. Limitation of liability",
     paragraphs: [
-      "To the fullest extent permitted by law, 2Stack will not be liable for any indirect, incidental, special, consequential or punitive damages, or for any loss of profits, revenue or data, arising from your use of the Site or our text messaging program. Our total liability for any claim relating to the Site or these Terms will not exceed one hundred US dollars ($100). These limits do not apply to liability that cannot be limited by law, and they do not change the terms of any signed client agreement."
+      "To the fullest extent permitted by law, 2Stack will not be liable for any indirect, incidental, special, consequential or punitive damages, or for any loss of profits, revenue or data, arising from your use of the Site or our text messaging programs. Our total liability for any claim relating to the Site or these Terms will not exceed one hundred US dollars ($100). These limits do not apply to liability that cannot be limited by law, and they do not change the terms of any signed client agreement."
     ]
   },
   {
@@ -124,7 +127,7 @@ const sections: Section[] = [
     id: "contact",
     title: "13. Contact us",
     paragraphs: [
-      `Questions about these Terms or our text messaging program? Email ${CONTACT_EMAIL}, call or text ${TEXT_LINE.display}, or use our contact form at 2-stack.com/contact.`
+      `Questions about these Terms or our text messaging programs? Email ${CONTACT_EMAIL}, call or text ${TEXT_LINE.display}, or use our contact form at 2-stack.com/contact.`
     ]
   }
 ];
