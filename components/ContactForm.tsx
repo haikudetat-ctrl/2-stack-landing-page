@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { SMS_CONSENT_TEXT, type ContactField } from "@/lib/contact";
+import { SMS_INFO_CONSENT_TEXT, SMS_MARKETING_CONSENT_TEXT, type ContactField } from "@/lib/contact";
 
 type Errors = Partial<Record<ContactField | "form", string>>;
 
@@ -22,13 +22,14 @@ export function ContactForm() {
       email: String(form.get("email") ?? ""),
       phone: String(form.get("phone") ?? ""),
       message: String(form.get("message") ?? ""),
-      smsConsent: form.get("smsConsent") === "yes",
+      smsInformational: form.get("smsInformational") === "yes",
+      smsMarketing: form.get("smsMarketing") === "yes",
       website: String(form.get("website") ?? ""),
       sourcePath: window.location.pathname
     };
 
-    if (payload.smsConsent && !payload.phone.trim()) {
-      setErrors({ phone: "Add your mobile number, or uncheck the text message box." });
+    if ((payload.smsInformational || payload.smsMarketing) && !payload.phone.trim()) {
+      setErrors({ phone: "Add your mobile number, or uncheck the text message boxes." });
       return;
     }
 
@@ -57,8 +58,8 @@ export function ContactForm() {
       <div className="rounded-lg border border-white/10 bg-[#101722] p-6 sm:p-8" role="status">
         <h2 className="text-xl font-semibold text-white">Got it, thanks.</h2>
         <p className="mt-3 leading-7 text-slate-300">
-          Chris or Joe will get back to you, usually within a business day. If you checked the text box, the first
-          text will come from (856) 804-1844.
+          Chris or Joe will get back to you, usually within a business day. If you opted in to texts, they will
+          come from (856) 804-1844.
         </p>
       </div>
     );
@@ -87,7 +88,7 @@ export function ContactForm() {
       <Field
         id="phone"
         label="Mobile number"
-        hint="Optional. We'll only text you if you check the box below."
+        hint="Optional. We'll only text you if you check a box below."
         error={errors.phone}
       >
         <input id="phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" className={inputClass} />
@@ -103,28 +104,32 @@ export function ContactForm() {
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="rounded-md border border-white/10 bg-[#0b1520] p-4">
-        <div className="flex items-start gap-3">
-          <input
-            id="smsConsent"
-            name="smsConsent"
-            type="checkbox"
-            value="yes"
-            defaultChecked={false}
-            className="mt-1 h-4 w-4 shrink-0 rounded border-white/30 bg-transparent accent-[#5bade3]"
-            aria-describedby="smsConsent-links"
-          />
-          <label htmlFor="smsConsent" className="text-sm leading-6 text-slate-300">
-            {SMS_CONSENT_TEXT}
-          </label>
-        </div>
-        <p id="smsConsent-links" className="mt-2 pl-7 text-sm text-slate-400">
-          See our{" "}
+      <fieldset className="rounded-md border border-white/10 bg-[#0b1520] p-4" aria-describedby="sms-links">
+        <legend className="px-1 text-sm font-medium text-slate-200">
+          Text messages <span className="font-normal text-slate-500">Optional. Each box is separate.</span>
+        </legend>
+
+        <ConsentCheckbox
+          id="smsInformational"
+          label={SMS_INFO_CONSENT_TEXT}
+          error={errors.smsInformational}
+        />
+        <div className="my-4 border-t border-white/10" />
+        <ConsentCheckbox
+          id="smsMarketing"
+          label={SMS_MARKETING_CONSENT_TEXT}
+          error={errors.smsMarketing}
+        />
+
+        <p id="sms-links" className="mt-4 pl-7 text-sm text-slate-400">
+          You can check either box, both, or neither. See our{" "}
           <a href="/privacy" className="underline underline-offset-4 hover:text-white">Privacy Policy</a> and{" "}
-          <a href="/terms" className="underline underline-offset-4 hover:text-white">Terms and Conditions</a>.
+          <a href="/terms#text-messaging" className="underline underline-offset-4 hover:text-white">
+            Terms and Conditions
+          </a>
+          .
         </p>
-        {errors.smsConsent ? <p className="mt-2 pl-7 text-sm text-[#f59e8b]">{errors.smsConsent}</p> : null}
-      </div>
+      </fieldset>
 
       {errors.form ? (
         <p id="contact-form-error" className="text-sm text-[#f59e8b]" role="alert">
@@ -140,6 +145,27 @@ export function ContactForm() {
         {status === "sending" ? "Sending" : "Send"}
       </button>
     </form>
+  );
+}
+
+function ConsentCheckbox({ id, label, error }: { id: string; label: string; error?: string }) {
+  return (
+    <div>
+      <div className="flex items-start gap-3">
+        <input
+          id={id}
+          name={id}
+          type="checkbox"
+          value="yes"
+          defaultChecked={false}
+          className="mt-1 h-4 w-4 shrink-0 rounded border-white/30 bg-transparent accent-[#5bade3]"
+        />
+        <label htmlFor={id} className="text-sm leading-6 text-slate-300">
+          {label}
+        </label>
+      </div>
+      {error ? <p className="mt-2 pl-7 text-sm text-[#f59e8b]">{error}</p> : null}
+    </div>
   );
 }
 
