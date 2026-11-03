@@ -464,6 +464,9 @@ function RakeFooter() {
           <a href="https://2-stack.com/privacy" className="block underline underline-offset-4 transition hover:text-white">
             Privacy Policy
           </a>
+          <a href="https://2-stack.com/terms" className="block underline underline-offset-4 transition hover:text-white">
+            Terms and Conditions
+          </a>
         </div>
       </div>
     </footer>

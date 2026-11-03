@@ -27,7 +27,7 @@ const sections = [
   ],
   [
     "Text messaging: consent and program information",
-    "If we offer a text messaging program, we identify the sending business and describe the message categories at enrollment. These may include responses to requests, appointment or service updates, or promotional messages about the identified business, depending on the program you choose. We obtain the consent required for each program before sending messages, including any required express written consent for automated marketing texts. Marketing consent is optional and is not a condition of purchasing goods or services. Message frequency varies by program and your interactions; enrollment disclosures describe any more specific frequency. Message and data rates may apply. Messages may be sent using automated technology. Merely visiting this site or accepting this privacy policy does not provide SMS consent."
+    "If we offer a text messaging program, we identify the sending business and describe the message categories at enrollment. These may include responses to requests, appointment or service updates, or promotional messages about the identified business, depending on the program you choose. We obtain the consent required for each program before sending messages, including any required express written consent for automated marketing texts. Marketing consent is optional and is not a condition of purchasing goods or services. Message frequency varies by program and your interactions; enrollment disclosures describe any more specific frequency. Message and data rates may apply. Messages may be sent using automated technology. Merely visiting this site or accepting this privacy policy does not provide SMS consent. The program terms for 2Stack's own text messaging, including how to opt in through our contact form at 2-stack.com/contact or by texting (856) 804-1844, and how to opt out or get help, are in our Terms and Conditions at 2-stack.com/terms."
   ],
   [
     "Text messaging: privacy and sharing",
@@ -69,7 +69,7 @@ export default function PrivacyPage() {
       <main className="mx-auto max-w-3xl px-6 py-16 text-slate-200">
         <Link href="/" className="text-sm underline underline-offset-4">2Stack home</Link>
         <h1 className="mt-8 text-4xl font-semibold text-white">Privacy Policy</h1>
-        <p className="mt-4 text-sm text-slate-400">Last updated: October 13, 2026</p>
+        <p className="mt-4 text-sm text-slate-400">Last updated: November 3, 2026</p>
         <div className="mt-10 space-y-10">
           {sections.map(([title, body]) => (
             <section key={title}>

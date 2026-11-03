@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { TEXT_LINE } from "@/lib/contact";
 
 const verticalLinks = [
   { label: "LOAM", href: "/loam", color: "hover:text-[#9bc86d]" },
@@ -38,7 +39,12 @@ export function Footer() {
           <a className="mt-4 inline-block text-slate-200 transition-colors hover:text-[#5bade3]" href="mailto:team@2stackops.com">
             team@2stackops.com
           </a>
-          <a href="https://2-stack.com/privacy" className="mt-3 block text-sm text-slate-400 underline underline-offset-4">Privacy Policy</a>
+          <a className="mt-2 block text-slate-200 transition-colors hover:text-[#5bade3]" href={`tel:${TEXT_LINE.e164}`}>
+            {`Call or text ${TEXT_LINE.display}`}
+          </a>
+          <a href="https://2-stack.com/contact" className="mt-3 block text-sm text-slate-400 underline underline-offset-4">Contact form</a>
+          <a href="https://2-stack.com/privacy" className="mt-2 block text-sm text-slate-400 underline underline-offset-4">Privacy Policy</a>
+          <a href="https://2-stack.com/terms" className="mt-2 block text-sm text-slate-400 underline underline-offset-4">Terms and Conditions</a>
         </div>
       </div>
     </footer>

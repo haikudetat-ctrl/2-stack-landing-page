@@ -52,7 +52,10 @@ test("host-aware sitemap entries expose only canonical pages for that host", () 
       "https://2-stack.com/rake/contractor-estimate-follow-up",
       "https://2-stack.com/rake/contractor-job-costing",
       "https://2-stack.com/rake/contractor-review-referral-automation",
-      "https://2-stack.com/home-services"
+      "https://2-stack.com/home-services",
+      "https://2-stack.com/contact",
+      "https://2-stack.com/privacy",
+      "https://2-stack.com/terms"
     ]
   );
 });
