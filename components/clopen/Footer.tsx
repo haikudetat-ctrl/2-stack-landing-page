@@ -40,6 +40,7 @@ export function Footer() {
               team@2stackops.com
             </a>
           <a href="https://2-stack.com/privacy" className="mt-3 block text-sm text-[#4b5563] underline underline-offset-4">Privacy Policy</a>
+          <a href="https://2-stack.com/terms" className="mt-2 block text-sm text-[#4b5563] underline underline-offset-4">Terms and Conditions</a>
           </div>
         </div>
       </div>

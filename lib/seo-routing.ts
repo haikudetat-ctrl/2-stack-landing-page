@@ -114,6 +114,9 @@ export function getSitemapEntries(hostname: string): SitemapEntry[] {
       priority: 0.7,
       changeFrequency: "monthly" as const
     })),
-    { url: "https://2-stack.com/home-services", priority: 0.8, changeFrequency: "monthly" }
+    { url: "https://2-stack.com/home-services", priority: 0.8, changeFrequency: "monthly" },
+    { url: "https://2-stack.com/contact", priority: 0.5, changeFrequency: "monthly" },
+    { url: "https://2-stack.com/privacy", priority: 0.3, changeFrequency: "monthly" },
+    { url: "https://2-stack.com/terms", priority: 0.3, changeFrequency: "monthly" }
   ];
 }

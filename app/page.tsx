@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { VerticalCards } from "@/components/VerticalCards";
 import { WhatWeDo } from "@/components/WhatWeDo";
 import { Why2Stack } from "@/components/Why2Stack";
+import { TEXT_LINE } from "@/lib/contact";
 import { siteConfig } from "@/lib/seo";
 
 const title = "Operating Systems for Owner-Operators";
@@ -51,6 +52,7 @@ const structuredData = {
       name: siteConfig.name,
       url: siteConfig.url,
       email: siteConfig.email,
+      telephone: TEXT_LINE.e164,
       logo: `${siteConfig.url}/navbar_logo.png`,
       description: siteConfig.description
     },

@@ -6,7 +6,7 @@ const navLinks = [
   { label: "RAKE", href: "/rake", hoverClass: "hover:text-[#5f9de0] focus-visible:text-[#5f9de0]" },
   {
     label: "Contact",
-    href: "mailto:team@2stackops.com",
+    href: "/contact",
     hoverClass: "hover:text-[#5bade3] focus-visible:text-[#5bade3]"
   }
 ];

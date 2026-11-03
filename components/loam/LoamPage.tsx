@@ -83,6 +83,7 @@ export function LoamPage() {
       <FinalCta />
       <footer className="mx-auto max-w-7xl px-6 pb-10 text-sm">
         <a href="https://2-stack.com/privacy" className="underline underline-offset-4">Privacy Policy</a>
+        <a href="https://2-stack.com/terms" className="ml-6 underline underline-offset-4">Terms and Conditions</a>
       </footer>
     </main>
   );
